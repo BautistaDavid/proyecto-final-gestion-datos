@@ -1,0 +1,11 @@
+# Enunciado del curso (material del profesor)
+ProyectoFinal.pdf
+
+# Notas personales de la sesión
+RESUMEN_SESION.md
+
+# Entorno virtual
+.venv/
+
+# Datos descargados (se regeneran con ingesta_datos_gov.py)
+datos/
