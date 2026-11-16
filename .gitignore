@@ -1,9 +1,11 @@
-# Enunciado del curso (material del profesor)
+# Enunciado del curso y material del profesor
 ProyectoFinal.pdf
+ContenidoClase/
 
 
 # Entorno virtual
 .venv/
+
 
 # Datos descargados (excepto raw, que se versionan)
 datos/*
