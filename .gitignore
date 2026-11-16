@@ -5,5 +5,19 @@ ProyectoFinal.pdf
 # Entorno virtual
 .venv/
 
-# Datos descargados
-datos/
+# Datos descargados (excepto raw, que se versionan)
+datos/*
+!datos/raw/
+datos/raw/*
+!datos/raw/metadatos.json
+!datos/raw/*.csv
+
+# Variables de entorno (el token no se sube)
+.env
+!.env.example
+
+
+# Cache de Jupyter
+.ipynb_checkpoints/
+__pycache__/
+*.pyc

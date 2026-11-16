@@ -1,0 +1,76 @@
+{
+  "fecha_descarga": "2026-11-16T11:33:48.829037",
+  "datasets": {
+    "quejas_sfc": {
+      "id_dataset": "hjqv-fp48",
+      "url_dataset": "https://www.datos.gov.co/dataset/hjqv-fp48",
+      "filtro_aplicado": "nombre_entidad in ('Banco Davivienda', 'Fiduciaria Davivienda S.A. Pudiendo Utilizar La Sigla \"Fidudavivienda S.A.\"', 'Corredores Davivienda S.A.Comisionista De Bolsa') AND fecha_corte >= '2019-01-01T00:00:00'",
+      "cantidad_registros": 3928,
+      "cantidad_columnas": 18,
+      "columnas": [
+        "tipo_entidad",
+        "codigo_entidad",
+        "nombre_entidad",
+        "fecha_corte",
+        "unidad_captura",
+        "nombre_unidad_captura",
+        "codigo_producto",
+        "producto",
+        "codigo_motivo",
+        "motivo",
+        "quejas_pendientes",
+        "quejas_recibidas",
+        "quejas_finalizadas",
+        "quejas_finalizad_favor_consum",
+        "quejas_finalizad_favor_entidad",
+        "quejas_en_tramite",
+        "quejas_favor_consum_acep",
+        "quejas_favor_consum_noacep"
+      ],
+      "tamano_bytes": 708240,
+      "hash_sha256": "9fc871f7f9b151d18b73d903c88dc4de6b5cb78bf95a43feed579d85bce52c8f",
+      "ruta_local": "datos/raw/quejas_sfc.csv"
+    },
+    "quejas_smartsupervision": {
+      "id_dataset": "xyy7-rn7p",
+      "url_dataset": "https://www.datos.gov.co/dataset/xyy7-rn7p",
+      "filtro_aplicado": "(tipo_entidad=1 AND codigo_entidad=39) OR (tipo_entidad=5 AND codigo_entidad=42) OR (tipo_entidad=85 AND codigo_entidad=26)",
+      "cantidad_registros": 109620,
+      "cantidad_columnas": 10,
+      "columnas": [
+        "a_o_creacion",
+        "mes_creacion",
+        "tipo_entidad",
+        "codigo_entidad",
+        "instancia_recepcion",
+        "motivo",
+        "producto",
+        "departamento",
+        "municipio",
+        "cantidad_quejas_recibidas"
+      ],
+      "tamano_bytes": 14093402,
+      "hash_sha256": "24bcca840b64a395899c29c6815dc736989dff1df88989f14ea38b892a39e48e",
+      "ruta_local": "datos/raw/quejas_smartsupervision.csv"
+    },
+    "sanciones_sic": {
+      "id_dataset": "73dx-n59j",
+      "url_dataset": "https://www.datos.gov.co/dataset/73dx-n59j",
+      "filtro_aplicado": "sector = 'Servicios de financiación'",
+      "cantidad_registros": 281,
+      "cantidad_columnas": 7,
+      "columnas": [
+        "radicado",
+        "res_sancion",
+        "fecha_emitida",
+        "multado",
+        "valor",
+        "conducta",
+        "sector"
+      ],
+      "tamano_bytes": 42049,
+      "hash_sha256": "f1b2208a2d9276f86b2cedd74722b583a1d3ecb8836b6ce50b7d1d90936b23d2",
+      "ruta_local": "datos/raw/sanciones_sic.csv"
+    }
+  }
+}
