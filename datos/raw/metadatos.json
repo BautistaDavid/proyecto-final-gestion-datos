@@ -1,11 +1,11 @@
 {
-  "fecha_descarga": "2026-11-16T11:33:48.829037",
+  "fecha_descarga": "2026-11-19T14:08:37.764897",
   "datasets": {
     "quejas_sfc": {
       "id_dataset": "hjqv-fp48",
       "url_dataset": "https://www.datos.gov.co/dataset/hjqv-fp48",
-      "filtro_aplicado": "nombre_entidad in ('Banco Davivienda', 'Fiduciaria Davivienda S.A. Pudiendo Utilizar La Sigla \"Fidudavivienda S.A.\"', 'Corredores Davivienda S.A.Comisionista De Bolsa') AND fecha_corte >= '2019-01-01T00:00:00'",
-      "cantidad_registros": 3928,
+      "filtro_aplicado": "nombre_entidad in ('Banco Davivienda', 'Fiduciaria Davivienda S.A. Pudiendo Utilizar La Sigla \"Fidudavivienda S.A.\"', 'Corredores Davivienda S.A.Comisionista De Bolsa') AND fecha_corte >= '2010-01-01T00:00:00'",
+      "cantidad_registros": 9953,
       "cantidad_columnas": 18,
       "columnas": [
         "tipo_entidad",
@@ -27,15 +27,15 @@
         "quejas_favor_consum_acep",
         "quejas_favor_consum_noacep"
       ],
-      "tamano_bytes": 708240,
-      "hash_sha256": "9fc871f7f9b151d18b73d903c88dc4de6b5cb78bf95a43feed579d85bce52c8f",
+      "tamano_bytes": 1733949,
+      "hash_sha256": "a7cf6e3ca347dc4de5290d2928515808377df6367e0d322180e6ef90e3b07a4b",
       "ruta_local": "datos/raw/quejas_sfc.csv"
     },
     "quejas_smartsupervision": {
       "id_dataset": "xyy7-rn7p",
       "url_dataset": "https://www.datos.gov.co/dataset/xyy7-rn7p",
       "filtro_aplicado": "(tipo_entidad=1 AND codigo_entidad=39) OR (tipo_entidad=5 AND codigo_entidad=42) OR (tipo_entidad=85 AND codigo_entidad=26)",
-      "cantidad_registros": 109620,
+      "cantidad_registros": 113327,
       "cantidad_columnas": 10,
       "columnas": [
         "a_o_creacion",
@@ -49,8 +49,8 @@
         "municipio",
         "cantidad_quejas_recibidas"
       ],
-      "tamano_bytes": 14093402,
-      "hash_sha256": "24bcca840b64a395899c29c6815dc736989dff1df88989f14ea38b892a39e48e",
+      "tamano_bytes": 14605786,
+      "hash_sha256": "bd2b1d1f5327a454f3b70cb7d284f9318d43c747fad06ad16c28e8168125a663",
       "ruta_local": "datos/raw/quejas_smartsupervision.csv"
     },
     "sanciones_sic": {
@@ -71,6 +71,45 @@
       "tamano_bytes": 42049,
       "hash_sha256": "f1b2208a2d9276f86b2cedd74722b583a1d3ecb8836b6ce50b7d1d90936b23d2",
       "ruta_local": "datos/raw/sanciones_sic.csv"
+    },
+    "puntos_atencion": {
+      "id_dataset": "vkbt-desu",
+      "url_dataset": "https://www.datos.gov.co/dataset/vkbt-desu",
+      "filtro_aplicado": "tipo_entidad='1' AND codigo_entidad='39'",
+      "cantidad_registros": 60998,
+      "cantidad_columnas": 11,
+      "columnas": [
+        "tipo_entidad",
+        "codigo_entidad",
+        "nombre_entidad",
+        "fecha_corte",
+        "unidad_captura",
+        "nombre_unidad_captura",
+        "codigo_canal",
+        "codigo_departamento",
+        "codigo_municipio",
+        "cantidad_puntos_atencion",
+        "cantidad_puntos_antecion_activos"
+      ],
+      "tamano_bytes": 5393839,
+      "hash_sha256": "dc041c65163e01f60bbb018b9584ec422404b7e1312a21c97c47551329746272",
+      "ruta_local": "datos/raw/puntos_atencion.csv"
+    },
+    "divipola_departamentos": {
+      "id_dataset": "vcjz-niiq",
+      "url_dataset": "https://www.datos.gov.co/dataset/vcjz-niiq",
+      "filtro_aplicado": "Sin filtro (catálogo completo)",
+      "cantidad_registros": 33,
+      "cantidad_columnas": 4,
+      "columnas": [
+        "codigo_departamento",
+        "nombre_departamento",
+        "longitud",
+        "latitud"
+      ],
+      "tamano_bytes": 1529,
+      "hash_sha256": "e2f01cf489f49d561bdddd359e28c8109a771a44055daf2980e9b531c3f422bd",
+      "ruta_local": "datos/raw/divipola_departamentos.csv"
     }
   }
 }
