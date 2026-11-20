@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reputación Davivienda · Sustentación</title>
+<style>
+:root{
+  --papel:#FAFAF7; --tinta:#1A1D20; --gris:#5B6168; --tenue:#8A9097; --linea:#D9DBD6;
+  --rojo:#E1111C; --pizarra:#1E3A5F; --pizarra-claro:#E8EDF3; --reservado:#F3F1EA;
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: "Segoe UI", "Helvetica Neue", Arial, system-ui, sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#E9E9E4;color:var(--tinta);font-family:var(--sans)}
+body{overflow:hidden}
+.stage{position:absolute;top:50%;left:50%;width:1280px;height:720px;transform-origin:center center}
+.slide{position:absolute;inset:0;width:1280px;height:720px;background:var(--papel);display:none;flex-direction:column;padding:56px 72px 48px;overflow:hidden}
+.slide.activa{display:flex}
+.cabecera{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--tenue);border-bottom:1px solid var(--linea);padding-bottom:10px;margin-bottom:28px}
+.cabecera .seccion b{color:var(--rojo);font-weight:600}
+h1{font-family:var(--serif);font-weight:400;font-size:40px;line-height:1.15;letter-spacing:-.01em;max-width:1080px;margin-bottom:28px}
+h1 em{font-style:normal;color:var(--rojo)}
+.cuerpo{flex:1;min-height:0;display:flex;gap:48px}
+.pie{font-size:12.5px;color:var(--tenue);margin-top:14px}
+ul.vinetas{list-style:none}
+ul.vinetas li{font-size:22px;line-height:1.35;padding:10px 0 10px 22px;position:relative;border-top:1px solid var(--linea)}
+ul.vinetas li:first-child{border-top:none}
+ul.vinetas li::before{content:"";position:absolute;left:0;top:22px;width:10px;height:2px;background:var(--rojo)}
+.notes{display:none}
+
+/* Portada y cierre */
+.portada{justify-content:space-between;padding:72px 88px}
+.portada .sello{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--gris)}
+.portada .sello b{color:var(--rojo);font-weight:600}
+.portada h1{font-size:58px;max-width:980px;margin:0}
+.portada .sub{font-size:22px;color:var(--gris);margin-top:22px;max-width:900px;line-height:1.4}
+.portada .equipo{display:flex;gap:56px;border-top:2px solid var(--tinta);padding-top:18px;font-size:17px}
+.portada .equipo span{color:var(--gris);display:block;font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.barra-roja{width:64px;height:6px;background:var(--rojo);margin-bottom:28px}
+
+/* Espacio reservado */
+.reservado .marco{flex:1;border:2px dashed #B9B5A6;background:var(--reservado);border-radius:6px;display:flex;flex-direction:column;justify-content:center;padding:48px 64px}
+.reservado .etiqueta{font-family:ui-monospace,Consolas,monospace;font-size:20px;letter-spacing:.06em;color:#7A7462;margin-bottom:30px}
+.reservado ul.vinetas li{font-size:24px;color:#4A4A40}
+.reservado .tiempo{margin-top:26px;font-size:15px;color:#7A7462}
+
+/* Dos columnas */
+.dos{display:grid;grid-template-columns:1fr 1fr;gap:0;flex:1;align-items:center;padding-bottom:40px}
+.dos ul.vinetas li{font-size:26px;padding:14px 0 14px 24px}
+.dos ul.vinetas li::before{top:28px}
+.dos h2{font-size:15px!important;margin-bottom:14px!important}
+.dos > div{padding:8px 44px 0 0}
+.dos > div + div{padding:8px 0 0 44px;border-left:1px solid var(--linea)}
+.dos h2{font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--gris);font-weight:600;margin-bottom:10px}
+.dos .grande{font-family:var(--serif);font-size:88px;line-height:1;margin:6px 0 18px}
+.dos .acento .grande, .dos .acento h2{color:var(--pizarra)}
+.dos .tenue .grande{color:var(--tenue)}
+
+/* Preguntas */
+.preguntas{flex:1;display:grid;grid-template-columns:1fr 1fr;align-items:start;align-content:center;padding-bottom:30px}
+.preguntas > div{display:flex;flex-direction:column;min-height:330px}
+.pq-fuente{margin-top:auto}
+.preguntas > div{padding-right:48px}
+.preguntas > div + div{padding:0 0 0 48px;border-left:1px solid var(--linea)}
+.pq-etiqueta{font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--rojo);font-weight:600;margin-bottom:18px}
+.preguntas .acento .pq-etiqueta{color:var(--pizarra)}
+.pq{font-family:var(--serif);font-size:33px;line-height:1.28;margin-bottom:26px}
+.pq em{font-style:normal;border-bottom:3px solid var(--rojo)}
+.preguntas .acento .pq em{border-bottom-color:var(--pizarra)}
+.pq-fuente{font-size:17px;color:var(--gris);border-top:1px solid var(--linea);padding-top:12px}
+
+/* Cifra héroe */
+.heroe .cuerpo{align-items:center;gap:72px}
+.heroe .cifra{font-family:var(--serif);font-size:230px;line-height:.9;color:var(--rojo);letter-spacing:-.04em;white-space:nowrap}
+.heroe .cifra small{font-size:110px}
+.heroe .lado{flex:1;max-width:520px}
+.heroe .lado p.contexto{font-size:24px;line-height:1.35;color:var(--gris);margin-bottom:22px}
+
+/* Figura */
+.figura h1{margin-bottom:18px}
+.figura .cuerpo{gap:36px}
+.figura .lienzo{flex:0 0 70%;display:flex;align-items:flex-start;justify-content:center;min-height:0}
+.figura .lienzo img{max-width:100%;max-height:100%;object-fit:contain;border:1px solid var(--linea);background:#fff}
+.figura .hallazgos{flex:1;display:flex;flex-direction:column;justify-content:center;gap:28px}
+.figura .hallazgo{border-left:3px solid var(--rojo);padding-left:18px}
+.figura .hallazgo b{display:block;font-family:var(--serif);font-weight:400;font-size:40px;line-height:1.05;margin-bottom:6px}
+.figura .hallazgo span{font-size:18px;line-height:1.35;color:var(--gris)}
+
+/* Tabla */
+.tabla .cuerpo{flex-direction:column;justify-content:center;gap:0}
+table{border-collapse:collapse;width:100%;font-size:23px}
+th{text-align:left;font-size:13.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gris);font-weight:600;padding:0 18px 12px 0;border-bottom:2px solid var(--tinta)}
+td{padding:18px 18px 18px 0;border-bottom:1px solid var(--linea);vertical-align:top}
+td.num{font-family:var(--serif);font-size:30px;white-space:nowrap}
+tr.elegida td{background:var(--pizarra-claro)}
+tr.elegida td:first-child{box-shadow:inset 4px 0 0 var(--pizarra);padding-left:14px}
+tr.descartada td{color:var(--tenue)}
+.nota-tabla{font-size:16px;color:var(--gris);margin-top:20px}
+
+/* Diagrama */
+.diagrama .cuerpo{flex-direction:column;gap:14px}
+.diagrama svg{width:100%;flex:1;min-height:0}
+.diagrama .leyenda{font-size:18px;color:var(--gris)}
+.diagrama .leyenda b{color:var(--rojo);font-weight:600}
+
+/* Interfaz */
+.ui{position:fixed;bottom:14px;right:18px;font:13px var(--sans);color:var(--gris);display:flex;gap:14px;align-items:center;user-select:none}
+.ui button{border:1px solid #C9CBC5;background:#fff;color:var(--tinta);border-radius:4px;padding:4px 10px;font:13px var(--sans);cursor:pointer}
+.progreso{position:fixed;left:0;top:0;height:3px;background:var(--rojo);transition:width .2s}
+.panel-notas{position:fixed;left:0;right:0;bottom:0;max-height:42vh;overflow:auto;background:#1A1D20;color:#ECEDEA;padding:22px 32px 48px;font-size:16px;line-height:1.55;display:none;border-top:3px solid var(--rojo)}
+.panel-notas.visible{display:block}
+.panel-notas h3{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9BA1A8;margin-bottom:8px}
+.panel-notas p{margin-bottom:10px;max-width:1100px}
+
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{background:var(--papel);overflow:visible;height:auto}
+  .stage{position:static;transform:none!important;width:1280px;height:auto}
+  .slide{display:flex!important;position:relative;break-after:page;page-break-after:always}
+  .slide:last-child{break-after:auto;page-break-after:auto}
+  .ui,.progreso,.panel-notas{display:none!important}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<div class="progreso" id="progreso"></div>
+<main class="stage" id="stage">
+
+<!-- 1. Portada -->
+<section class="slide portada">
+  <div>
+    <div class="sello"><b>Gestión de Datos</b> · Proyecto final · Primer hito CRISP-DM</div>
+  </div>
+  <div>
+    <div class="barra-roja"></div>
+    <h1>Monitoreo de reputación de Banco Davivienda con quejas oficiales</h1>
+    <p class="sub">Qué corregir primero y dónde mirar a tiempo, con cinco fuentes de datos.gov.co</p>
+  </div>
+  <div class="equipo">
+    <div><span>Integrante</span>David Felipe Bautista</div>
+    <div><span>Integrante</span>Belky Xiomara Mayorga</div>
+    <div><span>Integrante</span>Fabian Becerra</div>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> Presentarnos y decir de qué se trata en una frase.</p>
+    <p>(≈15 s) Buenas tardes. Somos David, Belky y Fabian. Nuestro proyecto busca ayudar a Banco Davivienda a cuidar su reputación usando las quejas que sus clientes ponen ante la Superintendencia Financiera, que son datos públicos. Primero va el pitch y después les mostramos cómo lo hicimos.</p>
+  </aside>
+</section>
+
+<!-- 2. Pitch reservado -->
+<section class="slide reservado">
+  <div class="cabecera"><span class="seccion"><b>01</b> · Elevator pitch</span><span>5 min</span></div>
+  <div class="marco">
+    <div class="etiqueta">[ESPACIO RESERVADO: ELEVATOR PITCH]</div>
+    <ul class="vinetas">
+      <li>Gancho: una crisis de reputación del sector</li>
+      <li>Problema: las señales existen, nadie las mira</li>
+      <li>Pedido: financiar alertas tempranas mensuales</li>
+    </ul>
+    <p class="tiempo">Completar por el equipo · guion base en la sección 2.4 del cuaderno</p>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> Vender el proyecto a un posible patrocinador (lo completa el equipo).</p>
+    <p>(5 min) Estructura sugerida en la sección 2.4 del cuaderno: gancho (30 s), problema (1 min), solución con las dos preguntas (1 min 30 s), evidencia (1 min 30 s) y pedido al patrocinador (30 s). Cifras que pueden usar en la evidencia: 1.231.059 quejas de Banco Davivienda entre enero de 2023 y septiembre de 2026; en el 74,8 % de las quejas cerradas el cliente tenía la razón; 11 alertas en 10 departamentos. Para pasar al bloque técnico: "Ahora les mostramos cómo llegamos a esas cifras".</p>
+  </aside>
+</section>
+
+<!-- 3. Preguntas (dos columnas) -->
+<section class="slide">
+  <div class="cabecera"><span class="seccion"><b>02</b> · Comprensión del negocio</span><span>Técnico · 10 min</span></div>
+  <h1>Las señales de una crisis ya están en las quejas</h1>
+  <div class="preguntas">
+    <div>
+      <div class="pq-etiqueta">P1 · Qué corregir primero</div>
+      <p class="pq">¿Qué productos y motivos concentran las quejas <em>fundadas</em> contra Davivienda, y cómo cambió esa composición entre 2010 y 2022?</p>
+      <div class="pq-fuente">Histórico SFC · única fuente con el desenlace de la queja</div>
+    </div>
+    <div class="acento">
+      <div class="pq-etiqueta">P2 · Dónde mirar a tiempo</div>
+      <p class="pq">¿Es posible identificar, en la serie mensual de quejas por departamento, <em>picos atípicos</em> que sirvan como alerta?</p>
+      <div class="pq-fuente">Smartsupervision · única fuente con mes y departamento</div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> Dos preguntas: qué arreglar primero y dónde aparece un problema antes de que sea noticia.</p>
+    <p>(≈35 s) Los bancos suelen enterarse de una crisis de reputación cuando ya está en los medios, pero las quejas de los clientes llevan meses avisando. Por eso nos hicimos dos preguntas. La primera: qué productos y qué motivos concentran las quejas fundadas, que son aquellas en las que al final el banco reconoce que el cliente tenía la razón. La segunda: si mirando las quejas mes a mes en cada departamento podemos detectar subidas raras que sirvan como alerta.</p>
+    <p><i>Si preguntan:</i> ¿Por qué dos fuentes? La primera pregunta necesita saber cómo terminó cada queja, y eso solo lo trae el histórico de 2010 a 2022. La segunda necesita el mes y el departamento, y eso solo lo trae Smartsupervision, desde 2023.</p>
+  </aside>
+</section>
+
+<!-- 4. Linaje (diagrama) -->
+<section class="slide diagrama">
+  <div class="cabecera"><span class="seccion"><b>03</b> · Procedencia y linaje</span><span>Secciones 1.5, 3.1</span></div>
+  <h1>Dos fuentes de quejas y tres de apoyo, todas oficiales</h1>
+  <div class="cuerpo">
+    <svg viewBox="0 0 1136 400" role="img" aria-label="Linaje de datos desde datos.gov.co hasta la vista minable">
+      <defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1A1D20"/></marker></defs>
+      <g font-family="Segoe UI, Arial, sans-serif">
+        <g font-size="15">
+          <rect x="0" y="0" width="330" height="66" fill="#fff" stroke="#1E3A5F" stroke-width="2"/>
+          <text x="16" y="27" font-weight="600" fill="#1E3A5F">hjqv-fp48 · Histórico SFC</text>
+          <text x="16" y="50" fill="#5B6168">Principal · desenlace · 2010T2–2022T2</text>
+          <rect x="0" y="84" width="330" height="66" fill="#fff" stroke="#1A1D20"/>
+          <text x="16" y="111" font-weight="600">xyy7-rn7p · Smartsupervision</text>
+          <text x="16" y="134" fill="#5B6168">Base de la vista · ubicación · 2023–2026</text>
+          <rect x="0" y="168" width="330" height="66" fill="#fff" stroke="#1A1D20"/>
+          <text x="16" y="195" font-weight="600">vkbt-desu · Puntos de atención</text>
+          <text x="16" y="218" fill="#5B6168">Denominador · canales físicos 4 y 14</text>
+          <rect x="0" y="252" width="330" height="66" fill="#fff" stroke="#1A1D20"/>
+          <text x="16" y="279" font-weight="600">vcjz-niiq · DIVIPOLA</text>
+          <text x="16" y="302" fill="#5B6168">Apoyo · código de departamento a nombre</text>
+          <rect x="0" y="336" width="330" height="64" fill="#fff" stroke="#1A1D20"/>
+          <text x="16" y="362" font-weight="600">73dx-n59j · Sanciones SIC</text>
+          <text x="16" y="385" fill="#5B6168">Contexto sectorial · sin bancos</text>
+        </g>
+        <g stroke="#1A1D20" stroke-width="1.5" fill="none">
+          <path d="M330 33 C 370 33, 370 200, 404 200"/>
+          <path d="M330 117 C 370 117, 370 200, 404 200"/>
+          <path d="M330 201 L 404 200"/>
+          <path d="M330 285 C 370 285, 370 200, 404 200"/>
+          <path d="M330 368 C 370 368, 370 200, 404 200" marker-end="url(#fl)"/>
+        </g>
+        <rect x="408" y="150" width="210" height="100" fill="#1A1D20"/>
+        <text x="424" y="182" fill="#fff" font-size="16" font-weight="600">Cuaderno 00</text>
+        <text x="424" y="206" fill="#C9CBC5" font-size="14">Extracción SoQL</text>
+        <text x="424" y="228" fill="#C9CBC5" font-size="14">desde datos.gov.co</text>
+        <line x1="618" y1="200" x2="676" y2="200" stroke="#1A1D20" stroke-width="1.5" marker-end="url(#fl)"/>
+        <rect x="680" y="150" width="210" height="100" fill="#fff" stroke="#1A1D20"/>
+        <text x="696" y="182" font-size="16" font-weight="600">datos/raw en GitHub</text>
+        <text x="696" y="206" fill="#5B6168" font-size="14">5 CSV con fecha</text>
+        <text x="696" y="228" fill="#5B6168" font-size="14">de descarga y huella</text>
+        <line x1="890" y1="200" x2="926" y2="200" stroke="#1A1D20" stroke-width="1.5" marker-end="url(#fl)"/>
+        <rect x="930" y="150" width="206" height="100" fill="#1E3A5F"/>
+        <text x="946" y="182" fill="#fff" font-size="16" font-weight="600">Vista minable</text>
+        <text x="946" y="206" fill="#D5DDE7" font-size="14">8.647 filas × 39 col.</text>
+        <text x="946" y="228" fill="#D5DDE7" font-size="14">datos/procesados</text>
+      </g>
+    </svg>
+    <p class="leyenda"><b>Julio–diciembre de 2022 sin datos:</b> las dos series no se pegan.</p>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> Usamos cinco tablas públicas: dos de quejas y tres que ayudan a interpretarlas.</p>
+    <p>(≈35 s) Todo sale de datos.gov.co. Hay dos fuentes de quejas: el histórico de la Superintendencia Financiera, de 2010 a 2022, que dice cómo terminó cada queja, y Smartsupervision, desde 2023, que dice en qué mes y en qué departamento se puso. Las otras tres ayudan: cuántas oficinas y cajeros tiene el banco en cada departamento, una tabla para traducir códigos de departamento a nombres, y las sanciones de la Superintendencia de Industria y Comercio como contexto del sector. Entre julio y diciembre de 2022 ninguna fuente tiene datos, por eso no unimos las dos series en una sola.</p>
+    <p><i>Si preguntan:</i> La descarga está en un cuaderno aparte y los archivos quedan guardados en el repositorio con su fecha y una huella digital (hash), así los tres trabajamos siempre sobre la misma copia.</p>
+  </aside>
+</section>
+
+<!-- 5. Homologación (dos columnas) -->
+<section class="slide">
+  <div class="cabecera"><span class="seccion"><b>04</b> · Integración</span><span>Secciones 4.4, 6.2</span></div>
+  <h1>Solo el <em>20 %</em> de los productos cruzaba sin homologar</h1>
+  <div class="dos">
+    <div class="tenue">
+      <h2>Nombres idénticos</h2>
+      <div class="grande">34,7 %</div>
+      <ul class="vinetas">
+        <li>de las quejas encontraba su tasa</li>
+        <li>Cuenta de ahorro quedaba sin pareja</li>
+      </ul>
+    </div>
+    <div class="acento">
+      <h2>Homologación manual</h2>
+      <div class="grande">74,8 %</div>
+      <ul class="vinetas">
+        <li>65 productos asignados a 14 categorías</li>
+        <li>17 directas, 44 conceptuales, 4 sin equivalente</li>
+        <li>El 25,2 % restante: tasa general 77,5 %</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> Las dos fuentes llaman distinto a los mismos productos; tuvimos que emparejarlos a mano.</p>
+    <p>(≈40 s) Para llevar lo que sabemos del histórico a las quejas nuevas, había que emparejar los productos de las dos fuentes. El problema es que cada una los nombra distinto. Cruzando solo nombres idénticos, apenas una de cada tres quejas encontraba pareja: el 34,7 %. Por eso homologamos, es decir, revisamos a mano 65 productos y los agrupamos en 14 categorías comunes. Con eso, tres de cada cuatro quejas quedan emparejadas, el 74,8 %. Las que no tienen equivalente usan el promedio del banco, 77,5 %.</p>
+    <p><i>Si preguntan:</i> Para los depósitos de bajo monto probamos usar la tasa de cuenta de ahorros en vez del promedio: el resultado cambia menos de medio punto (0,39), así que dejamos la opción más prudente.</p>
+  </aside>
+</section>
+
+<!-- 6. Canales (tabla) -->
+<section class="slide tabla">
+  <div class="cabecera"><span class="seccion"><b>04</b> · Integración</span><span>Sección 4.2</span></div>
+  <h1>El denominador son 2.736 puntos físicos estables, no 28.987</h1>
+  <div class="cuerpo">
+    <table>
+      <thead><tr><th>Canal</th><th>Puntos · jun 2026</th><th>Variación mensual mediana</th><th>Uso</th></tr></thead>
+      <tbody>
+        <tr class="elegida"><td>4</td><td class="num">2.213</td><td class="num">3 %</td><td>Denominador · oficinas y cajeros</td></tr>
+        <tr class="elegida"><td>14</td><td class="num">523</td><td class="num">9 %</td><td>Denominador · oficinas y cajeros</td></tr>
+        <tr class="descartada"><td>10</td><td class="num">28.987</td><td class="num">15 %</td><td>Excluido · apunta a datáfonos</td></tr>
+      </tbody>
+    </table>
+    <p class="nota-tabla">Sensibilidad: correlación de rangos 0,94 con solo el canal 4; 0,41 si se suma el 10. Juntos, los canales 4 y 14 varían un 3 % en la mediana.</p>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> Para comparar departamentos grandes y pequeños, dividimos las quejas por las oficinas y cajeros.</p>
+    <p>(≈40 s) Bogotá siempre va a tener más quejas que Vaupés, solo por tamaño. Para comparar de forma justa dividimos las quejas por los puntos de atención del banco. El dataset trae tres tipos de canal, pero no dice qué es cada uno. Por su tamaño y porque casi no cambian de un mes a otro, concluimos que los canales 4 y 14 son oficinas y cajeros: 2.736 puntos en total. El canal 10 tiene casi 29.000 puntos y cambia mucho; parece corresponder a datáfonos, así que lo dejamos fuera.</p>
+    <p><i>Si preguntan:</i> Como es una deducción, la pusimos a prueba: si usamos solo el canal 4, el orden de los departamentos casi no cambia; si sumamos el 10, sí cambia. Las alertas no se ven afectadas, porque se calculan con las quejas y no con los puntos.</p>
+  </aside>
+</section>
+
+<!-- 7. Bogotá (héroe) -->
+<section class="slide heroe">
+  <div class="cabecera"><span class="seccion"><b>05</b> · Exploración</span><span>Secciones 5.2, 5.3</span></div>
+  <h1>Bogotá concentra el 63,8 % de las quejas registradas</h1>
+  <div class="cuerpo">
+    <div class="cifra">63,8<small>%</small></div>
+    <div class="lado">
+      <p class="contexto">de las quejas de Smartsupervision, en solo el 12,3 % de las filas.</p>
+      <ul class="vinetas">
+        <li>Quejas vs. puntos físicos: Pearson 0,96</li>
+        <li>Comparar absolutos mide tamaño, no problemas</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> Comparar quejas totales mide el tamaño del departamento, no sus problemas.</p>
+    <p>(≈35 s) Un dato lo muestra: Bogotá tiene el 63,8 % de todas las quejas. Además, entre departamentos, el número de quejas sigue casi exacto al número de puntos de atención: la correlación es 0,96, muy cerca del máximo, que es 1. O sea, a más oficinas, más quejas. Por eso no comparamos quejas totales sino quejas por cada 100 puntos. Sospechamos que parte del peso de Bogotá viene de quejas digitales que se registran en la capital, pero no lo podemos comprobar, así que no tocamos el dato.</p>
+    <p><i>Si preguntan:</i> Los datos están muy cargados hacia valores pequeños: la mitad de los registros tiene una sola queja, pero el promedio es 10,9 porque unos pocos son enormes. Por eso reportamos la mediana además del promedio.</p>
+  </aside>
+</section>
+
+<!-- 8. Calidad (dos columnas) -->
+<section class="slide">
+  <div class="cabecera"><span class="seccion"><b>05</b> · Calidad</span><span>Secciones 5.4, 6.1</span></div>
+  <h1>Tukey fila por fila marcaba el 86,9 % de las quejas</h1>
+  <div class="dos">
+    <div>
+      <h2>Cortes de la fuente → faltantes</h2>
+      <ul class="vinetas">
+        <li>Octubre 2026 incompleto (905): excluido</li>
+        <li>Febrero 2026 ausente: sin rellenar con cero</li>
+        <li>1.194 sin ubicación: mecanismo MAR</li>
+      </ul>
+    </div>
+    <div class="acento">
+      <h2>Picos de volumen → se conservan</h2>
+      <ul class="vinetas">
+        <li>Un atípico no es error: es la señal</li>
+        <li>Tukey sobre la serie departamento × mes</li>
+        <li>Sin duplicados ni valores imposibles</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> Separamos los huecos de la fuente de los picos reales: los huecos se marcan, los picos se conservan.</p>
+    <p>(≈35 s) Revisamos la calidad de los datos. No hay registros duplicados ni valores imposibles; los problemas son huecos de la fuente. Octubre de 2026 viene incompleto, con solo 905 quejas, y lo sacamos. Febrero de 2026 no tiene datos y no lo llenamos con cero, porque parecería que las quejas se desplomaron. Y no borramos los valores extremos: para nosotros un mes con muchas quejas no es un error, es justo lo que buscamos.</p>
+    <p><i>Si preguntan:</i> Si aplicábamos la regla de valores extremos registro por registro, marcaba el 86,9 % de las quejas, así que no servía; la aplicamos sobre los totales de cada departamento por mes. Los 1.194 registros sin ubicación faltan más en una instancia que en otras (eso es lo que se llama MAR); siguen en los totales nacionales y solo salen de los cálculos por departamento.</p>
+  </aside>
+</section>
+
+<!-- 9. Vista minable (diagrama) -->
+<section class="slide diagrama">
+  <div class="cabecera"><span class="seccion"><b>06</b> · Preparación</span><span>Secciones 6.3, 6.5</span></div>
+  <h1>Cuatro <em>left joins</em>, 8.647 filas, ninguna perdida</h1>
+  <div class="cuerpo">
+    <svg viewBox="0 0 1136 390" role="img" aria-label="Construcción de la vista minable con cuatro left joins">
+      <defs><marker id="fl2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1A1D20"/></marker></defs>
+      <g font-family="Segoe UI, Arial, sans-serif">
+        <rect x="0" y="150" width="200" height="96" fill="#1A1D20"/>
+        <text x="16" y="182" fill="#fff" font-size="16" font-weight="600">tabla_producto</text>
+        <text x="16" y="206" fill="#C9CBC5" font-size="14">mes × depto × producto</text>
+        <text x="16" y="228" fill="#C9CBC5" font-size="14">Smartsupervision</text>
+        <g font-size="14">
+          <rect x="250" y="20" width="190" height="84" fill="#fff" stroke="#1A1D20"/>
+          <text x="264" y="46" font-weight="600" font-size="15">Tasa por producto</text>
+          <text x="264" y="68" fill="#5B6168">histórico 2019–2022</text>
+          <text x="264" y="90" fill="#5B6168">llave: producto</text>
+          <rect x="470" y="20" width="190" height="84" fill="#fff" stroke="#1A1D20"/>
+          <text x="484" y="46" font-weight="600" font-size="15">DIVIPOLA</text>
+          <text x="484" y="68" fill="#5B6168">código de depto</text>
+          <text x="484" y="90" fill="#5B6168">llave: departamento</text>
+          <rect x="690" y="20" width="190" height="84" fill="#fff" stroke="#1A1D20"/>
+          <text x="704" y="46" font-weight="600" font-size="15">tabla_depto</text>
+          <text x="704" y="68" fill="#5B6168">puntos, índices, alertas</text>
+          <text x="704" y="90" fill="#5B6168">llave: mes × depto</text>
+          <rect x="910" y="20" width="190" height="84" fill="#fff" stroke="#1A1D20"/>
+          <text x="924" y="46" font-weight="600" font-size="15">tabla_mes</text>
+          <text x="924" y="68" fill="#5B6168">índice nacional, sanciones</text>
+          <text x="924" y="90" fill="#5B6168">llave: mes</text>
+        </g>
+        <line x1="200" y1="198" x2="1080" y2="198" stroke="#1A1D20" stroke-width="2"/>
+        <g stroke="#1A1D20" stroke-width="1.5">
+          <line x1="345" y1="104" x2="345" y2="190" marker-end="url(#fl2)"/>
+          <line x1="565" y1="104" x2="565" y2="190" marker-end="url(#fl2)"/>
+          <line x1="785" y1="104" x2="785" y2="190" marker-end="url(#fl2)"/>
+          <line x1="1005" y1="104" x2="1005" y2="190" marker-end="url(#fl2)"/>
+        </g>
+        <g font-size="15" fill="#E1111C" font-weight="600">
+          <text x="300" y="232">8.647 → 8.647</text>
+          <text x="520" y="232">8.647 → 8.647</text>
+          <text x="740" y="232">8.647 → 8.647</text>
+          <text x="960" y="232">8.647 → 8.647</text>
+        </g>
+        <line x1="1080" y1="198" x2="1080" y2="276" stroke="#1A1D20" stroke-width="2" marker-end="url(#fl2)"/>
+        <rect x="770" y="282" width="366" height="104" fill="#1E3A5F"/>
+        <text x="790" y="316" fill="#fff" font-size="18" font-weight="600">vista_minable_reputacion</text>
+        <text x="790" y="342" fill="#D5DDE7" font-size="15">8.647 filas × 39 columnas · 33 departamentos</text>
+        <text x="790" y="366" fill="#D5DDE7" font-size="15">ene 2023 – sep 2026 · hash SHA-256</text>
+        <text x="0" y="300" fill="#5B6168" font-size="15">Control de filas en cada cruce:</text>
+        <text x="0" y="324" fill="#5B6168" font-size="15">ninguna fila ganada ni perdida,</text>
+        <text x="0" y="348" fill="#5B6168" font-size="15">ninguna llave sin pareja.</text>
+      </g>
+    </svg>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> Armamos una sola tabla final uniendo todo, y comprobamos que no se perdiera ni se duplicara nada.</p>
+    <p>(≈35 s) Con los datos limpios armamos la vista minable: una tabla única, lista para analizar, con una fila por mes, departamento y producto. Partimos de las quejas de Smartsupervision y les pegamos cuatro piezas: la tasa histórica de cada producto, el código del departamento, los datos del departamento, como puntos de atención y alertas, y los datos del mes. En cada paso contamos filas: entran 8.647 y salen 8.647, nada se pierde ni se duplica.</p>
+    <p><i>Si preguntan:</i> Cada unión es un left join: se conservan todas las filas de la tabla base aunque la otra no tenga pareja. El histórico, aunque es la fuente principal, entra como un dato por producto (su tasa), no como filas. También aplicamos las transformaciones del curso, por ejemplo recortar los extremos y usar logaritmos para que las cifras sean comparables.</p>
+  </aside>
+</section>
+
+<!-- 10. Figura P1.1 -->
+<section class="slide figura">
+  <div class="cabecera"><span class="seccion"><b>07</b> · Resultados P1</span><span>Sección 7.1</span></div>
+  <h1>Ahorros y tarjeta suman el 83 % de las quejas fundadas</h1>
+  <div class="cuerpo">
+    <div class="lienzo"><img src="../figuras/p1_1_quejas_fundadas_por_producto.png" alt="Quejas fundadas por producto y año, 2011 a 2021"></div>
+    <div class="hallazgos">
+      <div class="hallazgo"><b>83 %</b><span>Cuenta de ahorros y tarjeta de crédito, 2010–2022</span></div>
+      <div class="hallazgo"><b>2017</b><span>Desde ahí ambas crecen con fuerza</span></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> Dos productos explican casi todas las quejas en las que el cliente tenía la razón.</p>
+    <p>(≈30 s) Primera respuesta. Entre 2010 y 2022, la cuenta de ahorros y la tarjeta de crédito suman el 83 % de las quejas en las que el cliente tenía la razón. Las dos crecen mucho desde 2017. Ojo: esto mide cantidad, no calidad; más quejas también pueden significar más clientes. El gráfico solo muestra años completos para no confundir con 2022, que tiene medio año de datos.</p>
+  </aside>
+</section>
+
+<!-- 11. Héroe 74,8 -->
+<section class="slide heroe">
+  <div class="cabecera"><span class="seccion"><b>07</b> · Resultados P1</span><span>Secciones 5.3, 7.1</span></div>
+  <h1>El cliente gana tres de cada cuatro quejas con desenlace</h1>
+  <div class="cuerpo">
+    <div class="cifra">74,8<small>%</small></div>
+    <div class="lado">
+      <p class="contexto">de las quejas con desenlace se resolvió a favor del consumidor, 2010–2022.</p>
+      <ul class="vinetas">
+        <li>Ahorros 80,0 %; leasing no habitacional 33,8 %</li>
+        <li>Por eso: una tasa por producto</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> En tres de cada cuatro quejas el cliente tenía la razón, pero depende mucho del producto.</p>
+    <p>(≈25 s) Cuando una queja se resuelve a favor del cliente, el banco está reconociendo un error. En Davivienda eso pasa en el 74,8 % de las quejas cerradas: tres de cada cuatro. Pero no es igual en todos los productos, y por eso en nuestro análisis cada producto tiene su propia tasa y no un promedio general.</p>
+  </aside>
+</section>
+
+<!-- 12. Figura P1.2 -->
+<section class="slide figura">
+  <div class="cabecera"><span class="seccion"><b>07</b> · Resultados P1</span><span>Sección 7.1</span></div>
+  <h1>En leasing no habitacional el cliente gana solo el 33,8 %</h1>
+  <div class="cuerpo">
+    <div class="lienzo"><img src="../figuras/p1_2_tasa_a_favor_por_producto.png" alt="Tasa de quejas resueltas a favor del consumidor por producto"></div>
+    <div class="hallazgos">
+      <div class="hallazgo"><b>80,0 %</b><span>Cuenta de ahorros: el banco reconoce más fallas</span></div>
+      <div class="hallazgo"><b>70,6 %</b><span>Tarjeta de crédito, por debajo del promedio</span></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> El leasing no habitacional es el caso que más llama la atención.</p>
+    <p>(≈30 s) Aquí está la tasa por producto. En cuenta de ahorros el cliente tiene la razón 8 de cada 10 veces; en tarjeta de crédito, 7 de cada 10. El caso llamativo es el leasing no habitacional: el cliente solo gana una de cada tres. Con estos datos no sabemos si son quejas sin fundamento o si el producto se le explica mal al cliente; es algo para revisar con el banco.</p>
+  </aside>
+</section>
+
+<!-- 13. Tabla: tasa por año -->
+<section class="slide tabla">
+  <div class="cabecera"><span class="seccion"><b>07</b> · Resultados P1</span><span>Sección 6.3</span></div>
+  <h1>La tasa a favor del cliente cambia hasta 54 puntos entre años</h1>
+  <div class="cuerpo">
+    <table>
+      <thead><tr><th>Producto</th><th>Año más bajo</th><th>Año más alto</th></tr></thead>
+      <tbody>
+        <tr><td>Crédito de vivienda</td><td class="num">27,0 % <small style="font-size:17px;color:#8A9097">2011</small></td><td class="num">81,0 % <small style="font-size:17px;color:#8A9097">2019</small></td></tr>
+        <tr><td>Tarjeta de crédito</td><td class="num">56,5 % <small style="font-size:17px;color:#8A9097">2016</small></td><td class="num">83,3 % <small style="font-size:17px;color:#8A9097">2010</small></td></tr>
+        <tr><td>Cuenta de ahorros</td><td class="num">≈ 77 %</td><td class="num">≈ 85 %</td></tr>
+      </tbody>
+    </table>
+    <p class="nota-tabla">Por eso la P1 se responde con la serie anual y no con un promedio único.</p>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> La tasa cambia de un año a otro, por eso la miramos año por año.</p>
+    <p>(≈25 s) Además, esa tasa no es fija. En crédito de vivienda pasó de 27 % en 2011 a 81 % en 2019. Por eso respondemos año por año y no con un solo promedio. Esto también es una limitación: para 2023 en adelante suponemos que se mantiene la tasa de 2019 a 2022, porque la fuente nueva no dice cómo terminó cada queja.</p>
+  </aside>
+</section>
+
+<!-- 14. Figura P1.3 -->
+<section class="slide figura">
+  <div class="cabecera"><span class="seccion"><b>07</b> · Resultados P1</span><span>Secciones 6.2, 7.1</span></div>
+  <h1>Las quejas fundadas pasaron de los cobros a los canales</h1>
+  <div class="cuerpo">
+    <div class="lienzo"><img src="../figuras/p1_3_cambio_composicion_motivos.png" alt="Cambio en la composición de motivos entre 2010-2015 y 2016-2022"></div>
+    <div class="hallazgos">
+      <div class="hallazgo"><b>53 → 36 %</b><span>Cargos no reconocidos o injustificados</span></div>
+      <div class="hallazgo"><b>+9 pts</b><span>Canales y cajeros, hasta el 31 %</span></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> Las quejas fundadas pasaron de los cobros a las fallas de los canales.</p>
+    <p>(≈30 s) ¿Cómo cambiaron los motivos? Comparamos 2010–2015 con 2016–2022. Los cargos que el cliente no reconoce bajaron del 53 % al 36 %, y las fallas de canales y cajeros subieron 9 puntos, hasta el 31 %. En palabras simples: el problema pasó de lo que se le cobra al cliente a que los canales funcionen bien.</p>
+    <p><i>Si preguntan:</i> Los motivos también tuvieron que agruparse, porque los nombres cambiaron con los años. Creemos que lo que antes se llamaba "descuentos injustificados" hoy se llama "transacción no reconocida", y por eso esos dos grupos solo se comparan sumados.</p>
+  </aside>
+</section>
+
+<!-- 15. Héroe 11 alertas -->
+<section class="slide heroe">
+  <div class="cabecera"><span class="seccion"><b>08</b> · Resultados P2</span><span>Sección 6.4</span></div>
+  <h1>11 alertas en 10 departamentos: el 1,9 % de los meses</h1>
+  <div class="cuerpo">
+    <div class="cifra">11</div>
+    <div class="lado">
+      <p class="contexto">picos atípicos en 589 meses evaluables, de febrero de 2024 a septiembre de 2026.</p>
+      <ul class="vinetas">
+        <li>Tukey sobre el índice relativo</li>
+        <li>Referencia: mediana de seis meses</li>
+        <li>Volumen mínimo de 100 quejas</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> Un mes cuenta como alerta si es raro para ese departamento y no es algo de todo el país.</p>
+    <p>(≈40 s) Segunda pregunta. Para cada departamento comparamos las quejas del mes con lo normal de sus seis meses anteriores. Después lo comparamos con lo que pasó en todo el país ese mismo mes, para no confundir un problema local con algo nacional. Si la subida se sale de lo habitual para ese departamento, la marcamos como alerta, usando la regla de Tukey, una forma estándar de detectar valores fuera de rango. Resultado: 11 alertas en 10 departamentos, menos del 2 % de los meses revisados.</p>
+    <p><i>Si preguntan:</i> Esa comparación con el país se llama índice relativo. Para que dos o tres quejas no disparen una alerta en un departamento pequeño, exigimos al menos 100 quejas de referencia y 12 meses con datos.</p>
+  </aside>
+</section>
+
+<!-- 16. Figura P2.1 -->
+<section class="slide figura">
+  <div class="cabecera"><span class="seccion"><b>08</b> · Resultados P2</span><span>Sección 7.2</span></div>
+  <h1>El país crece sin saltos: nunca superó su umbral</h1>
+  <div class="cuerpo">
+    <div class="lienzo"><img src="../figuras/p2_1_serie_nacional_y_alertas.png" alt="Serie nacional de quejas con el periodo de arranque sombreado y meses con alerta"></div>
+    <div class="hallazgos">
+      <div class="hallazgo"><b>1,23</b><span>Índice nacional máximo; umbral de 1,30</span></div>
+      <div class="hallazgo"><b>+29 %</b><span>Quejas, octubre 2023 a septiembre 2026</span></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> A nivel país no hubo ninguna crisis: el crecimiento fue gradual.</p>
+    <p>(≈25 s) Esta es la serie de todo el país. Las quejas crecieron 29 % entre octubre de 2023 y septiembre de 2026, pero de forma gradual: el país nunca cruzó su propio umbral de alerta. La zona gris es el arranque de Smartsupervision, que no evaluamos, y los puntos marcan los meses con alerta en algún departamento.</p>
+  </aside>
+</section>
+
+<!-- 17. Arranque (dos columnas) -->
+<section class="slide">
+  <div class="cabecera"><span class="seccion"><b>08</b> · Resultados P2</span><span>Sección 6.4</span></div>
+  <h1>17 de las 20 alertas iniciales caían en 2023</h1>
+  <div class="dos">
+    <div class="tenue">
+      <h2>Arranque: enero–febrero 2023</h2>
+      <div class="grande">20</div>
+      <ul class="vinetas">
+        <li>17 alertas en 2023</li>
+        <li>12 entre julio y septiembre</li>
+      </ul>
+    </div>
+    <div class="acento">
+      <h2>Arranque: enero–septiembre 2023</h2>
+      <div class="grande">11</div>
+      <ul class="vinetas">
+        <li>Ninguna alerta en 2023</li>
+        <li>Evaluación desde febrero de 2024</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> Al principio las alertas detectaban el arranque del sistema, no problemas reales; lo corregimos.</p>
+    <p>(≈30 s) Esta fue una decisión importante. En la primera versión salían 20 alertas, y 17 estaban en 2023. No tenía sentido que ese fuera el peor año del banco: era el sistema nuevo empezando a reportar en cada departamento. Por eso dejamos fuera los primeros nueve meses de 2023. Quedaron 11 alertas, ninguna en 2023. Preferimos pocas alertas confiables a muchas falsas.</p>
+  </aside>
+</section>
+
+<!-- 18. Figura P2.2 -->
+<section class="slide figura">
+  <div class="cabecera"><span class="seccion"><b>08</b> · Resultados P2</span><span>Sección 7.2</span></div>
+  <h1>Los 11 picos fueron locales, ninguno nacional</h1>
+  <div class="cuerpo">
+    <div class="lienzo"><img src="../figuras/p2_2_picos_locales_vs_nacionales.png" alt="Aumento del departamento frente al país en cada mes con alerta"></div>
+    <div class="hallazgos">
+      <div class="hallazgo"><b>+55 %</b><span>Meta, marzo 2026 (país: +21 %)</span></div>
+      <div class="hallazgo"><b>2 meses</b><span>Risaralda, agosto y septiembre 2024</span></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> Todos los picos fueron locales: el país estaba normal en cada caso.</p>
+    <p>(≈30 s) Cada fila es una alerta: el punto azul es cuánto subió el departamento y el gris cuánto subió el país ese mismo mes. En todos los casos el país estaba normal, o sea, fueron problemas locales. Los más fuertes: Meta, que subió 55 % en marzo de 2026, y Cauca, 53 % en abril. Risaralda tuvo dos meses seguidos con alerta, en 2024.</p>
+    <p><i>Si preguntan:</i> En diciembre de 2025 y enero de 2026 subieron cinco departamentos a la vez con el país estable; valdría la pena revisar si tuvieron algo en común, como una campaña o un cambio de proceso.</p>
+  </aside>
+</section>
+
+<!-- 19. Tabla sensibilidad -->
+<section class="slide tabla">
+  <div class="cabecera"><span class="seccion"><b>08</b> · Resultados P2</span><span>Sección 6.4</span></div>
+  <h1>Entre 9 y 13 alertas con cualquier umbral, todas locales</h1>
+  <div class="cuerpo">
+    <table>
+      <thead><tr><th>Volumen mínimo de referencia</th><th>Alertas</th><th>Lectura</th></tr></thead>
+      <tbody>
+        <tr><td class="num">30 y 50 quejas</td><td class="num">13</td><td>Entran referencias muy pequeñas</td></tr>
+        <tr class="elegida"><td class="num">100 quejas</td><td class="num">11</td><td>Punto medio elegido</td></tr>
+        <tr><td class="num">200 quejas</td><td class="num">9</td><td>Quedan fuera regiones a vigilar</td></tr>
+      </tbody>
+    </table>
+    <p class="nota-tabla">Con el umbral elegido quedan 19 departamentos evaluables; 3 salen por tener menos de 12 meses.</p>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> El resultado no depende del umbral que elegimos.</p>
+    <p>(≈25 s) ¿Y si hubiéramos elegido otro umbral? Exigimos que un departamento tenga al menos 100 quejas de referencia, para que unas pocas quejas no disparen alertas. Probamos con 30, 50, 100 y 200: salen entre 9 y 13 alertas, y siempre son locales. El resultado es estable.</p>
+  </aside>
+</section>
+
+<!-- 20. Figura P2.3 -->
+<section class="slide figura">
+  <div class="cabecera"><span class="seccion"><b>08</b> · Resultados P2</span><span>Sección 7.2</span></div>
+  <h1>9 de los 10 departamentos con alerta superan la mediana</h1>
+  <div class="cuerpo">
+    <div class="lienzo"><img src="../figuras/p2_3_quejas_por_100_puntos.png" alt="Quejas al mes por cada 100 puntos de atención físicos por departamento"></div>
+    <div class="hallazgos">
+      <div class="hallazgo"><b>462</b><span>Mediana de quejas al mes por cada 100 puntos</span></div>
+      <div class="hallazgo"><b>2.088</b><span>Bogotá: posible efecto del registro digital</span></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> Los picos aparecen donde ya hay más quejas por cada oficina.</p>
+    <p>(≈30 s) Aquí sí usamos la división por puntos de atención: quejas al mes por cada 100 oficinas y cajeros. Nueve de los diez departamentos con alerta están por encima de la mediana, que es 462. O sea, son los primeros lugares para revisar. Bogotá aparece muy arriba, con 2.088, pero ese valor puede estar inflado por quejas digitales registradas en la capital.</p>
+  </aside>
+</section>
+
+<!-- 21. Tabla limitaciones -->
+<section class="slide tabla">
+  <div class="cabecera"><span class="seccion"><b>09</b> · Limitaciones</span><span>Sección 8.2</span></div>
+  <h1>La concentración del 83 % no depende de ningún supuesto</h1>
+  <div class="cuerpo">
+    <table>
+      <thead><tr><th>Supuesto o vacío</th><th>Qué afecta</th><th>Mitigación</th></tr></thead>
+      <tbody>
+        <tr><td>Smartsupervision sin desenlace</td><td>Fundadas 2023–2026, estimadas</td><td>Tasa propia por producto</td></tr>
+        <tr><td>Códigos de canal sin documentar</td><td>Solo la carga por punto</td><td>Sensibilidad: alertas intactas</td></tr>
+        <tr><td>Alertas sin contraste real</td><td>Cuántas son fallas reales</td><td>Señales para investigar</td></tr>
+      </tbody>
+    </table>
+    <p class="nota-tabla">La P1 sale de quejas observadas; en la P2, todas las alertas son locales en los cuatro umbrales.</p>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> Lo principal se sostiene; lo que es estimado, lo decimos.</p>
+    <p>(≈30 s) ¿Qué tan firmes son los resultados? Lo central, sí: que ahorros y tarjeta concentren el 83 % sale de datos observados, sin supuestos. Lo que es estimado lo declaramos: las quejas fundadas desde 2023 son una estimación, los códigos de canal son una deducción nuestra, y las alertas son señales para investigar, no fallas confirmadas, porque no las cruzamos con información interna del banco.</p>
+    <p><i>Si preguntan:</i> Somos tres integrantes y el enunciado pedía cinco; por eso nos concentramos en las tres primeras fases de CRISP-DM (entender el negocio, entender los datos y prepararlos) y no en construir un modelo.</p>
+  </aside>
+</section>
+
+<!-- 22. Conclusiones (dos columnas) -->
+<section class="slide">
+  <div class="cabecera"><span class="seccion"><b>10</b> · Conclusiones</span><span>Sección 8.1, 8.3</span></div>
+  <h1>Priorizar dos productos y revisar diez departamentos</h1>
+  <div class="dos">
+    <div>
+      <h2>P1 · Qué corregir primero</h2>
+      <ul class="vinetas">
+        <li>Cuenta de ahorros y tarjeta: 83 %</li>
+        <li>Canales y cajeros: el motivo que creció</li>
+        <li>Revisar leasing no habitacional (33,8 %)</li>
+      </ul>
+    </div>
+    <div class="acento">
+      <h2>P2 · Dónde mirar a tiempo</h2>
+      <ul class="vinetas">
+        <li>Meta, Cauca y Risaralda primero</li>
+        <li>Repetir el cálculo cada mes</li>
+        <li>Siguiente fase: anticipar la alerta</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> Qué haría el banco con estos resultados.</p>
+    <p>(≈30 s) En concreto, le diríamos a Davivienda: primero, revisar la cuenta de ahorros y la tarjeta de crédito; segundo, revisar el funcionamiento de canales y cajeros, el motivo que más creció; tercero, entender qué pasa con el leasing no habitacional. Y para las alertas: preguntar a las regiones qué pasó en Meta, Cauca y Risaralda, y repetir el cálculo cada mes. El siguiente paso sería un modelo que anticipe la alerta antes de que ocurra.</p>
+  </aside>
+</section>
+
+<!-- 23. Equipo (tabla) -->
+<section class="slide tabla">
+  <div class="cabecera"><span class="seccion"><b>11</b> · Trabajo en equipo</span><span>2 min · Sección 9</span></div>
+  <h1>Tres integrantes, tres frentes y seis reglas de trabajo</h1>
+  <div class="cuerpo">
+    <table>
+      <thead><tr><th>Integrante</th><th>Rol</th><th>Responsabilidad principal</th></tr></thead>
+      <tbody>
+        <tr><td>David Felipe Bautista</td><td>Ingeniería de datos</td><td>Carga, integración, calidad, reproducibilidad</td></tr>
+        <tr><td>Belky Xiomara Mayorga</td><td>Análisis estadístico</td><td>Exploración y técnicas del curso</td></tr>
+        <tr><td>Fabian Becerra</td><td>Comunicación</td><td>Pitch, visualización y reporte</td></tr>
+      </tbody>
+    </table>
+    <p class="nota-tabla" style="font-family:ui-monospace,Consolas,monospace;color:#7A7462">[ESPACIO RESERVADO: reuniones realizadas y evaluación de pares · secciones 9.3 y 9.4]</p>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> Cómo nos organizamos como equipo.</p>
+    <p>(2 min) Somos tres y nos repartimos el trabajo en tres frentes: ingeniería de datos, análisis estadístico y comunicación. Trabajamos con seis reglas; las más importantes: una sola fuente de verdad, que es el cuaderno; toda cifra que se comunica sale de una celda ejecutada, y los desacuerdos se resuelven con datos.</p>
+    <p><i>Si preguntan:</i> [Completar por el equipo: número de reuniones, asistentes y actividades (sección 9.3), y el resumen de la autoevaluación y la evaluación de pares (sección 9.4).]</p>
+  </aside>
+</section>
+
+<!-- 24. Cierre -->
+<section class="slide portada">
+  <div>
+    <div class="sello"><b>Preguntas</b> · 5 min</div>
+  </div>
+  <div>
+    <div class="barra-roja"></div>
+    <h1>Todo el análisis se reproduce desde el repositorio</h1>
+    <p class="sub">github.com/BautistaDavid/proyecto-final-gestion-datos</p>
+  </div>
+  <div class="equipo">
+    <div><span>Cuaderno</span>Fases 1 a 3 de CRISP-DM</div>
+    <div><span>Vista minable</span>8.647 × 39 · SHA-256</div>
+    <div><span>Fuentes</span>5 conjuntos de datos.gov.co</div>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> Cerrar e invitar a preguntas.</p>
+    <p>(5 min de preguntas) Gracias. El cuaderno, los datos y la tabla final están en el repositorio, y cualquier cifra de esta presentación sale de una celda ejecutada. Quedamos atentos a sus preguntas.</p>
+  </aside>
+</section>
+
+</main>
+
+<div class="panel-notas" id="panelNotas"><h3 id="tituloNotas">Notas del orador</h3><div id="contenidoNotas"></div></div>
+<div class="ui"><span id="contador"></span><button id="btnNotas" title="Tecla N">Notas</button><button id="btnAnt" aria-label="Anterior">←</button><button id="btnSig" aria-label="Siguiente">→</button></div>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll(".slide"));
+  var stage = document.getElementById("stage");
+  var panel = document.getElementById("panelNotas");
+  var actual = 0;
+
+  function escalar() {
+    var s = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
+    stage.style.transform = "translate(-50%, -50%) scale(" + s + ")";
+  }
+
+  function mostrar(i) {
+    actual = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach(function (el, k) { el.classList.toggle("activa", k === actual); });
+    var notas = slides[actual].querySelector(".notes");
+    document.getElementById("contenidoNotas").innerHTML = notas ? notas.innerHTML : "";
+    document.getElementById("tituloNotas").textContent = "Notas del orador · diapositiva " + (actual + 1);
+    document.getElementById("contador").textContent = (actual + 1) + " / " + slides.length;
+    document.getElementById("progreso").style.width = ((actual + 1) / slides.length * 100) + "%";
+    if (location.hash !== "#" + (actual + 1)) history.replaceState(null, "", "#" + (actual + 1));
+  }
+
+  document.addEventListener("keydown", function (e) {
+    var k = e.key;
+    if (k === "ArrowRight" || k === "PageDown" || k === " ") { e.preventDefault(); mostrar(actual + 1); }
+    else if (k === "ArrowLeft" || k === "PageUp") { e.preventDefault(); mostrar(actual - 1); }
+    else if (k === "Home") mostrar(0);
+    else if (k === "End") mostrar(slides.length - 1);
+    else if (k === "n" || k === "N") panel.classList.toggle("visible");
+  });
+  document.getElementById("btnSig").onclick = function () { mostrar(actual + 1); };
+  document.getElementById("btnAnt").onclick = function () { mostrar(actual - 1); };
+  document.getElementById("btnNotas").onclick = function () { panel.classList.toggle("visible"); };
+  window.addEventListener("resize", escalar);
+
+  escalar();
+  var inicial = parseInt(location.hash.slice(1), 10);
+  mostrar(isNaN(inicial) ? 0 : inicial - 1);
+})();
+</script>
+</body>
+</html>
