@@ -1,0 +1,66 @@
+fuente,producto_original,producto_homologado,tipo_equivalencia,justificacion
+quejas_ss,Cuenta de ahorro,Cuenta de ahorros,directa,Mismo producto; solo cambia singular y plural
+quejas_ss,Cuenta AFC,Cuenta de ahorros,conceptual,La cuenta AFC es una cuenta de ahorro con destinación específica
+quejas_sfc,CUENTA DE AHORROS,Cuenta de ahorros,directa,Mismo producto
+quejas_ss,Tarjetas de crédito,Tarjeta de crédito,directa,Mismo producto
+quejas_sfc,TARJETAS DE CRÉDITO,Tarjeta de crédito,directa,Mismo producto
+quejas_ss,Créditos comerciales,Crédito de consumo y comercial,conceptual,"El histórico agrupaba consumo, comercial y microcrédito"
+quejas_ss,Creditos de consumo,Crédito de consumo y comercial,conceptual,"El histórico agrupaba consumo, comercial y microcrédito"
+quejas_ss,Créditos de consumo de bajo monto,Crédito de consumo y comercial,conceptual,"El histórico agrupaba consumo, comercial y microcrédito"
+quejas_ss,Microcrédito,Crédito de consumo y comercial,conceptual,"El histórico agrupaba consumo, comercial y microcrédito"
+quejas_sfc,CRÉDITO DE CONSUMO Y/O COMERCIAL,Crédito de consumo y comercial,directa,Categoría de referencia
+quejas_sfc,MICROCRÉDITOS,Crédito de consumo y comercial,conceptual,Crédito de bajo monto; volumen marginal
+quejas_ss,Créditos de vivienda,Crédito de vivienda,directa,Mismo producto
+quejas_sfc,CRÉDITO DE VIVIENDA,Crédito de vivienda,directa,Mismo producto
+quejas_ss,Leasing habitacional,Leasing habitacional,directa,Mismo producto
+quejas_sfc,LEASING HABITACIONAL,Leasing habitacional,directa,Mismo producto
+quejas_ss,Leasing financiero diferente de habitacional,Leasing no habitacional,directa,El histórico llamaba LEASING al no habitacional
+quejas_sfc,LEASING,Leasing no habitacional,directa,Leasing distinto del habitacional
+quejas_ss,Cuenta corriente,Cuenta corriente,directa,Mismo producto
+quejas_sfc,CUENTA CORRIENTE,Cuenta corriente,directa,Mismo producto
+quejas_ss,CDT,CDT y CDAT,directa,Mismo producto
+quejas_sfc,CDT,CDT y CDAT,directa,Mismo producto
+quejas_sfc,CDAT,CDT y CDAT,conceptual,Depósito a término de corto plazo
+quejas_ss,Depósitos de bajo monto (Capítulo I del Título 15 del Decreto 2555 de 2010),Depósitos de bajo monto y ordinarios,sin equivalente,Depósitos del Título 15 del Decreto 2555 de 2010; el histórico no tiene esta categoría
+quejas_ss,Depósitos de bajo monto inclusivos (Capítulo I del Título 15 del Decreto 2555 de 2010),Depósitos de bajo monto y ordinarios,sin equivalente,Depósitos del Título 15 del Decreto 2555 de 2010; el histórico no tiene esta categoría
+quejas_ss,Depósitos ordinarios (Capítulo II del Título 15 del Decreto 2555 de 2010),Depósitos de bajo monto y ordinarios,sin equivalente,Depósitos del Título 15 del Decreto 2555 de 2010; el histórico no tiene esta categoría
+quejas_ss,Otros productos de Establecimientos de Crédito y SEDPE,Otros productos bancarios,sin equivalente,Categoría residual sin desagregar en Smartsupervision
+quejas_ss,Corresponsalía,"Giros, divisas y corresponsales",conceptual,Servicio prestado a través de corresponsales
+quejas_sfc,GIROS ESTABLECIMIENTOS DE CRÉDITO,"Giros, divisas y corresponsales",conceptual,Servicios transaccionales distintos de cuentas y créditos
+quejas_sfc,"INTERMEDIACIÓN DE MERCADO CAMBIARIO (GIROS, COMPRAVENTA DE DIVISAS)","Giros, divisas y corresponsales",conceptual,Servicios transaccionales distintos de cuentas y créditos
+quejas_sfc,SERVICIOS DE CORRESPONSALES NO BANCARIOS (CNB),"Giros, divisas y corresponsales",conceptual,Servicios transaccionales distintos de cuentas y créditos
+quejas_sfc,CONTRATO DE CORRESPONSALÍA,"Giros, divisas y corresponsales",conceptual,Servicios transaccionales distintos de cuentas y créditos
+quejas_ss,Fondos de Inversión Colectiva (FIC),"Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista; incluye los dos nombres de FIC
+quejas_ss,Fondos de inversión colectiva,"Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista; incluye los dos nombres de FIC
+quejas_ss,Fiducia de administración,"Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista; incluye los dos nombres de FIC
+quejas_ss,Fiducia de inversión,"Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista; incluye los dos nombres de FIC
+quejas_ss,Fiducia en garantía,"Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista; incluye los dos nombres de FIC
+quejas_ss,Fiducia inmobiliaria,"Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista; incluye los dos nombres de FIC
+quejas_ss,Negocios fiduciarios con entidades públicas,"Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista; incluye los dos nombres de FIC
+quejas_ss,Fiducia con recursos del sistema general de seguridad social y otros relacionados,"Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista; incluye los dos nombres de FIC
+quejas_ss,Otros productos de Fiduciarias,"Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista; incluye los dos nombres de FIC
+quejas_ss,Administración de portafolio de terceros,"Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista; incluye los dos nombres de FIC
+quejas_ss,Administración de valores,"Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista; incluye los dos nombres de FIC
+quejas_ss,Colocación de valores,"Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista; incluye los dos nombres de FIC
+quejas_ss,Custodia de Valores,"Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista; incluye los dos nombres de FIC
+quejas_ss,"Intermediación de valores (renta variable, renta fija, derivados y apalancamiento)","Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista; incluye los dos nombres de FIC
+quejas_ss,Otros productos de Sociedades Comisionistas de Bolsa de Valores y Agropecuaria,"Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista; incluye los dos nombres de FIC
+quejas_sfc,FONDOS DE VALORES Y/O DE INVERSIÓN,"Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista
+quejas_sfc,FONDOS COMUNES ORDINARIOS Y ESPECIALES (FCO Y FCE),"Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista
+quejas_sfc,FIDUCIA DE ADMINISTRACIÓN,"Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista
+quejas_sfc,FIDUCIA DE INVERSIÓN,"Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista
+quejas_sfc,FIDUCIA DE GARANTÍA,"Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista
+quejas_sfc,FIDUCIA ADMÓN. INMOBILIARIA PROYECTOS DE CONSTRUCCIÓN,"Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista
+quejas_sfc,OTROS NEGOCIOS FIDUCIARIOS,"Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista
+quejas_sfc,"ADMINISTRACIÓN OTROS FONDOS (MUTUOS, PORTAFOLIOS DE TERCEROS Y/O DE CAPITAL EXTRANJERO)","Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista
+quejas_sfc,ADMINISTRACIÓN DE VALORES,"Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista
+quejas_sfc,INTERMEDIACIÓN DE VALORES,"Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista
+quejas_sfc,ACCIONES,"Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista
+quejas_sfc,CONTRATO DE COMISIÓN,"Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista
+quejas_sfc,"OTROS VALORES INSCRITOS EN EL REGISTRO (BONOS, PAPELES COMERCIALES, ETC)","Inversión, fiducia y valores",conceptual,Productos de fiduciaria y comisionista
+quejas_ss,Fondos de Pensiones Voluntarias,Pensión voluntaria,directa,Mismo producto
+quejas_sfc,PENSIÓN VOLUNTARIA,Pensión voluntaria,directa,Mismo producto
+quejas_sfc,PENSIÓN DE VEJEZ,Pensión voluntaria,conceptual,Producto pensional; volumen marginal
+quejas_ss,Otros productos de seguros,Seguros,conceptual,Categoría residual de seguros
+quejas_sfc,OTROS SEGUROS,Seguros,conceptual,Seguros vendidos por el grupo
+quejas_sfc,SEGURO DE VIDA INDIVIDUAL,Seguros,conceptual,Seguros vendidos por el grupo

@@ -5,10 +5,12 @@ Este archivo se genera desde las notas de `index.html` (tecla **N** en la presen
 
 | Bloque | Tiempo | Diapositivas |
 |---|---|---|
-| Elevator pitch | 5 min | 1–2 |
-| Material técnico | 10 min | 3–22 |
-| Trabajo en equipo | 2 min | 23 |
-| Preguntas | 5 min | 24 |
+| Elevator pitch | 5 min | 1–7 |
+| Material técnico | 10 min | 8–26 |
+| Trabajo en equipo | 2 min | 27 |
+| Preguntas | 5 min | 28 |
+
+**El elevator pitch** sigue los siete pasos del video de ejemplo del enunciado: gancho, quiénes somos, problema, solución, beneficio, por qué nosotros y llamada a la acción. Lo dice una sola persona, en primera persona del plural y sin términos técnicos.
 
 **Cómo usar este guion.** Cada diapositiva tiene tres partes: la **idea clave** (lo único que el público debe recordar), el texto para decir en voz alta y, a veces, un *si preguntan* con el detalle técnico. Lo de *si preguntan* no se dice en la presentación; es apoyo para la ronda de preguntas. No hace falta leer el texto palabra por palabra: basta con transmitir la idea clave y las cifras.
 
@@ -31,28 +33,59 @@ Este archivo se genera desde las notas de `index.html` (tecla **N** en la presen
 
 ## 1. Monitoreo de reputación de Banco Davivienda con quejas oficiales
 
-**Idea clave:** Presentarnos y decir de qué se trata en una frase.
+**Idea clave:** Se proyecta mientras el equipo se ubica; no se presenta.
 
-(≈15 s) Buenas tardes. Somos David, Belky y Fabian. Nuestro proyecto busca ayudar a Banco Davivienda a cuidar su reputación usando las quejas que sus clientes ponen ante la Superintendencia Financiera, que son datos públicos. Primero va el pitch y después les mostramos cómo lo hicimos.
+(0 s) No saludar con un discurso: el pitch arranca directo con la pregunta de la diapositiva siguiente.
 
-## 2. [ESPACIO RESERVADO: ELEVATOR PITCH]
+## 2. ¿Cuántas quejas creen que recibe Davivienda al día?
 *01 · Elevator pitch*
 
-**Idea clave:** Vender el proyecto a un posible patrocinador (lo completa el equipo).
+**Idea clave:** Llamar la atención con una pregunta y una cifra que sorprende; luego decir quiénes somos.
 
-(5 min) Estructura sugerida en la sección 2.4 del cuaderno: gancho (30 s), problema (1 min), solución con las dos preguntas (1 min 30 s), evidencia (1 min 30 s) y pedido al patrocinador (30 s). Cifras que pueden usar en la evidencia: 1.231.059 quejas de Banco Davivienda entre enero de 2023 y septiembre de 2026; en el 74,8 % de las quejas cerradas el cliente tenía la razón; 11 alertas en 10 departamentos. Para pasar al bloque técnico: "Ahora les mostramos cómo llegamos a esas cifras".
+(≈50 s) ¿Cuántas quejas creen que recibe Davivienda al día? [Pausa de dos segundos.] Cerca de 918. Una cada 94 segundos, todos los días, desde 2023. Y cada una de esas quejas es una pista de algo que puede estar fallando. Somos David, Belky y Fabian, estudiantes de Gestión de Datos, y construimos un sistema que convierte esas quejas en alertas de reputación, usando solo datos oficiales.
 
-## 3. Las señales de una crisis ya están en las quejas
-*02 · Comprensión del negocio*
+*Si preguntan:* Son 1.231.059 quejas de Banco Davivienda registradas en Smartsupervision entre enero de 2023 y septiembre de 2026, divididas entre los 1.341 días de los 44 meses con datos (sección 2.4 del cuaderno).
 
-**Idea clave:** Dos preguntas: qué arreglar primero y dónde aparece un problema antes de que sea noticia.
+## 3. El banco se entera cuando la queja ya es noticia
+*01 · Elevator pitch*
 
-(≈35 s) Los bancos suelen enterarse de una crisis de reputación cuando ya está en los medios, pero las quejas de los clientes llevan meses avisando. Por eso nos hicimos dos preguntas. La primera: qué productos y qué motivos concentran las quejas fundadas, que son aquellas en las que al final el banco reconoce que el cliente tenía la razón. La segunda: si mirando las quejas mes a mes en cada departamento podemos detectar subidas raras que sirvan como alerta.
+**Idea clave:** Los datos ya existen; el problema es que nadie los mira a tiempo.
 
-*Si preguntan:* ¿Por qué dos fuentes? La primera pregunta necesita saber cómo terminó cada queja, y eso solo lo trae el histórico de 2010 a 2022. La segunda necesita el mes y el departamento, y eso solo lo trae Smartsupervision, desde 2023.
+(≈50 s) Hoy, un banco suele enterarse de una crisis de reputación cuando ya es noticia: cuando el cliente lo publica en redes o el caso llega a los medios. Pero esa señal no aparece de la nada. Antes de volverse pública, ya estaba en las quejas que el banco recibe y reporta cada mes a la Superintendencia Financiera. El problema no es que falten datos; es que nadie los está mirando a tiempo, ni de una forma que diga dónde actuar. Una queja suelta es solo una queja; cien quejas del mismo tipo, en el mismo departamento y el mismo mes, son una alerta. Esa es la diferencia entre leerlas una por una y mirarlas como datos.
 
-## 4. Dos fuentes de quejas y tres de apoyo, todas oficiales
-*03 · Procedencia y linaje*
+## 4. Las señales de una crisis ya están en las quejas
+*01 · Elevator pitch*
+
+**Idea clave:** Dos preguntas: qué arreglar primero y dónde aparece un problema antes de que crezca.
+
+(≈1 min) Por eso nos hicimos dos preguntas. La primera: ¿qué productos y qué motivos concentran las quejas fundadas, es decir, aquellas en las que el banco termina reconociendo que el cliente tenía la razón? Eso le dice al banco qué arreglar primero. La segunda: ¿podemos detectar, mes a mes y en cada departamento, subidas de quejas fuera de lo normal? Eso le permite enterarse de un problema local antes de que crezca. Para responderlas cruzamos cinco fuentes públicas de datos.gov.co: el histórico de quejas de la Superintendencia desde 2010, las quejas de Smartsupervision desde 2023 y la red de oficinas y cajeros del banco, que nos permite comparar de forma justa regiones grandes y pequeñas.
+
+## 5. Saber qué arreglar primero y enterarse antes que los medios
+*01 · Elevator pitch*
+
+**Idea clave:** El beneficio es saber qué arreglar primero y enterarse antes que los medios, y ya hay resultados que lo respaldan.
+
+(≈1 min 20 s) El beneficio es simple: saber qué arreglar primero y enterarse antes que los medios. Y ya tenemos resultados. Dos productos, la cuenta de ahorros y la tarjeta de crédito, concentran el 83 % de las quejas en las que el cliente tenía la razón: ahí está la prioridad. En tres de cada cuatro quejas cerradas, el 74,8 %, el banco termina dándole la razón al cliente; no son quejas sin fundamento. Y entre 2024 y 2026 encontramos 11 alertas en 10 departamentos, todas locales: en ninguno de esos meses el país estaba en crisis, el problema estaba en una región concreta, como Meta, Cauca o Risaralda. Y casi todos esos departamentos ya recibían más quejas por oficina que la mitad de los departamentos: son los primeros lugares donde mirar.
+
+*Si preguntan:* El 83 % y el 74,8 % son del histórico de la SFC, 2010 a 2022 (sección 7.1); las alertas son de febrero de 2024 a septiembre de 2026 (sección 6.4).
+
+## 6. Conocemos el banco por dentro y los datos por fuera
+*01 · Elevator pitch*
+
+**Idea clave:** Somos el equipo adecuado: conocemos el banco y trabajamos con datos que cualquiera puede verificar.
+
+(≈40 s) ¿Por qué nosotros? Porque conocemos el banco por dentro: David y Fabian trabajan hoy en Davivienda y Belky trabajó allí. Sabemos cómo se mueven los productos y cómo se atiende una queja. Además, todo lo que mostramos sale de datos oficiales que cualquiera puede verificar, y el método se puede repetir cada mes sin comprar información. Para empezar no necesitamos acceso a sistemas internos: lo que les mostramos hoy se puede reproducir con información pública.
+
+## 7. Revisemos juntos las alertas de Meta, Cauca y Risaralda
+
+**Idea clave:** Terminar con una acción concreta, no con un "gracias".
+
+(≈20 s) Nuestra propuesta: revisemos con su equipo regional las alertas de Meta, Cauca y Risaralda. Si confirman que hubo problemas reales, financien la siguiente fase: un modelo que anticipe la alerta antes de que ocurra y un tablero mensual para su equipo de experiencia del cliente. En una sola reunión podemos mostrarles cómo se ve una alerta y qué haría su equipo con ella.
+
+Para pasar al bloque técnico, quien sigue dice: "Ahora les mostramos cómo llegamos a estos resultados".
+
+## 8. Dos fuentes de quejas y tres de apoyo, todas oficiales
+*02 · Procedencia y linaje*
 
 **Idea clave:** Usamos cinco tablas públicas: dos de quejas y tres que ayudan a interpretarlas.
 
@@ -60,8 +93,8 @@ Este archivo se genera desde las notas de `index.html` (tecla **N** en la presen
 
 *Si preguntan:* La descarga está en un cuaderno aparte y los archivos quedan guardados en el repositorio con su fecha y una huella digital (hash), así los tres trabajamos siempre sobre la misma copia.
 
-## 5. Solo el 20 % de los productos cruzaba sin homologar
-*04 · Integración*
+## 9. Solo el 20 % de los productos cruzaba sin homologar
+*03 · Integración*
 
 **Idea clave:** Las dos fuentes llaman distinto a los mismos productos; tuvimos que emparejarlos a mano.
 
@@ -69,8 +102,8 @@ Este archivo se genera desde las notas de `index.html` (tecla **N** en la presen
 
 *Si preguntan:* Para los depósitos de bajo monto probamos usar la tasa de cuenta de ahorros en vez del promedio: el resultado cambia menos de medio punto (0,39), así que dejamos la opción más prudente.
 
-## 6. El denominador son 2.736 puntos físicos estables, no 28.987
-*04 · Integración*
+## 10. El denominador son 2.736 puntos físicos estables, no 28.987
+*03 · Integración*
 
 **Idea clave:** Para comparar departamentos grandes y pequeños, dividimos las quejas por las oficinas y cajeros.
 
@@ -78,8 +111,8 @@ Este archivo se genera desde las notas de `index.html` (tecla **N** en la presen
 
 *Si preguntan:* Como es una deducción, la pusimos a prueba: si usamos solo el canal 4, el orden de los departamentos casi no cambia; si sumamos el 10, sí cambia. Las alertas no se ven afectadas, porque se calculan con las quejas y no con los puntos.
 
-## 7. Bogotá concentra el 63,8 % de las quejas registradas
-*05 · Exploración*
+## 11. Bogotá concentra el 63,8 % de las quejas registradas
+*04 · Exploración*
 
 **Idea clave:** Comparar quejas totales mide el tamaño del departamento, no sus problemas.
 
@@ -87,8 +120,8 @@ Este archivo se genera desde las notas de `index.html` (tecla **N** en la presen
 
 *Si preguntan:* Los datos están muy cargados hacia valores pequeños: la mitad de los registros tiene una sola queja, pero el promedio es 10,9 porque unos pocos son enormes. Por eso reportamos la mediana además del promedio.
 
-## 8. Tukey fila por fila marcaba el 86,9 % de las quejas
-*05 · Calidad*
+## 12. Tukey fila por fila marcaba el 86,9 % de las quejas
+*04 · Calidad*
 
 **Idea clave:** Separamos los huecos de la fuente de los picos reales: los huecos se marcan, los picos se conservan.
 
@@ -96,8 +129,8 @@ Este archivo se genera desde las notas de `index.html` (tecla **N** en la presen
 
 *Si preguntan:* Si aplicábamos la regla de valores extremos registro por registro, marcaba el 86,9 % de las quejas, así que no servía; la aplicamos sobre los totales de cada departamento por mes. Los 1.194 registros sin ubicación faltan más en una instancia que en otras (eso es lo que se llama MAR); siguen en los totales nacionales y solo salen de los cálculos por departamento.
 
-## 9. Cuatro left joins, 8.647 filas, ninguna perdida
-*06 · Preparación*
+## 13. Cuatro left joins, 8.647 filas, ninguna perdida
+*05 · Preparación*
 
 **Idea clave:** Armamos una sola tabla final uniendo todo, y comprobamos que no se perdiera ni se duplicara nada.
 
@@ -105,36 +138,36 @@ Este archivo se genera desde las notas de `index.html` (tecla **N** en la presen
 
 *Si preguntan:* Cada unión es un left join: se conservan todas las filas de la tabla base aunque la otra no tenga pareja. El histórico, aunque es la fuente principal, entra como un dato por producto (su tasa), no como filas. También aplicamos las transformaciones del curso, por ejemplo recortar los extremos y usar logaritmos para que las cifras sean comparables.
 
-## 10. Ahorros y tarjeta suman el 83 % de las quejas fundadas
-*07 · Resultados P1*
+## 14. Ahorros y tarjeta suman el 83 % de las quejas fundadas
+*06 · Resultados P1*
 
 **Idea clave:** Dos productos explican casi todas las quejas en las que el cliente tenía la razón.
 
 (≈30 s) Primera respuesta. Entre 2010 y 2022, la cuenta de ahorros y la tarjeta de crédito suman el 83 % de las quejas en las que el cliente tenía la razón. Las dos crecen mucho desde 2017. Ojo: esto mide cantidad, no calidad; más quejas también pueden significar más clientes. El gráfico solo muestra años completos para no confundir con 2022, que tiene medio año de datos.
 
-## 11. El cliente gana tres de cada cuatro quejas con desenlace
-*07 · Resultados P1*
+## 15. El cliente gana tres de cada cuatro quejas con desenlace
+*06 · Resultados P1*
 
 **Idea clave:** En tres de cada cuatro quejas el cliente tenía la razón, pero depende mucho del producto.
 
 (≈25 s) Cuando una queja se resuelve a favor del cliente, el banco está reconociendo un error. En Davivienda eso pasa en el 74,8 % de las quejas cerradas: tres de cada cuatro. Pero no es igual en todos los productos, y por eso en nuestro análisis cada producto tiene su propia tasa y no un promedio general.
 
-## 12. En leasing no habitacional el cliente gana solo el 33,8 %
-*07 · Resultados P1*
+## 16. En leasing no habitacional el cliente gana solo el 33,8 %
+*06 · Resultados P1*
 
 **Idea clave:** El leasing no habitacional es el caso que más llama la atención.
 
 (≈30 s) Aquí está la tasa por producto. En cuenta de ahorros el cliente tiene la razón 8 de cada 10 veces; en tarjeta de crédito, 7 de cada 10. El caso llamativo es el leasing no habitacional: el cliente solo gana una de cada tres. Con estos datos no sabemos si son quejas sin fundamento o si el producto se le explica mal al cliente; es algo para revisar con el banco.
 
-## 13. La tasa a favor del cliente cambia hasta 54 puntos entre años
-*07 · Resultados P1*
+## 17. La tasa a favor del cliente cambia hasta 54 puntos entre años
+*06 · Resultados P1*
 
 **Idea clave:** La tasa cambia de un año a otro, por eso la miramos año por año.
 
 (≈25 s) Además, esa tasa no es fija. En crédito de vivienda pasó de 27 % en 2011 a 81 % en 2019. Por eso respondemos año por año y no con un solo promedio. Esto también es una limitación: para 2023 en adelante suponemos que se mantiene la tasa de 2019 a 2022, porque la fuente nueva no dice cómo terminó cada queja.
 
-## 14. Las quejas fundadas pasaron de los cobros a los canales
-*07 · Resultados P1*
+## 18. Las quejas fundadas pasaron de los cobros a los canales
+*06 · Resultados P1*
 
 **Idea clave:** Las quejas fundadas pasaron de los cobros a las fallas de los canales.
 
@@ -142,8 +175,8 @@ Este archivo se genera desde las notas de `index.html` (tecla **N** en la presen
 
 *Si preguntan:* Los motivos también tuvieron que agruparse, porque los nombres cambiaron con los años. Creemos que lo que antes se llamaba "descuentos injustificados" hoy se llama "transacción no reconocida", y por eso esos dos grupos solo se comparan sumados.
 
-## 15. 11 alertas en 10 departamentos: el 1,9 % de los meses
-*08 · Resultados P2*
+## 19. 11 alertas en 10 departamentos: el 1,9 % de los meses
+*07 · Resultados P2*
 
 **Idea clave:** Un mes cuenta como alerta si es raro para ese departamento y no es algo de todo el país.
 
@@ -151,22 +184,22 @@ Este archivo se genera desde las notas de `index.html` (tecla **N** en la presen
 
 *Si preguntan:* Esa comparación con el país se llama índice relativo. Para que dos o tres quejas no disparen una alerta en un departamento pequeño, exigimos al menos 100 quejas de referencia y 12 meses con datos.
 
-## 16. El país crece sin saltos: nunca superó su umbral
-*08 · Resultados P2*
+## 20. El país crece sin saltos: nunca superó su umbral
+*07 · Resultados P2*
 
 **Idea clave:** A nivel país no hubo ninguna crisis: el crecimiento fue gradual.
 
 (≈25 s) Esta es la serie de todo el país. Las quejas crecieron 29 % entre octubre de 2023 y septiembre de 2026, pero de forma gradual: el país nunca cruzó su propio umbral de alerta. La zona gris es el arranque de Smartsupervision, que no evaluamos, y los puntos marcan los meses con alerta en algún departamento.
 
-## 17. 17 de las 20 alertas iniciales caían en 2023
-*08 · Resultados P2*
+## 21. 17 de las 20 alertas iniciales caían en 2023
+*07 · Resultados P2*
 
 **Idea clave:** Al principio las alertas detectaban el arranque del sistema, no problemas reales; lo corregimos.
 
 (≈30 s) Esta fue una decisión importante. En la primera versión salían 20 alertas, y 17 estaban en 2023. No tenía sentido que ese fuera el peor año del banco: era el sistema nuevo empezando a reportar en cada departamento. Por eso dejamos fuera los primeros nueve meses de 2023. Quedaron 11 alertas, ninguna en 2023. Preferimos pocas alertas confiables a muchas falsas.
 
-## 18. Los 11 picos fueron locales, ninguno nacional
-*08 · Resultados P2*
+## 22. Los 11 picos fueron locales, ninguno nacional
+*07 · Resultados P2*
 
 **Idea clave:** Todos los picos fueron locales: el país estaba normal en cada caso.
 
@@ -174,22 +207,22 @@ Este archivo se genera desde las notas de `index.html` (tecla **N** en la presen
 
 *Si preguntan:* En diciembre de 2025 y enero de 2026 subieron cinco departamentos a la vez con el país estable; valdría la pena revisar si tuvieron algo en común, como una campaña o un cambio de proceso.
 
-## 19. Entre 9 y 13 alertas con cualquier umbral, todas locales
-*08 · Resultados P2*
+## 23. Entre 9 y 13 alertas con cualquier umbral, todas locales
+*07 · Resultados P2*
 
 **Idea clave:** El resultado no depende del umbral que elegimos.
 
 (≈25 s) ¿Y si hubiéramos elegido otro umbral? Exigimos que un departamento tenga al menos 100 quejas de referencia, para que unas pocas quejas no disparen alertas. Probamos con 30, 50, 100 y 200: salen entre 9 y 13 alertas, y siempre son locales. El resultado es estable.
 
-## 20. 9 de los 10 departamentos con alerta superan la mediana
-*08 · Resultados P2*
+## 24. 9 de los 10 departamentos con alerta superan la mediana
+*07 · Resultados P2*
 
 **Idea clave:** Los picos aparecen donde ya hay más quejas por cada oficina.
 
 (≈30 s) Aquí sí usamos la división por puntos de atención: quejas al mes por cada 100 oficinas y cajeros. Nueve de los diez departamentos con alerta están por encima de la mediana, que es 462. O sea, son los primeros lugares para revisar. Bogotá aparece muy arriba, con 2.088, pero ese valor puede estar inflado por quejas digitales registradas en la capital.
 
-## 21. La concentración del 83 % no depende de ningún supuesto
-*09 · Limitaciones*
+## 25. La concentración del 83 % no depende de ningún supuesto
+*08 · Limitaciones*
 
 **Idea clave:** Lo principal se sostiene; lo que es estimado, lo decimos.
 
@@ -197,15 +230,15 @@ Este archivo se genera desde las notas de `index.html` (tecla **N** en la presen
 
 *Si preguntan:* Somos tres integrantes y el enunciado pedía cinco; por eso nos concentramos en las tres primeras fases de CRISP-DM (entender el negocio, entender los datos y prepararlos) y no en construir un modelo.
 
-## 22. Priorizar dos productos y revisar diez departamentos
-*10 · Conclusiones*
+## 26. Priorizar dos productos y revisar diez departamentos
+*09 · Conclusiones*
 
 **Idea clave:** Qué haría el banco con estos resultados.
 
 (≈30 s) En concreto, le diríamos a Davivienda: primero, revisar la cuenta de ahorros y la tarjeta de crédito; segundo, revisar el funcionamiento de canales y cajeros, el motivo que más creció; tercero, entender qué pasa con el leasing no habitacional. Y para las alertas: preguntar a las regiones qué pasó en Meta, Cauca y Risaralda, y repetir el cálculo cada mes. El siguiente paso sería un modelo que anticipe la alerta antes de que ocurra.
 
-## 23. Tres integrantes con experiencia en Davivienda, cinco reuniones
-*11 · Trabajo en equipo*
+## 27. Tres integrantes con experiencia en Davivienda, cinco reuniones
+*10 · Trabajo en equipo*
 
 **Idea clave:** Cómo nos organizamos como equipo.
 
@@ -213,7 +246,7 @@ Este archivo se genera desde las notas de `index.html` (tecla **N** en la presen
 
 *Si preguntan:* En las reuniones definimos el caso de estudio y las preguntas, qué fuentes usar, cómo tratar los problemas de calidad y los criterios de las alertas. [Completar con el resumen de la autoevaluación y la evaluación de pares de la sección 9.4.]
 
-## 24. Todo el análisis se reproduce desde el repositorio
+## 28. Todo el análisis se reproduce desde el repositorio
 
 **Idea clave:** Cerrar e invitar a preguntas.
 

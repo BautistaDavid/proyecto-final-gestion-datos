@@ -39,12 +39,6 @@ ul.vinetas li::before{content:"";position:absolute;left:0;top:22px;width:10px;he
 .portada .equipo span{color:var(--gris);display:block;font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
 .barra-roja{width:64px;height:6px;background:var(--rojo);margin-bottom:28px}
 
-/* Espacio reservado */
-.reservado .marco{flex:1;border:2px dashed #B9B5A6;background:var(--reservado);border-radius:6px;display:flex;flex-direction:column;justify-content:center;padding:48px 64px}
-.reservado .etiqueta{font-family:ui-monospace,Consolas,monospace;font-size:20px;letter-spacing:.06em;color:#7A7462;margin-bottom:30px}
-.reservado ul.vinetas li{font-size:24px;color:#4A4A40}
-.reservado .tiempo{margin-top:26px;font-size:15px;color:#7A7462}
-
 /* Dos columnas */
 .dos{display:grid;grid-template-columns:1fr 1fr;gap:0;flex:1;align-items:center;padding-bottom:40px}
 .dos ul.vinetas li{font-size:26px;padding:14px 0 14px 24px}
@@ -69,6 +63,17 @@ ul.vinetas li::before{content:"";position:absolute;left:0;top:22px;width:10px;he
 .pq em{font-style:normal;border-bottom:3px solid var(--rojo)}
 .preguntas .acento .pq em{border-bottom-color:var(--pizarra)}
 .pq-fuente{font-size:17px;color:var(--gris);border-top:1px solid var(--linea);padding-top:12px}
+
+/* Tres cifras */
+.tres{flex:1;display:grid;grid-template-columns:repeat(3,1fr);align-items:start;align-content:center;padding-bottom:30px}
+.tres > div{padding:0 36px;border-left:1px solid var(--linea)}
+.tres > div:first-child{padding-left:0;border-left:none}
+.tres .grande{font-family:var(--serif);font-size:104px;line-height:1;color:var(--rojo);margin-bottom:18px;white-space:nowrap}
+.tres .grande small{font-size:52px}
+.tres p{font-size:22px;line-height:1.35;color:var(--gris)}
+
+/* Llamada a la acción */
+.accion h1{font-size:52px}
 
 /* Cifra héroe */
 .heroe .cuerpo{align-items:center;gap:72px}
@@ -144,32 +149,61 @@ tr.descartada td{color:var(--tenue)}
     <div><span>Integrante</span>Fabian Becerra</div>
   </div>
   <aside class="notes">
-    <p><b>Idea clave:</b> Presentarnos y decir de qué se trata en una frase.</p>
-    <p>(≈15 s) Buenas tardes. Somos David, Belky y Fabian. Nuestro proyecto busca ayudar a Banco Davivienda a cuidar su reputación usando las quejas que sus clientes ponen ante la Superintendencia Financiera, que son datos públicos. Primero va el pitch y después les mostramos cómo lo hicimos.</p>
+    <p><b>Idea clave:</b> Se proyecta mientras el equipo se ubica; no se presenta.</p>
+    <p>(0 s) No saludar con un discurso: el pitch arranca directo con la pregunta de la diapositiva siguiente.</p>
   </aside>
 </section>
 
-<!-- 2. Pitch reservado -->
-<section class="slide reservado">
-  <div class="cabecera"><span class="seccion"><b>01</b> · Elevator pitch</span><span>5 min</span></div>
-  <div class="marco">
-    <div class="etiqueta">[ESPACIO RESERVADO: ELEVATOR PITCH]</div>
-    <ul class="vinetas">
-      <li>Gancho: una crisis de reputación del sector</li>
-      <li>Problema: las señales existen, nadie las mira</li>
-      <li>Pedido: financiar alertas tempranas mensuales</li>
-    </ul>
-    <p class="tiempo">Completar por el equipo · guion base en la sección 2.4 del cuaderno</p>
+<!-- 2. Pitch · gancho -->
+<section class="slide heroe">
+  <div class="cabecera"><span class="seccion"><b>01</b> · Elevator pitch</span><span>Pitch · 5 min</span></div>
+  <h1>¿Cuántas quejas creen que recibe Davivienda al día?</h1>
+  <div class="cuerpo">
+    <div class="cifra">918</div>
+    <div class="lado">
+      <p class="contexto">quejas al día, de enero de 2023 a septiembre de 2026.</p>
+      <ul class="vinetas">
+        <li>Una cada 94 segundos</li>
+        <li>1.231.059 quejas en total</li>
+      </ul>
+    </div>
   </div>
   <aside class="notes">
-    <p><b>Idea clave:</b> Vender el proyecto a un posible patrocinador (lo completa el equipo).</p>
-    <p>(5 min) Estructura sugerida en la sección 2.4 del cuaderno: gancho (30 s), problema (1 min), solución con las dos preguntas (1 min 30 s), evidencia (1 min 30 s) y pedido al patrocinador (30 s). Cifras que pueden usar en la evidencia: 1.231.059 quejas de Banco Davivienda entre enero de 2023 y septiembre de 2026; en el 74,8 % de las quejas cerradas el cliente tenía la razón; 11 alertas en 10 departamentos. Para pasar al bloque técnico: "Ahora les mostramos cómo llegamos a esas cifras".</p>
+    <p><b>Idea clave:</b> Llamar la atención con una pregunta y una cifra que sorprende; luego decir quiénes somos.</p>
+    <p>(≈50 s) ¿Cuántas quejas creen que recibe Davivienda al día? [Pausa de dos segundos.] Cerca de 918. Una cada 94 segundos, todos los días, desde 2023. Y cada una de esas quejas es una pista de algo que puede estar fallando. Somos David, Belky y Fabian, estudiantes de Gestión de Datos, y construimos un sistema que convierte esas quejas en alertas de reputación, usando solo datos oficiales.</p>
+    <p><i>Si preguntan:</i> Son 1.231.059 quejas de Banco Davivienda registradas en Smartsupervision entre enero de 2023 y septiembre de 2026, divididas entre los 1.341 días de los 44 meses con datos (sección 2.4 del cuaderno).</p>
   </aside>
 </section>
 
-<!-- 3. Preguntas (dos columnas) -->
+<!-- 3. Pitch · problema -->
 <section class="slide">
-  <div class="cabecera"><span class="seccion"><b>02</b> · Comprensión del negocio</span><span>Técnico · 10 min</span></div>
+  <div class="cabecera"><span class="seccion"><b>01</b> · Elevator pitch</span><span>Problema</span></div>
+  <h1>El banco se entera cuando la queja ya es noticia</h1>
+  <div class="dos">
+    <div class="tenue">
+      <h2>Hoy</h2>
+      <ul class="vinetas">
+        <li>Se reacciona cuando el problema es visible</li>
+        <li>Las quejas se atienden una por una</li>
+      </ul>
+    </div>
+    <div class="acento">
+      <h2>Con nuestros datos</h2>
+      <ul class="vinetas">
+        <li>La señal aparece meses antes</li>
+        <li>Una alerta por departamento cada mes</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> Los datos ya existen; el problema es que nadie los mira a tiempo.</p>
+    <p>(≈50 s) Hoy, un banco suele enterarse de una crisis de reputación cuando ya es noticia: cuando el cliente lo publica en redes o el caso llega a los medios. Pero esa señal no aparece de la nada. Antes de volverse pública, ya estaba en las quejas que el banco recibe y reporta cada mes a la Superintendencia Financiera. El problema no es que falten datos; es que nadie los está mirando a tiempo, ni de una forma que diga dónde actuar. Una queja suelta es solo una queja; cien quejas del mismo tipo, en el mismo departamento y el mismo mes, son una alerta. Esa es la diferencia entre leerlas una por una y mirarlas como datos.</p>
+  </aside>
+</section>
+
+<!-- 4. Pitch · solución -->
+<section class="slide">
+  <div class="cabecera"><span class="seccion"><b>01</b> · Elevator pitch</span><span>Solución</span></div>
   <h1>Las señales de una crisis ya están en las quejas</h1>
   <div class="preguntas">
     <div>
@@ -184,15 +218,72 @@ tr.descartada td{color:var(--tenue)}
     </div>
   </div>
   <aside class="notes">
-    <p><b>Idea clave:</b> Dos preguntas: qué arreglar primero y dónde aparece un problema antes de que sea noticia.</p>
-    <p>(≈35 s) Los bancos suelen enterarse de una crisis de reputación cuando ya está en los medios, pero las quejas de los clientes llevan meses avisando. Por eso nos hicimos dos preguntas. La primera: qué productos y qué motivos concentran las quejas fundadas, que son aquellas en las que al final el banco reconoce que el cliente tenía la razón. La segunda: si mirando las quejas mes a mes en cada departamento podemos detectar subidas raras que sirvan como alerta.</p>
-    <p><i>Si preguntan:</i> ¿Por qué dos fuentes? La primera pregunta necesita saber cómo terminó cada queja, y eso solo lo trae el histórico de 2010 a 2022. La segunda necesita el mes y el departamento, y eso solo lo trae Smartsupervision, desde 2023.</p>
+    <p><b>Idea clave:</b> Dos preguntas: qué arreglar primero y dónde aparece un problema antes de que crezca.</p>
+    <p>(≈1 min) Por eso nos hicimos dos preguntas. La primera: ¿qué productos y qué motivos concentran las quejas fundadas, es decir, aquellas en las que el banco termina reconociendo que el cliente tenía la razón? Eso le dice al banco qué arreglar primero. La segunda: ¿podemos detectar, mes a mes y en cada departamento, subidas de quejas fuera de lo normal? Eso le permite enterarse de un problema local antes de que crezca. Para responderlas cruzamos cinco fuentes públicas de datos.gov.co: el histórico de quejas de la Superintendencia desde 2010, las quejas de Smartsupervision desde 2023 y la red de oficinas y cajeros del banco, que nos permite comparar de forma justa regiones grandes y pequeñas.</p>
+  </aside>
+</section>
+
+<!-- 5. Pitch · beneficio y evidencia -->
+<section class="slide">
+  <div class="cabecera"><span class="seccion"><b>01</b> · Elevator pitch</span><span>Beneficio</span></div>
+  <h1>Saber qué arreglar primero y enterarse antes que los medios</h1>
+  <div class="tres">
+    <div><div class="grande">83<small>%</small></div><p>de las quejas fundadas están en cuenta de ahorros y tarjeta de crédito</p></div>
+    <div><div class="grande">74,8<small>%</small></div><p>de las quejas cerradas le dan la razón al cliente</p></div>
+    <div><div class="grande">11</div><p>alertas en 10 departamentos, todas locales</p></div>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> El beneficio es saber qué arreglar primero y enterarse antes que los medios, y ya hay resultados que lo respaldan.</p>
+    <p>(≈1 min 20 s) El beneficio es simple: saber qué arreglar primero y enterarse antes que los medios. Y ya tenemos resultados. Dos productos, la cuenta de ahorros y la tarjeta de crédito, concentran el 83 % de las quejas en las que el cliente tenía la razón: ahí está la prioridad. En tres de cada cuatro quejas cerradas, el 74,8 %, el banco termina dándole la razón al cliente; no son quejas sin fundamento. Y entre 2024 y 2026 encontramos 11 alertas en 10 departamentos, todas locales: en ninguno de esos meses el país estaba en crisis, el problema estaba en una región concreta, como Meta, Cauca o Risaralda. Y casi todos esos departamentos ya recibían más quejas por oficina que la mitad de los departamentos: son los primeros lugares donde mirar.</p>
+    <p><i>Si preguntan:</i> El 83 % y el 74,8 % son del histórico de la SFC, 2010 a 2022 (sección 7.1); las alertas son de febrero de 2024 a septiembre de 2026 (sección 6.4).</p>
+  </aside>
+</section>
+
+<!-- 6. Pitch · por qué nosotros -->
+<section class="slide tabla">
+  <div class="cabecera"><span class="seccion"><b>01</b> · Elevator pitch</span><span>Por qué nosotros</span></div>
+  <h1>Conocemos el banco por dentro y los datos por fuera</h1>
+  <div class="cuerpo">
+    <table>
+      <thead><tr><th>Fortaleza</th><th>Qué la respalda</th></tr></thead>
+      <tbody>
+        <tr><td>Experiencia en el banco</td><td>Dos trabajan hoy en Davivienda; una trabajó allí</td></tr>
+        <tr><td>Datos verificables</td><td>Cinco fuentes oficiales de datos.gov.co</td></tr>
+        <tr><td>Método repetible</td><td>Se actualiza cada mes, sin comprar datos</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> Somos el equipo adecuado: conocemos el banco y trabajamos con datos que cualquiera puede verificar.</p>
+    <p>(≈40 s) ¿Por qué nosotros? Porque conocemos el banco por dentro: David y Fabian trabajan hoy en Davivienda y Belky trabajó allí. Sabemos cómo se mueven los productos y cómo se atiende una queja. Además, todo lo que mostramos sale de datos oficiales que cualquiera puede verificar, y el método se puede repetir cada mes sin comprar información. Para empezar no necesitamos acceso a sistemas internos: lo que les mostramos hoy se puede reproducir con información pública.</p>
+  </aside>
+</section>
+
+<!-- 7. Pitch · llamada a la acción -->
+<section class="slide portada accion">
+  <div>
+    <div class="sello"><b>Elevator pitch</b> · Llamada a la acción</div>
+  </div>
+  <div>
+    <div class="barra-roja"></div>
+    <h1>Revisemos juntos las alertas de Meta, Cauca y Risaralda</h1>
+    <p class="sub">Si confirman problemas reales, financien la siguiente fase.</p>
+  </div>
+  <div class="equipo">
+    <div><span>Patrocinador</span>Vicepresidencia de Experiencia del Cliente</div>
+    <div><span>Siguiente fase</span>Modelo que anticipe la alerta</div>
+    <div><span>Entregable</span>Tablero de monitoreo mensual</div>
+  </div>
+  <aside class="notes">
+    <p><b>Idea clave:</b> Terminar con una acción concreta, no con un "gracias".</p>
+    <p>(≈20 s) Nuestra propuesta: revisemos con su equipo regional las alertas de Meta, Cauca y Risaralda. Si confirman que hubo problemas reales, financien la siguiente fase: un modelo que anticipe la alerta antes de que ocurra y un tablero mensual para su equipo de experiencia del cliente. En una sola reunión podemos mostrarles cómo se ve una alerta y qué haría su equipo con ella.</p>
+    <p>Para pasar al bloque técnico, quien sigue dice: "Ahora les mostramos cómo llegamos a estos resultados".</p>
   </aside>
 </section>
 
 <!-- 4. Linaje (diagrama) -->
 <section class="slide diagrama">
-  <div class="cabecera"><span class="seccion"><b>03</b> · Procedencia y linaje</span><span>Secciones 1.5, 3.1</span></div>
+  <div class="cabecera"><span class="seccion"><b>02</b> · Procedencia y linaje</span><span>Técnico · 10 min</span></div>
   <h1>Dos fuentes de quejas y tres de apoyo, todas oficiales</h1>
   <div class="cuerpo">
     <svg viewBox="0 0 1136 400" role="img" aria-label="Linaje de datos desde datos.gov.co hasta la vista minable">
@@ -249,7 +340,7 @@ tr.descartada td{color:var(--tenue)}
 
 <!-- 5. Homologación (dos columnas) -->
 <section class="slide">
-  <div class="cabecera"><span class="seccion"><b>04</b> · Integración</span><span>Secciones 4.4, 6.2</span></div>
+  <div class="cabecera"><span class="seccion"><b>03</b> · Integración</span><span>Secciones 4.4, 6.2</span></div>
   <h1>Solo el <em>20 %</em> de los productos cruzaba sin homologar</h1>
   <div class="dos">
     <div class="tenue">
@@ -279,7 +370,7 @@ tr.descartada td{color:var(--tenue)}
 
 <!-- 6. Canales (tabla) -->
 <section class="slide tabla">
-  <div class="cabecera"><span class="seccion"><b>04</b> · Integración</span><span>Sección 4.2</span></div>
+  <div class="cabecera"><span class="seccion"><b>03</b> · Integración</span><span>Sección 4.2</span></div>
   <h1>El denominador son 2.736 puntos físicos estables, no 28.987</h1>
   <div class="cuerpo">
     <table>
@@ -301,7 +392,7 @@ tr.descartada td{color:var(--tenue)}
 
 <!-- 7. Bogotá (héroe) -->
 <section class="slide heroe">
-  <div class="cabecera"><span class="seccion"><b>05</b> · Exploración</span><span>Secciones 5.2, 5.3</span></div>
+  <div class="cabecera"><span class="seccion"><b>04</b> · Exploración</span><span>Secciones 5.2, 5.3</span></div>
   <h1>Bogotá concentra el 63,8 % de las quejas registradas</h1>
   <div class="cuerpo">
     <div class="cifra">63,8<small>%</small></div>
@@ -322,7 +413,7 @@ tr.descartada td{color:var(--tenue)}
 
 <!-- 8. Calidad (dos columnas) -->
 <section class="slide">
-  <div class="cabecera"><span class="seccion"><b>05</b> · Calidad</span><span>Secciones 5.4, 6.1</span></div>
+  <div class="cabecera"><span class="seccion"><b>04</b> · Calidad</span><span>Secciones 5.4, 6.1</span></div>
   <h1>Tukey fila por fila marcaba el 86,9 % de las quejas</h1>
   <div class="dos">
     <div>
@@ -351,7 +442,7 @@ tr.descartada td{color:var(--tenue)}
 
 <!-- 9. Vista minable (diagrama) -->
 <section class="slide diagrama">
-  <div class="cabecera"><span class="seccion"><b>06</b> · Preparación</span><span>Secciones 6.3, 6.5</span></div>
+  <div class="cabecera"><span class="seccion"><b>05</b> · Preparación</span><span>Secciones 6.3, 6.5</span></div>
   <h1>Cuatro <em>left joins</em>, 8.647 filas, ninguna perdida</h1>
   <div class="cuerpo">
     <svg viewBox="0 0 1136 390" role="img" aria-label="Construcción de la vista minable con cuatro left joins">
@@ -412,7 +503,7 @@ tr.descartada td{color:var(--tenue)}
 
 <!-- 10. Figura P1.1 -->
 <section class="slide figura">
-  <div class="cabecera"><span class="seccion"><b>07</b> · Resultados P1</span><span>Sección 7.1</span></div>
+  <div class="cabecera"><span class="seccion"><b>06</b> · Resultados P1</span><span>Sección 7.1</span></div>
   <h1>Ahorros y tarjeta suman el 83 % de las quejas fundadas</h1>
   <div class="cuerpo">
     <div class="lienzo"><img src="../figuras/p1_1_quejas_fundadas_por_producto.png" alt="Quejas fundadas por producto y año, 2011 a 2021"></div>
@@ -429,7 +520,7 @@ tr.descartada td{color:var(--tenue)}
 
 <!-- 11. Héroe 74,8 -->
 <section class="slide heroe">
-  <div class="cabecera"><span class="seccion"><b>07</b> · Resultados P1</span><span>Secciones 5.3, 7.1</span></div>
+  <div class="cabecera"><span class="seccion"><b>06</b> · Resultados P1</span><span>Secciones 5.3, 7.1</span></div>
   <h1>El cliente gana tres de cada cuatro quejas con desenlace</h1>
   <div class="cuerpo">
     <div class="cifra">74,8<small>%</small></div>
@@ -449,7 +540,7 @@ tr.descartada td{color:var(--tenue)}
 
 <!-- 12. Figura P1.2 -->
 <section class="slide figura">
-  <div class="cabecera"><span class="seccion"><b>07</b> · Resultados P1</span><span>Sección 7.1</span></div>
+  <div class="cabecera"><span class="seccion"><b>06</b> · Resultados P1</span><span>Sección 7.1</span></div>
   <h1>En leasing no habitacional el cliente gana solo el 33,8 %</h1>
   <div class="cuerpo">
     <div class="lienzo"><img src="../figuras/p1_2_tasa_a_favor_por_producto.png" alt="Tasa de quejas resueltas a favor del consumidor por producto"></div>
@@ -466,7 +557,7 @@ tr.descartada td{color:var(--tenue)}
 
 <!-- 13. Tabla: tasa por año -->
 <section class="slide tabla">
-  <div class="cabecera"><span class="seccion"><b>07</b> · Resultados P1</span><span>Sección 6.3</span></div>
+  <div class="cabecera"><span class="seccion"><b>06</b> · Resultados P1</span><span>Sección 6.3</span></div>
   <h1>La tasa a favor del cliente cambia hasta 54 puntos entre años</h1>
   <div class="cuerpo">
     <table>
@@ -487,7 +578,7 @@ tr.descartada td{color:var(--tenue)}
 
 <!-- 14. Figura P1.3 -->
 <section class="slide figura">
-  <div class="cabecera"><span class="seccion"><b>07</b> · Resultados P1</span><span>Secciones 6.2, 7.1</span></div>
+  <div class="cabecera"><span class="seccion"><b>06</b> · Resultados P1</span><span>Secciones 6.2, 7.1</span></div>
   <h1>Las quejas fundadas pasaron de los cobros a los canales</h1>
   <div class="cuerpo">
     <div class="lienzo"><img src="../figuras/p1_3_cambio_composicion_motivos.png" alt="Cambio en la composición de motivos entre 2010-2015 y 2016-2022"></div>
@@ -505,7 +596,7 @@ tr.descartada td{color:var(--tenue)}
 
 <!-- 15. Héroe 11 alertas -->
 <section class="slide heroe">
-  <div class="cabecera"><span class="seccion"><b>08</b> · Resultados P2</span><span>Sección 6.4</span></div>
+  <div class="cabecera"><span class="seccion"><b>07</b> · Resultados P2</span><span>Sección 6.4</span></div>
   <h1>11 alertas en 10 departamentos: el 1,9 % de los meses</h1>
   <div class="cuerpo">
     <div class="cifra">11</div>
@@ -527,7 +618,7 @@ tr.descartada td{color:var(--tenue)}
 
 <!-- 16. Figura P2.1 -->
 <section class="slide figura">
-  <div class="cabecera"><span class="seccion"><b>08</b> · Resultados P2</span><span>Sección 7.2</span></div>
+  <div class="cabecera"><span class="seccion"><b>07</b> · Resultados P2</span><span>Sección 7.2</span></div>
   <h1>El país crece sin saltos: nunca superó su umbral</h1>
   <div class="cuerpo">
     <div class="lienzo"><img src="../figuras/p2_1_serie_nacional_y_alertas.png" alt="Serie nacional de quejas con el periodo de arranque sombreado y meses con alerta"></div>
@@ -544,7 +635,7 @@ tr.descartada td{color:var(--tenue)}
 
 <!-- 17. Arranque (dos columnas) -->
 <section class="slide">
-  <div class="cabecera"><span class="seccion"><b>08</b> · Resultados P2</span><span>Sección 6.4</span></div>
+  <div class="cabecera"><span class="seccion"><b>07</b> · Resultados P2</span><span>Sección 6.4</span></div>
   <h1>17 de las 20 alertas iniciales caían en 2023</h1>
   <div class="dos">
     <div class="tenue">
@@ -572,7 +663,7 @@ tr.descartada td{color:var(--tenue)}
 
 <!-- 18. Figura P2.2 -->
 <section class="slide figura">
-  <div class="cabecera"><span class="seccion"><b>08</b> · Resultados P2</span><span>Sección 7.2</span></div>
+  <div class="cabecera"><span class="seccion"><b>07</b> · Resultados P2</span><span>Sección 7.2</span></div>
   <h1>Los 11 picos fueron locales, ninguno nacional</h1>
   <div class="cuerpo">
     <div class="lienzo"><img src="../figuras/p2_2_picos_locales_vs_nacionales.png" alt="Aumento del departamento frente al país en cada mes con alerta"></div>
@@ -590,7 +681,7 @@ tr.descartada td{color:var(--tenue)}
 
 <!-- 19. Tabla sensibilidad -->
 <section class="slide tabla">
-  <div class="cabecera"><span class="seccion"><b>08</b> · Resultados P2</span><span>Sección 6.4</span></div>
+  <div class="cabecera"><span class="seccion"><b>07</b> · Resultados P2</span><span>Sección 6.4</span></div>
   <h1>Entre 9 y 13 alertas con cualquier umbral, todas locales</h1>
   <div class="cuerpo">
     <table>
@@ -611,7 +702,7 @@ tr.descartada td{color:var(--tenue)}
 
 <!-- 20. Figura P2.3 -->
 <section class="slide figura">
-  <div class="cabecera"><span class="seccion"><b>08</b> · Resultados P2</span><span>Sección 7.2</span></div>
+  <div class="cabecera"><span class="seccion"><b>07</b> · Resultados P2</span><span>Sección 7.2</span></div>
   <h1>9 de los 10 departamentos con alerta superan la mediana</h1>
   <div class="cuerpo">
     <div class="lienzo"><img src="../figuras/p2_3_quejas_por_100_puntos.png" alt="Quejas al mes por cada 100 puntos de atención físicos por departamento"></div>
@@ -628,7 +719,7 @@ tr.descartada td{color:var(--tenue)}
 
 <!-- 21. Tabla limitaciones -->
 <section class="slide tabla">
-  <div class="cabecera"><span class="seccion"><b>09</b> · Limitaciones</span><span>Sección 8.2</span></div>
+  <div class="cabecera"><span class="seccion"><b>08</b> · Limitaciones</span><span>Sección 8.2</span></div>
   <h1>La concentración del 83 % no depende de ningún supuesto</h1>
   <div class="cuerpo">
     <table>
@@ -650,7 +741,7 @@ tr.descartada td{color:var(--tenue)}
 
 <!-- 22. Conclusiones (dos columnas) -->
 <section class="slide">
-  <div class="cabecera"><span class="seccion"><b>10</b> · Conclusiones</span><span>Sección 8.1, 8.3</span></div>
+  <div class="cabecera"><span class="seccion"><b>09</b> · Conclusiones</span><span>Sección 8.1, 8.3</span></div>
   <h1>Priorizar dos productos y revisar diez departamentos</h1>
   <div class="dos">
     <div>
@@ -678,7 +769,7 @@ tr.descartada td{color:var(--tenue)}
 
 <!-- 23. Equipo (tabla) -->
 <section class="slide tabla">
-  <div class="cabecera"><span class="seccion"><b>11</b> · Trabajo en equipo</span><span>2 min · Sección 9</span></div>
+  <div class="cabecera"><span class="seccion"><b>10</b> · Trabajo en equipo</span><span>2 min · Sección 9</span></div>
   <h1>Tres integrantes con experiencia en Davivienda, cinco reuniones</h1>
   <div class="cuerpo">
     <table>

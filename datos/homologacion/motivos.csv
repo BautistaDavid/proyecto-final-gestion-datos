@@ -1,0 +1,58 @@
+orden,grupo_motivo,palabra_clave
+1,Transacciones no reconocidas y fraude,NO RECONOCID
+1,Transacciones no reconocidas y fraude,SUPLANTACION
+1,Transacciones no reconocidas y fraude,FRAUDE
+1,Transacciones no reconocidas y fraude,HURTO
+1,Transacciones no reconocidas y fraude,ROBO
+1,Transacciones no reconocidas y fraude,CLONACION
+1,Transacciones no reconocidas y fraude,FALSIFIC
+2,"Cobros, comisiones y descuentos",COMISION
+2,"Cobros, comisiones y descuentos",DESCUENTO
+2,"Cobros, comisiones y descuentos",COBRO
+2,"Cobros, comisiones y descuentos",TARIFA
+2,"Cobros, comisiones y descuentos",CUOTA DE MANEJO
+3,Transacciones y pagos mal aplicados,MAL APLICAD
+3,Transacciones y pagos mal aplicados,APLICACION DEL PAGO
+3,Transacciones y pagos mal aplicados,CONSIGNACION
+3,Transacciones y pagos mal aplicados,PAGOS A TERCEROS
+3,Transacciones y pagos mal aplicados,CONVENIO
+3,Transacciones y pagos mal aplicados,MOVIMIENTO Y SALDO
+3,Transacciones y pagos mal aplicados,TRANSFERENCIA
+3,Transacciones y pagos mal aplicados,CHEQUE
+4,Fallas de canales y cajeros,FALLA
+4,Fallas de canales y cajeros,CAJERO
+4,Fallas de canales y cajeros,DATAFONO
+4,Fallas de canales y cajeros,DISPONIBILIDAD
+4,Fallas de canales y cajeros,CANAL
+5,"Crédito, liquidación y cobranza",LIQUIDACION
+5,"Crédito, liquidación y cobranza",COBRANZA
+5,"Crédito, liquidación y cobranza",CREDITO
+5,"Crédito, liquidación y cobranza",REESTRUCTURA
+5,"Crédito, liquidación y cobranza",PREPAGO
+5,"Crédito, liquidación y cobranza",ABONO
+5,"Crédito, liquidación y cobranza",TASAS DE INTERES
+5,"Crédito, liquidación y cobranza",GARANTIA
+5,"Crédito, liquidación y cobranza",GRAVAMEN
+6,Centrales de riesgo y datos,CENTRALES
+6,Centrales de riesgo y datos,DATOS PERSONALES
+6,Centrales de riesgo y datos,HABEAS
+7,"Apertura, cancelación y bloqueos",APERTURA
+7,"Apertura, cancelación y bloqueos",CANCELACION
+7,"Apertura, cancelación y bloqueos",BLOQUEO
+7,"Apertura, cancelación y bloqueos",EMBARGO
+7,"Apertura, cancelación y bloqueos",VINCULACION
+7,"Apertura, cancelación y bloqueos",ENTREGA Y ACTIVACION
+8,"Información, publicidad y contrato",INFORMACION
+8,"Información, publicidad y contrato",PUBLICIDAD
+8,"Información, publicidad y contrato",CONTRACTUAL
+8,"Información, publicidad y contrato",CONTRATO
+8,"Información, publicidad y contrato",CLAUSULA
+8,"Información, publicidad y contrato",DIFERENCIA DEL PRODUCTO
+8,"Información, publicidad y contrato",SIMULADO
+8,"Información, publicidad y contrato",EXTRACTO
+9,Atención y servicio,ATENCION
+9,Atención y servicio,MAL TRATO
+9,Atención y servicio,ASESOR
+9,Atención y servicio,DEMORA
+9,Atención y servicio,RESPUESTA
+9,Atención y servicio,SERVICIO
