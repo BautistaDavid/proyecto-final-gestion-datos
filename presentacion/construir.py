@@ -33,6 +33,28 @@ def texto(fragmento):
     return html.unescape(re.sub(r"\s+", " ", sin_etiquetas)).strip()
 
 
+def reparto(diapositivas):
+    turnos = []
+    for n, cuerpo in enumerate(diapositivas, start=1):
+        orador = re.search(r'data-orador="([^"]+)"', cuerpo).group(1)
+        hablado = re.findall(r"<p>(\(.*?)</p>", cuerpo, flags=re.S)
+        palabras = sum(len(texto(p).split()) for p in hablado)
+        seccion = re.search(r'<span class="seccion"><b>\d+</b> · ([^<]+)</span>', cuerpo)
+        if turnos and turnos[-1]["orador"] == orador:
+            turnos[-1]["hasta"] = n
+            turnos[-1]["palabras"] += palabras
+            if seccion and seccion.group(1) not in turnos[-1]["temas"]:
+                turnos[-1]["temas"].append(seccion.group(1))
+        else:
+            turnos.append({"orador": orador, "desde": n, "hasta": n, "palabras": palabras,
+                           "temas": [seccion.group(1)] if seccion else []})
+    filas = ["| Turno | Presenta | Diapositivas | Contenido | Tiempo aprox. |", "|---|---|---|---|---|"]
+    for i, t in enumerate(turnos, start=1):
+        temas = ", ".join(t["temas"]) or "Portada y cierre"
+        filas.append(f"| {i} | **{t['orador']}** | {t['desde']}–{t['hasta']} | {temas} | {t['palabras'] / 135:.1f} min |")
+    return filas
+
+
 def guion():
     fuente = HTML.read_text(encoding="utf-8")
     diapositivas = re.findall(r'<section class="slide[^"]*">(.*?)</section>', fuente, flags=re.S)
@@ -44,14 +66,20 @@ def guion():
         "",
         "| Bloque | Tiempo | Diapositivas |",
         "|---|---|---|",
-        "| Elevator pitch | 5 min | 1–7 |",
-        "| Material técnico | 10 min | 8–26 |",
-        "| Trabajo en equipo | 2 min | 27 |",
-        "| Preguntas | 5 min | 28 |",
+        "| Elevator pitch | 5 min | 1–8 |",
+        "| Material técnico | 10 min | 9–32 |",
+        "| Trabajo en equipo | 2 min | 33–34 |",
+        "| Preguntas | 5 min | 35 |",
         "",
-        "**El elevator pitch** sigue los siete pasos del video de ejemplo del enunciado: gancho, quiénes somos, problema, solución, beneficio, por qué nosotros y llamada a la acción. Lo dice una sola persona, en primera persona del plural y sin términos técnicos.",
+        "## Quién presenta qué",
         "",
-        "**Cómo usar este guion.** Cada diapositiva tiene tres partes: la **idea clave** (lo único que el público debe recordar), el texto para decir en voz alta y, a veces, un *si preguntan* con el detalle técnico. Lo de *si preguntan* no se dice en la presentación; es apoyo para la ronda de preguntas. No hace falta leer el texto palabra por palabra: basta con transmitir la idea clave y las cifras.",
+        *reparto(diapositivas),
+        "",
+        "Fabian abre con el elevator pitch y cierra con el trabajo en equipo; David presenta la integración de datos y los resultados de la P2; Belky presenta la exploración, los resultados de la P1 y las conclusiones. Cada cambio de turno tiene una frase de *relevo* al final de la última diapositiva de quien entrega la palabra. El tiempo es aproximado, a 135 palabras por minuto.",
+        "",
+        "**El elevator pitch** sigue los siete pasos del video de ejemplo del enunciado: gancho, quiénes somos, problema, solución, beneficio, por qué nosotros y llamada a la acción. Lo presenta Fabian, en primera persona del plural y sin términos técnicos.",
+        "",
+        "**Cómo usar este guion.** Cada diapositiva tiene tres partes: la **idea clave** (lo único que el público debe recordar), el texto para decir en voz alta y, a veces, un *si preguntan* con el detalle técnico. Lo de *si preguntan* no se dice en la presentación; es apoyo para la ronda de preguntas. Debajo, **Para sustentar las cifras** explica cada número de la diapositiva: qué es, cómo se calculó y en qué sección del cuaderno está, para poder defenderlo si el docente pregunta. No hace falta leer el texto palabra por palabra: basta con transmitir la idea clave y las cifras.",
         "",
         "## Glosario rápido",
         "",
@@ -66,12 +94,20 @@ def guion():
         etiqueta = re.search(r'<div class="etiqueta">(.*?)</div>', cuerpo, flags=re.S)
         encabezado = texto((titulo or etiqueta).group(1))
         lineas.append(f"## {n}. {encabezado}")
-        if seccion:
-            lineas.append(f"*{texto(re.sub(r'</?b>', '', seccion.group(1)))}*")
+        orador = re.search(r'data-orador="([^"]+)"', cuerpo).group(1)
+        detalle = f" · {texto(re.sub(r'</?b>', '', seccion.group(1)))}" if seccion else ""
+        lineas.append(f"**Presenta: {orador}**{detalle}")
         lineas.append("")
-        notas = re.search(r'<aside class="notes">(.*?)</aside>', cuerpo, flags=re.S)
-        for parrafo in re.findall(r"<p>(.*?)</p>", notas.group(1), flags=re.S):
-            lineas.append(texto(parrafo))
+        notas = re.search(r'<aside class="notes"[^>]*>(.*?)</aside>', cuerpo, flags=re.S)
+        for etiqueta, contenido in re.findall(r"<(p|h4|li)>(.*?)</\1>", notas.group(1), flags=re.S):
+            if etiqueta == "li":
+                lineas.append(f"- {texto(contenido)}")
+                continue
+            if lineas[-1].startswith("- "):
+                lineas.append("")
+            lineas.append(f"**{texto(contenido)}**" if etiqueta == "h4" else texto(contenido))
+            lineas.append("")
+        if lineas[-1].startswith("- "):
             lineas.append("")
     (AQUI / "guion_presentador.md").write_text("\n".join(lineas), encoding="utf-8")
     return len(diapositivas)
@@ -86,7 +122,8 @@ h2 + p em:only-child{color:#8A9097}
 p{margin:0 0 7pt}
 table{border-collapse:collapse;width:100%;margin:6pt 0 10pt;font-size:9.5pt}
 tr{break-inside:avoid}
-section{break-inside:avoid}
+li{break-inside:avoid;margin-bottom:3pt}
+h2 + p{break-before:avoid}
 th{text-align:left;border-bottom:1.5px solid #1A1D20;padding:4pt 8pt 4pt 0}
 td{border-bottom:1px solid #D9DBD6;padding:4pt 8pt 4pt 0;vertical-align:top}
 strong{color:#1E3A5F}
@@ -120,9 +157,133 @@ def pdf_guion():
         temporal.unlink()
 
 
+ESTILO_VISUAL = """
+@font-face{font-family:"IBM Plex Sans";src:url("fuentes/IBMPlexSans-latin.woff2") format("woff2");font-weight:100 700}
+@font-face{font-family:"Source Serif 4";src:url("fuentes/SourceSerif4-latin.woff2") format("woff2");font-weight:200 900}
+@page{size:A4;margin:14mm 16mm 12mm}
+body{font-family:"IBM Plex Sans","Segoe UI",Arial,sans-serif;font-size:9.6pt;line-height:1.45;color:#1A1D20;margin:0}
+section{break-after:page;position:relative}
+section:last-child{break-after:auto}
+.cabeza{display:grid;grid-template-columns:96mm 1fr;gap:7mm;align-items:start;padding-bottom:5mm;border-bottom:2px solid #E1111C;margin-bottom:5mm}
+.cabeza img{width:96mm;display:block;border:1px solid #D9DBD6}
+.num{font-family:"Source Serif 4",Georgia,serif;font-size:26pt;color:#E1111C;line-height:1}
+.titulo{font-family:"Source Serif 4",Georgia,serif;font-size:13.5pt;line-height:1.2;margin:4pt 0 8pt}
+.meta{font-size:8.3pt;letter-spacing:.08em;text-transform:uppercase;color:#5B6168;margin-bottom:8pt}
+.meta b{color:#1A1D20}
+.idea{font-size:9.6pt;border-left:3px solid #E1111C;padding-left:7pt}
+h3{font-size:8pt;letter-spacing:.12em;text-transform:uppercase;color:#E1111C;margin:9pt 0 3pt;font-weight:600}
+.decir{font-size:10.6pt;line-height:1.55}
+.apoyo{color:#3A3F45}
+.relevo{background:#F3F1EA;padding:5pt 8pt;margin-top:8pt}
+ul{margin:0;padding-left:13pt}
+li{margin-bottom:3pt}
+li b{color:#1E3A5F}
+.toca{display:flex;justify-content:space-between;align-items:baseline;background:#1A1D20;color:#fff;padding:6pt 10pt;margin-bottom:5mm}
+.toca span{font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#C9CBC5}
+.toca b{font-family:"Source Serif 4",Georgia,serif;font-weight:500;font-size:17pt;letter-spacing:0}
+.toca.Fabian{border-left:8pt solid #E1111C}.toca.David{border-left:8pt solid #1E3A5F}.toca.Belky{border-left:8pt solid #C9A227}
+.recibe{border:1px dashed #8A9097;padding:5pt 8pt;margin-bottom:6pt;color:#3A3F45}
+.portada-persona h1{font-family:"Source Serif 4",Georgia,serif;font-weight:500;font-size:30pt;margin:30mm 0 4pt;border-bottom:3px solid #E1111C;padding-bottom:6pt}
+.portada-persona p{font-size:11pt;margin:0 0 8pt}
+.portada-persona table{border-collapse:collapse;width:100%;margin-top:8mm;font-size:10.5pt}
+.portada-persona th{text-align:left;border-bottom:1.5px solid #1A1D20;padding:5pt 8pt 5pt 0;font-size:8.5pt;letter-spacing:.1em;text-transform:uppercase;color:#5B6168}
+.portada-persona td{border-bottom:1px solid #D9DBD6;padding:6pt 8pt 6pt 0}
+"""
+ORADORES = ["Fabian", "David", "Belky"]
+
+
+def pdf_guion_visual():
+    import base64
+    import pymupdf
+
+    fuente = HTML.read_text(encoding="utf-8")
+    diapositivas = re.findall(r'<section class="slide[^"]*">(.*?)</section>', fuente, flags=re.S)
+    paginas = pymupdf.open(PDF)
+    assert len(paginas) == len(diapositivas)
+    limpio = lambda t: html.escape(texto(t)).replace("**", "")
+    hojas, anterior, relevo_anterior = [], None, ""
+    for n, (cuerpo, pagina) in enumerate(zip(diapositivas, paginas), start=1):
+        imagen = base64.b64encode(pagina.get_pixmap(dpi=110).tobytes("png")).decode()
+        titulo = re.search(r"<h1>(.*?)</h1>", cuerpo, flags=re.S)
+        seccion = re.search(r'<span class="seccion"><b>\d+</b> · ([^<]+)</span>', cuerpo)
+        notas = re.search(r'<aside class="notes"[^>]*>(.*?)</aside>', cuerpo, flags=re.S)
+        orador = re.search(r'data-orador="([^"]+)"', cuerpo).group(1)
+        idea, decir, preguntan, relevo = "", [], "", ""
+        for p in re.findall(r"<p>(.*?)</p>", notas.group(1), flags=re.S):
+            if p.startswith("<b>Idea clave:</b>"):
+                idea = limpio(p.replace("<b>Idea clave:</b>", ""))
+            elif p.startswith("<i>Si preguntan:</i>"):
+                preguntan = limpio(p.replace("<i>Si preguntan:</i>", ""))
+            elif p.startswith("<i>Relevo:</i>"):
+                relevo = limpio(p.replace("<i>Relevo:</i>", ""))
+            else:
+                decir.append(limpio(p))
+        tiempo = re.match(r"\(([^)]*)\)\s*", decir[0]) if decir else None
+        if tiempo:
+            decir[0] = decir[0][tiempo.end():]
+        cifras = [re.sub(r"<b>(.*?)</b>", lambda m: f"<b>{html.escape(texto(m.group(1)))}</b>", li)
+                  for li in re.findall(r"<li>(.*?)</li>", notas.group(1), flags=re.S)]
+        partes = [f'''<section>
+  <div class="toca {orador}"><span>Le toca a</span><b>{orador}</b><span>Diapositiva {n} de {len(diapositivas)}</span></div>
+  <div class="cabeza"><img src="data:image/png;base64,{imagen}">
+    <div><div class="num">{n:02d}</div>
+      <div class="titulo">{limpio(titulo.group(1)) if titulo else "Portada"}</div>
+      <div class="meta">Presenta <b>{orador}</b>{f" · {seccion.group(1)}" if seccion else ""}{f" · {html.escape(tiempo.group(1))}" if tiempo else ""}</div>
+      <div class="idea">{idea}</div></div></div>
+  <h3>Qué decir</h3>''']
+        if anterior and anterior != orador and relevo_anterior:
+            partes.append(f'<p class="recibe"><b>Recibes la palabra de {anterior}:</b> {relevo_anterior}</p>')
+        partes += [f'<p class="decir">{d}</p>' for d in decir]
+        if relevo:
+            partes.append(f'<p class="relevo"><b>Relevo:</b> {relevo}</p>')
+        if preguntan:
+            partes.append(f'<h3>Si preguntan</h3><p class="apoyo">{preguntan}</p>')
+        if cifras:
+            partes.append('<h3>Para sustentar las cifras</h3><ul class="apoyo">' + "".join(f"<li>{c}</li>" for c in cifras) + "</ul>")
+        partes.append("</section>")
+        hojas.append({"n": n, "orador": orador, "html": "\n".join(partes), "seccion": seccion.group(1) if seccion else "",
+                      "palabras": sum(len(d.split()) for d in decir)})
+        anterior, relevo_anterior = orador, relevo
+
+    def escribir(contenido, destino):
+        temporal = AQUI / "_guion_visual.html"
+        temporal.write_text(f'<!doctype html><html lang="es"><head><meta charset="utf-8"><style>{ESTILO_VISUAL}</style></head>'
+                            f"<body>{contenido}</body></html>", encoding="utf-8")
+        try:
+            imprimir(temporal, destino)
+        finally:
+            temporal.unlink()
+
+    escribir("".join(h["html"] for h in hojas), AQUI / "guion_con_diapositivas.pdf")
+
+    for persona in ORADORES:
+        propias = [h for h in hojas if h["orador"] == persona]
+        turnos = []
+        for h in propias:
+            if turnos and turnos[-1]["hasta"] == h["n"] - 1:
+                turnos[-1]["hasta"] = h["n"]
+                turnos[-1]["palabras"] += h["palabras"]
+                if h["seccion"] and h["seccion"] not in turnos[-1]["temas"]:
+                    turnos[-1]["temas"].append(h["seccion"])
+            else:
+                turnos.append({"desde": h["n"], "hasta": h["n"], "palabras": h["palabras"],
+                               "temas": [h["seccion"]] if h["seccion"] else []})
+        filas = "".join(f"<tr><td>{t['desde']}–{t['hasta']}</td><td>{', '.join(t['temas']) or 'Portada y cierre'}</td>"
+                        f"<td>{t['palabras'] / 135:.1f} min</td></tr>" for t in turnos)
+        total = sum(t["palabras"] for t in turnos) / 135
+        portada = (f'<section class="portada-persona"><div class="toca {persona}"><span>Guion de</span><b>{persona}</b>'
+                   f"<span>{len(propias)} diapositivas</span></div><h1>Guion de {persona}</h1>"
+                   f"<p>Solo las diapositivas que te tocan, con lo que hay que decir, la frase con la que recibes la palabra, "
+                   f"el relevo con el que la entregas y la explicación de cada cifra.</p>"
+                   f"<p>Tiempo total aproximado: <b>{total:.1f} minutos</b> (a 135 palabras por minuto).</p>"
+                   f"<table><tr><th>Diapositivas</th><th>Contenido</th><th>Tiempo</th></tr>{filas}</table></section>")
+        escribir(portada + "".join(h["html"] for h in propias), AQUI / f"guion_{persona}.pdf")
+
+
 if __name__ == "__main__":
     print("diapositivas en el guion:", guion())
     pdf()
     pdf_guion()
+    pdf_guion_visual()
     print("PDF:", PDF, PDF.stat().st_size, "bytes")
     print("Guion PDF:", AQUI / "guion_presentador.pdf")

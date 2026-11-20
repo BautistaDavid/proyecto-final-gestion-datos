@@ -2,10 +2,8 @@
 ProyectoFinal.pdf
 ContenidoClase/
 
-
 # Entorno virtual
 .venv/
-
 
 # Datos descargados (excepto raw y la vista minable procesada, que se versionan)
 datos/*
@@ -20,8 +18,10 @@ datos/raw/*
 .env
 !.env.example
 
-
 # Cache de Jupyter
 .ipynb_checkpoints/
 __pycache__/
 *.pyc
+
+# Guiones de la presentación (solo locales)
+presentacion/guion*
