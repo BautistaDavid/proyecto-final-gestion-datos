@@ -204,14 +204,14 @@ Este archivo se genera desde las notas de `index.html` (tecla **N** en la presen
 
 (≈30 s) En concreto, le diríamos a Davivienda: primero, revisar la cuenta de ahorros y la tarjeta de crédito; segundo, revisar el funcionamiento de canales y cajeros, el motivo que más creció; tercero, entender qué pasa con el leasing no habitacional. Y para las alertas: preguntar a las regiones qué pasó en Meta, Cauca y Risaralda, y repetir el cálculo cada mes. El siguiente paso sería un modelo que anticipe la alerta antes de que ocurra.
 
-## 23. Tres integrantes, tres frentes y seis reglas de trabajo
+## 23. Tres integrantes con experiencia en Davivienda, cinco reuniones
 *11 · Trabajo en equipo*
 
 **Idea clave:** Cómo nos organizamos como equipo.
 
-(2 min) Somos tres y nos repartimos el trabajo en tres frentes: ingeniería de datos, análisis estadístico y comunicación. Trabajamos con seis reglas; las más importantes: una sola fuente de verdad, que es el cuaderno; toda cifra que se comunica sale de una celda ejecutada, y los desacuerdos se resuelven con datos.
+(2 min) David y Fabian trabajan actualmente en Davivienda y Belky trabajó allí hace un tiempo, así que los tres llegamos con conocimiento del negocio, y eso nos ayudó a elegir las preguntas y a leer los resultados. David llevó la ingeniería de datos y apoyó la parte estadística; Belky y Fabian se repartieron el análisis estadístico y la comunicación. Nos reunimos una vez por semana, por lo general el día de la clase o al día siguiente, entre el 24 de octubre y el 18 de noviembre: cinco reuniones para tomar las decisiones grandes y mostrar avances. El día a día lo resolvíamos en nuestro grupo de WhatsApp, y una regla clave fue trabajar siempre sobre una sola versión del proyecto: si una cifra no salía del cuaderno, no la usábamos.
 
-*Si preguntan:* [Completar por el equipo: número de reuniones, asistentes y actividades (sección 9.3), y el resumen de la autoevaluación y la evaluación de pares (sección 9.4).]
+*Si preguntan:* En las reuniones definimos el caso de estudio y las preguntas, qué fuentes usar, cómo tratar los problemas de calidad y los criterios de las alertas. [Completar con el resumen de la autoevaluación y la evaluación de pares de la sección 9.4.]
 
 ## 24. Todo el análisis se reproduce desde el repositorio
 
