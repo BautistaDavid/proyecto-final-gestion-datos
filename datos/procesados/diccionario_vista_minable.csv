@@ -1,0 +1,26 @@
+variable,tabla,grano,formula,unidad,uso,minimo,mediana,maximo,pct_vacio
+tasa_favor_consumidor,tabla_p1,año × producto homologado (también año × motivo comparable),favor consumidor / (favor consumidor + favor entidad),proporción,P1,0.0,0.634,0.8486015294935558,3.8%
+tasa_resolucion,tabla_p1,año × producto homologado (también año × motivo comparable),finalizadas / (finalizadas + en trámite),proporción,P1,0.0,0.8611630974540136,1.0,0.0%
+tasa_fundadas_ref,tasa_producto,producto homologado,tasa a favor del consumidor 2019T1–2022T2 de la categoría; general si no hay equivalente,proporción,P1 y P2,0.43620414673046254,0.7733323650197831,0.8105671158342963,0.0%
+quejas_recibidas,tabla_producto,mes × departamento × producto,suma de quejas recibidas (sin registros sin_ubicacion),quejas,P2,1.0,8.0,8522.0,0.0%
+participacion_producto,tabla_producto,mes × departamento × producto,quejas del producto / quejas del departamento en el mes,proporción,P2,4.646624227498722e-05,0.038643864386438645,1.0,0.0%
+quejas_fundadas_estimadas,tabla_producto,mes × departamento × producto,quejas × tasa_fundadas_ref,quejas,P1 y P2,0.43620414673046254,5.673969810840074,6907.652961139873,0.0%
+quejas_depto_mes,tabla_depto,mes × departamento,suma de quejas del departamento en el mes (0 si no hubo),quejas,P2,0.0,141.0,23010.0,0.0%
+puntos_fisicos_prom,tabla_depto,mes × departamento,promedio 2023–2026 de puntos en los canales 4 y 14,puntos,P2,1.0,54.61904761904762,896.2619047619048,18.2%
+quejas_depto_por_100_puntos,tabla_depto,mes × departamento,quejas_depto / puntos_fisicos × 100,quejas por 100 puntos,P2,0.0,425.23052964952495,2567.329915256488,18.2%
+referencia_6m_depto,tabla_depto,mes × departamento,mediana de los 6 meses calendario anteriores (mínimo 4 con dato),quejas,P2,0.0,181.5,20241.0,29.5%
+indice_vs_6m,tabla_depto,mes × departamento,quejas_depto / referencia_6m_depto,razón,P2,0.0,1.0277777777777777,8.0,30.6%
+indice_relativo,tabla_depto,mes × departamento,indice_vs_6m / indice_nacional_vs_6m,razón,P2,0.0,1.0113258411231314,7.0975899928617565,30.6%
+quejas_nacionales,tabla_mes,mes,suma de quejas del mes (incluye sin_ubicacion),quejas,P2,15609.0,28000.5,35811.0,0.0%
+referencia_6m_nacional,tabla_mes,mes,mediana de los 6 meses calendario anteriores (mínimo 4 con dato),quejas,P2,26018.5,28437.0,34432.0,29.5%
+indice_nacional_vs_6m,tabla_mes,mes,quejas_nacionales / referencia_6m_nacional,razón,P2,0.863531070601269,1.0135107291084096,1.2340941944925312,29.5%
+sanciones_sector_12m,tabla_mes,mes,sanciones SIC del sector en los 12 meses que terminan en el mes,sanciones,contexto,7.0,13.0,38.0,0.0%
+alerta_iqr,tabla_depto,mes × departamento,"indice_relativo > Q3 + 1,5·IQR de la historia del departamento; solo con referencia ≥ VOLUMEN_MINIMO_ALERTA y fuera del arranque",booleano,P2,0.0,0.0,1.0,59.4%
+alerta_nacional,tabla_mes,mes,"indice_nacional_vs_6m > Q3 + 1,5·IQR de la serie nacional (fuera del arranque)",booleano,P2,0.0,0.0,0.0,29.5%
+periodo_arranque,tabla_depto,mes × departamento,mes entre enero y septiembre de 2023 (arranque de Smartsupervision),booleano,P2,0.0,0.0,1.0,0.0%
+quejas_depto_por_100_puntos_w,tabla_depto,mes × departamento,quejas_depto_por_100_puntos recortada a sus percentiles 5 y 95,quejas por 100 puntos,P2,168.92049766575445,425.23052964952495,1011.618649459238,18.2%
+quejas_depto_por_100_puntos_robusto,tabla_depto,mes × departamento,(valor winsorizado − mediana) / IQR,unidades de IQR,modelos futuros,-1.078143537233268,0.0,2.466585317750032,18.2%
+log_quejas,tabla_producto,mes × departamento × producto,log(1 + quejas),log de quejas,modelos futuros,0.6931471805599453,2.1972245773362196,9.050523670522297,0.0%
+log_quejas_depto,tabla_depto,mes × departamento,log(1 + quejas_depto),log de quejas,modelos futuros,0.0,4.955827057601261,10.043727641450573,0.0%
+nivel_riesgo_cod,tabla_depto,mes × departamento,"cuartil de quejas_depto_por_100_puntos_w: 0 bajo, 1 medio, 2 alto, 3 muy alto",nivel ordinal,P2,0.0,1.5,3.0,18.2%
+prod_* (one-hot),tabla_producto,mes × departamento × producto,"1 si la fila es de esa categoría homologada, 0 si no",binaria,modelos futuros,,,,0.0%

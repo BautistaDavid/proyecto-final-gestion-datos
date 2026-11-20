@@ -7,12 +7,13 @@ ContenidoClase/
 .venv/
 
 
-# Datos descargados (excepto raw, que se versionan)
+# Datos descargados (excepto raw y la vista minable procesada, que se versionan)
 datos/*
 !datos/raw/
 datos/raw/*
 !datos/raw/metadatos.json
 !datos/raw/*.csv
+!datos/procesados/
 
 # Variables de entorno (el token no se sube)
 .env
