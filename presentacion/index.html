@@ -176,6 +176,68 @@ table{font-variant-numeric:lining-nums tabular-nums}
 .divisor .contenido span{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--gris);font-weight:500;padding:10px 18px 0 0;margin-right:16px;border-top:2px solid var(--tinta)}
 .divisor .tiempo{position:absolute;right:72px;top:52px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--tenue);font-weight:500}
 
+/* Ayudas del diagrama de fuentes */
+.ayuda{cursor:help;outline:none}
+.ayuda circle{fill:#fff;stroke:#8A9097;stroke-width:1.2;transition:fill .15s,stroke .15s}
+.ayuda text{font-size:12px;font-weight:600;fill:#5B6168;font-family:var(--sans);pointer-events:none}
+.ayuda:hover circle,.ayuda:focus circle{fill:var(--rojo);stroke:var(--rojo)}
+.ayuda:hover text,.ayuda:focus text{fill:#fff}
+.ayuda.oscura circle{fill:#1E3A5F;stroke:#D5DDE7}
+.ayuda.oscura text{fill:#fff}
+.globo{position:fixed;z-index:20;max-width:340px;background:#1A1D20;color:#F3F1EA;font:14px/1.45 var(--sans);padding:12px 14px;border-top:3px solid var(--rojo);box-shadow:0 6px 18px rgba(0,0,0,.18);pointer-events:none;opacity:0;transition:opacity .12s}
+.globo.visible{opacity:1}
+
+/* Ejemplo de cada tabla */
+.verTabla{cursor:pointer;outline:none}
+.verTabla rect{fill:#fff;stroke:#8A9097;stroke-width:1.2;transition:fill .15s,stroke .15s}
+.verTabla path{fill:none;stroke:#5B6168;stroke-width:1.3;pointer-events:none}
+.verTabla:hover rect,.verTabla:focus rect{fill:var(--rojo);stroke:var(--rojo)}
+.verTabla:hover path,.verTabla:focus path{stroke:#fff}
+.verTabla.oscura rect{fill:#1E3A5F;stroke:#D5DDE7}
+.verTabla.oscura path{stroke:#fff}
+.modal{position:fixed;inset:0;z-index:30;background:rgba(26,29,32,.55);display:none;align-items:center;justify-content:center;padding:24px}
+.modal.abierto{display:flex}
+.modal-caja{background:var(--papel);max-width:min(1180px,96vw);max-height:88vh;display:flex;flex-direction:column;border-top:5px solid var(--rojo);box-shadow:0 18px 50px rgba(0,0,0,.3);padding:22px 26px 20px;font-family:var(--sans);position:relative}
+.modal-caja h3{font-family:var(--serif);font-weight:500;font-size:24px;margin-right:40px}
+.modal-meta{font-size:13px;color:var(--gris);margin:6px 0 4px}
+.modal-meta code{font-size:12px}
+.modal-nota{font-size:14px;color:var(--tinta);margin:6px 0 14px}
+.modal-scroll{overflow:auto;border:1px solid var(--linea);background:#fff}
+.modal-scroll table{font-size:13px;width:auto;min-width:100%;font-variant-numeric:tabular-nums lining-nums}
+.modal-scroll th{position:sticky;top:0;background:#F3F1EA;font-family:ui-monospace,Consolas,monospace;font-size:11.5px;letter-spacing:0;text-transform:none;color:var(--tinta);padding:9px 12px;border-bottom:1.5px solid var(--tinta);white-space:nowrap}
+.modal-scroll td{padding:8px 12px;border-bottom:1px solid var(--linea);white-space:nowrap;max-width:280px;overflow:hidden;text-overflow:ellipsis;vertical-align:top}
+.modal-scroll td.n{text-align:right}
+.modal-cerrar{position:absolute;top:14px;right:16px;border:none;background:none;font-size:28px;line-height:1;color:var(--gris);cursor:pointer}
+.modal-cerrar:hover{color:var(--rojo)}
+
+/* Recordatorio de las preguntas */
+.btn-preguntas{position:absolute;right:72px;top:112px;display:flex;align-items:center;gap:8px;border:1.2px solid #8A9097;background:#fff;color:var(--tinta);border-radius:20px;padding:6px 14px 6px 6px;font:600 13px var(--sans);letter-spacing:.06em;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
+.btn-preguntas-icono{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--rojo);color:#fff;font-size:13px}
+.btn-preguntas:hover,.btn-preguntas:focus{background:var(--rojo);border-color:var(--rojo);color:#fff;outline:none}
+.btn-preguntas:hover .btn-preguntas-icono,.btn-preguntas:focus .btn-preguntas-icono{background:#fff;color:var(--rojo)}
+.modal-preguntas{max-width:min(980px,94vw)}
+.recordatorio{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:14px}
+.recordatorio > div{padding-right:28px}
+.recordatorio > div + div{padding:0 0 0 28px;border-left:1px solid var(--linea)}
+.recordatorio .etq{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--rojo);margin-bottom:10px}
+.recordatorio .acento .etq{color:var(--pizarra)}
+.recordatorio .pq{font-family:var(--serif);font-size:23px;line-height:1.3;margin-bottom:16px}
+.recordatorio .fuentes{font-size:14px;color:var(--gris);border-top:1px solid var(--linea);padding-top:10px;line-height:1.45}
+.recordatorio .fuentes b{color:var(--tinta);font-weight:600}
+.modal-una{max-width:min(620px,92vw)}
+.btn-preguntas.segundo{top:158px}
+.conteo{margin-top:14px;font-size:15px;line-height:1.5}
+.conteo .ecuacion{display:flex;align-items:baseline;justify-content:center;gap:14px;font-family:var(--serif);margin:14px 0 18px;padding:14px 0;border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)}
+.conteo .ecuacion b{font-weight:500;font-size:40px;color:var(--rojo);font-variant-numeric:lining-nums}
+.conteo .ecuacion span{font-size:15px;color:var(--gris);font-family:var(--sans)}
+.conteo .ecuacion i{font-style:normal;font-size:26px;color:var(--gris)}
+.conteo p{margin-bottom:10px}
+.conteo p b{font-weight:600}
+.recordatorio.una{grid-template-columns:1fr}
+.recordatorio.una > div{padding:0;border:none}
+
+.slide.oculta{display:none!important}
+
 /* Interfaz */
 .ui{position:fixed;bottom:14px;right:18px;font:13px var(--sans);color:var(--gris);display:flex;gap:14px;align-items:center;user-select:none;background:rgba(250,250,247,.92);padding:6px 8px;border-radius:6px;opacity:0;transition:opacity .25s}
 .ui.mostrar,.ui:hover{opacity:1}
@@ -188,6 +250,7 @@ table{font-variant-numeric:lining-nums tabular-nums}
 .panel-notas h4{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9BA1A8;margin-bottom:6px}
 .panel-notas ul{margin:0 0 10px 18px}
 .panel-notas li{margin-bottom:4px;max-width:1100px}
+.panel-notas mark{background:#FFE45C;color:#1A1D20;padding:1px 3px}
 .panel-notas p{margin-bottom:10px;max-width:1100px}
 
 @media print{
@@ -196,7 +259,7 @@ table{font-variant-numeric:lining-nums tabular-nums}
   .stage{position:static;transform:none!important;width:1280px;height:auto}
   .slide{display:flex!important;position:relative;break-after:page;page-break-after:always}
   .slide:last-child{break-after:auto;page-break-after:auto}
-  .ui,.progreso,.panel-notas{display:none!important}
+  .ui,.progreso,.panel-notas,.globo,.ayuda,.verTabla,.modal,.btn-preguntas{display:none!important}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 </style>
@@ -423,6 +486,7 @@ table{font-variant-numeric:lining-nums tabular-nums}
 <section class="slide diagrama">
   <div class="cabecera"><span class="seccion"><b>02</b> · Datos e integración</span><span>Técnico · 10 min</span></div>
   <h1>Dos fuentes de quejas y tres de apoyo, todas oficiales</h1>
+  <button class="btn-preguntas" type="button" data-modal="modalPreguntas" aria-label="Recordar las preguntas del proyecto"><span class="btn-preguntas-icono">?</span>P1 · P2</button>
   <div class="cuerpo">
     <svg viewBox="0 0 1136 400" role="img" aria-label="Linaje de datos desde datos.gov.co hasta la vista minable">
       <defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1A1D20"/></marker></defs>
@@ -465,6 +529,12 @@ table{font-variant-numeric:lining-nums tabular-nums}
         <text x="946" y="182" fill="#fff" font-size="16" font-weight="600">Vista minable</text>
         <text x="946" y="206" fill="#D5DDE7" font-size="14">8.647 filas × 39 col.</text>
         <text x="946" y="228" fill="#D5DDE7" font-size="14">datos/procesados</text>
+      <g class="verTabla" transform="translate(294,12)" tabindex="0" role="button" data-tabla="hjqv" aria-label="Ver ejemplo de la tabla"><rect x="-9" y="-9" width="18" height="18" rx="9"/><path d="M-4.5 -3.5h9v7h-9z M-4.5 0h9 M-1.5 -3.5v7"/></g><g class="ayuda" transform="translate(318,12)" tabindex="0" data-ayuda="Histórico de quejas de la Superintendencia Financiera para las entidades del grupo Davivienda, por trimestre de 2010 a 2022. Trae producto, motivo e instancia, y cuántas quejas se recibieron, se cerraron y se resolvieron a favor del cliente o del banco. 9.953 filas y 18 columnas."><circle r="9"/><text text-anchor="middle" dy="4.5">?</text></g>
+        <g class="verTabla" transform="translate(294,96)" tabindex="0" role="button" data-tabla="ss" aria-label="Ver ejemplo de la tabla"><rect x="-9" y="-9" width="18" height="18" rx="9"/><path d="M-4.5 -3.5h9v7h-9z M-4.5 0h9 M-1.5 -3.5v7"/></g><g class="ayuda" transform="translate(318,96)" tabindex="0" data-ayuda="Quejas de Smartsupervision, el sistema con el que la SFC recibe las quejas desde 2023. Trae mes, producto, motivo, instancia, departamento y municipio; cada fila es un conteo de quejas, no una queja individual, y no dice cómo terminó. 113.327 filas y 10 columnas."><circle r="9"/><text text-anchor="middle" dy="4.5">?</text></g>
+        <g class="verTabla" transform="translate(294,180)" tabindex="0" role="button" data-tabla="pts" aria-label="Ver ejemplo de la tabla"><rect x="-9" y="-9" width="18" height="18" rx="9"/><path d="M-4.5 -3.5h9v7h-9z M-4.5 0h9 M-1.5 -3.5v7"/></g><g class="ayuda" transform="translate(318,180)" tabindex="0" data-ayuda="Puntos de atención de Davivienda por mes, municipio y canal, de enero de 2023 a junio de 2026. Usamos los canales 4 y 14, oficinas y cajeros, para comparar departamentos de distinto tamaño. 60.998 filas y 11 columnas."><circle r="9"/><text text-anchor="middle" dy="4.5">?</text></g>
+        <g class="verTabla" transform="translate(294,264)" tabindex="0" role="button" data-tabla="dvp" aria-label="Ver ejemplo de la tabla"><rect x="-9" y="-9" width="18" height="18" rx="9"/><path d="M-4.5 -3.5h9v7h-9z M-4.5 0h9 M-1.5 -3.5v7"/></g><g class="ayuda" transform="translate(318,264)" tabindex="0" data-ayuda="Catálogo DIVIPOLA del DANE: el código y el nombre de los 33 departamentos. Sirve para unir los puntos de atención, que vienen con código, con las quejas, que vienen con nombre. 33 filas y 4 columnas."><circle r="9"/><text text-anchor="middle" dy="4.5">?</text></g>
+        <g class="verTabla" transform="translate(294,348)" tabindex="0" role="button" data-tabla="sic" aria-label="Ver ejemplo de la tabla"><rect x="-9" y="-9" width="18" height="18" rx="9"/><path d="M-4.5 -3.5h9v7h-9z M-4.5 0h9 M-1.5 -3.5v7"/></g><g class="ayuda" transform="translate(318,348)" tabindex="0" data-ayuda="Sanciones de la Superintendencia de Industria y Comercio al sector de financiación al consumidor, de 2013 a mayo de 2026: resolución, entidad sancionada, conducta y valor de la multa. No incluye bancos. 281 filas y 7 columnas."><circle r="9"/><text text-anchor="middle" dy="4.5">?</text></g>
+        <g class="verTabla oscura" transform="translate(1100,162)" tabindex="0" role="button" data-tabla="vista" aria-label="Ver ejemplo de la tabla"><rect x="-9" y="-9" width="18" height="18" rx="9"/><path d="M-4.5 -3.5h9v7h-9z M-4.5 0h9 M-1.5 -3.5v7"/></g><g class="ayuda oscura" transform="translate(1124,162)" tabindex="0" data-ayuda="La tabla final que arma el cuaderno: una fila por mes, departamento y producto de Banco Davivienda, de enero de 2023 a septiembre de 2026, con quejas, tasa de quejas fundadas, puntos de atención, índices, alertas y sanciones del sector. 8.647 filas y 39 columnas."><circle r="9"/><text text-anchor="middle" dy="4.5">?</text></g>
       </g>
     </svg>
     <p class="leyenda"><b>Julio–diciembre de 2022 sin datos:</b> las dos series no se pegan.</p>
@@ -475,6 +545,9 @@ table{font-variant-numeric:lining-nums tabular-nums}
     <p>(≈35 s) Todo sale de datos.gov.co. Hay dos fuentes de quejas: el histórico de la Superintendencia Financiera, de 2010 a 2022, que dice cómo terminó cada queja, y Smartsupervision, desde 2023, que dice en qué mes y en qué departamento se puso. Las otras tres ayudan: cuántas oficinas y cajeros tiene el banco en cada departamento, una tabla para traducir códigos de departamento a nombres, y las sanciones de la Superintendencia de Industria y Comercio como contexto del sector. Entre julio y diciembre de 2022 ninguna fuente tiene datos, por eso no unimos las dos series en una sola.</p>
     <p><i>Si preguntan:</i> La descarga está en un cuaderno aparte y los archivos quedan guardados en el repositorio con su fecha y una huella digital (hash), así los tres trabajamos siempre sobre la misma copia.</p>
     <div class="cifras"><h4>Para sustentar las cifras</h4><ul><li><b>2010T2–2022T2:</b> Trimestres del histórico con quejas completas; 2022T3 y 2022T4 casi no tienen quejas nuevas (3.2).</li><li><b>2023–2026:</b> Smartsupervision de enero de 2023 a septiembre de 2026; octubre de 2026 se excluye por incompleto (6.1).</li><li><b>Julio–diciembre de 2022:</b> Ninguna de las dos fuentes de quejas reporta esos meses (4.1, 8.2).</li><li><b>8.647 filas × 39 columnas:</b> Tamaño de la vista minable exportada (6.5).</li></ul></div>
+    <div class="cifras"><h4>Extracción SoQL: cómo nos conectamos a datos.gov.co (API SODA)</h4><ul><li><b>Para decirlo en una frase:</b> «datos.gov.co funciona sobre una plataforma llamada Socrata, que deja consultar cada dataset por internet como si fuera una base de datos. El cuaderno 00 le pide a esa API solo las filas que necesitamos, con filtros escritos en SoQL, y guarda el resultado en el repositorio».</li><li><b>La plataforma:</b> datos.gov.co corre sobre Socrata. Cada dataset tiene un identificador de ocho caracteres, como hjqv-fp48, que es el mismo que aparece en la diapositiva.</li><li><b>La API: SODA:</b> Socrata Open Data API. Cada dataset tiene una dirección propia, https://www.datos.gov.co/resource/&lt;ID&gt;.json; el cuaderno le hace una petición GET, igual que abrir una página web, y la respuesta llega en formato JSON.</li><li><b>Qué es SoQL:</b> Socrata Query Language, un lenguaje parecido a SQL que se escribe como parámetros de la dirección: $select (qué columnas), $where (qué filas), $order (orden), $limit y $offset (cuántas y desde dónde). Así el filtro se aplica en el servidor y solo se descarga lo necesario.</li><li><b>Los filtros que usamos:</b> Smartsupervision: (tipo_entidad=1 AND codigo_entidad=39) OR (tipo_entidad=5 AND codigo_entidad=42) OR (tipo_entidad=85 AND codigo_entidad=26), es decir, las tres entidades del grupo. Histórico: las mismas tres entidades por nombre y fecha_corte desde 2010. Puntos: solo el banco (código 39). SIC: sector = 'Servicios de financiación'. DIVIPOLA: sin filtro. Todos quedan guardados en datos/raw/metadatos.json.</li><li><b>Cómo encontramos los códigos:</b> antes de filtrar, una consulta con like sobre nombre_entidad listó las entidades que contienen «Davivienda» con su tipo y código, para no adivinarlos.</li><li><b>Paginación:</b> la API entrega los datos por bloques; el cuaderno pide de 50.000 en 50.000 filas con $limit y $offset hasta que un bloque llega incompleto, que significa que ya no hay más.</li><li><b>Control de lo descargado:</b> antes de bajar cada dataset se cuenta en el servidor con $select=count(*), y al final se compara con las filas descargadas; si una petición falla, se reintenta automáticamente.</li><li><b>La llave (app token):</b> una llave gratuita de datos.gov.co, SOCRATA_APP_TOKEN, que se envía en el encabezado X-App-Token. Sin ella la descarga también funciona, pero más lenta por los límites de velocidad. La llave nunca se sube al repositorio: se lee de los secretos de Colab o de un archivo .env que git ignora.</li><li><b>El resultado:</b> un CSV por dataset en datos/raw y un metadatos.json con el filtro aplicado, el número de filas y columnas y el hash SHA-256 de cada archivo, para poder verificar que el análisis usa exactamente esos datos.</li></ul></div>
+      <div class="cifras"><h4>Por qué llevamos la tasa del histórico a Smartsupervision (cómo conectar las ideas)</h4><ul><li><b>El problema:</b> la vista minable y la P2 trabajan con Smartsupervision, porque es la única fuente con mes y departamento, pero Smartsupervision no dice cómo terminó cada queja.</li><li><b>Lo que sí sabemos:</b> el histórico de la SFC trae el desenlace y nos dice qué parte de las quejas de cada producto termina reconociendo el banco: en cuenta de ahorros es el 81,1 % y en tarjeta de crédito el 74,1 % (2019–2022).</li><li><b>El puente:</b> llevamos esa proporción, producto por producto, a las quejas de Smartsupervision y la multiplicamos por el número de quejas. Así cada fila de la vista tiene, además de las quejas recibidas, una estimación de cuántas serían fundadas.</li><li><b>Lo que lo hace posible:</b> la homologación de la 6.2: las dos fuentes nombran distinto los productos, y sin emparejarlos no sabríamos qué tasa le toca a cada producto de Smartsupervision.</li><li><b>Para qué queda:</b> en la vista permite ver, por región y producto, cuántas quejas probablemente tienen fundamento, y es una variable para la siguiente fase. Las alertas de la P2 se calculan con las quejas recibidas, no con esta estimación.</li><li><b>La salvedad:</b> es una estimación que supone que la tasa de 2019–2022 se mantiene después. Por eso la P1 se responde con quejas observadas del histórico y el supuesto queda declarado en la 8.2.</li></ul></div>
+    <div class="cifras"><h4>Metodología de la tasa de referencia (6.2)</h4><ul><li><b>Datos:</b> histórico de la SFC, solo Banco Davivienda (código 39), de 2019T1 a 2022T2. Se usa ese tramo y no toda la historia porque es el más cercano a Smartsupervision y porque la tasa cambia de un año a otro (6.3).</li><li><b>Agrupación:</b> cada producto del histórico se asigna a su categoría homologada (6.2).</li><li><b>Fórmula:</b> para cada categoría, quejas a favor del consumidor ÷ (a favor del consumidor + a favor de la entidad). El denominador son solo las quejas con desenlace asignado; las finalizadas sin desenlace (0,20 %) quedan fuera.</li><li><b>Volumen mínimo:</b> si la categoría tiene menos de 1.000 quejas con desenlace, recibe la tasa general del banco (77,5 %), que es el mismo cálculo con todas las categorías juntas. Pasa con seguros, inversión y fiducia, y pensión voluntaria.</li><li><b>Sin equivalente:</b> las categorías de Smartsupervision que no existen en el histórico (otros productos bancarios y depósitos de bajo monto) también reciben la tasa general. En total, el 74,8 % de las quejas de la vista recibe tasa propia y el 25,2 % la general.</li><li><b>Aplicación (6.3):</b> quejas_fundadas_estimadas = quejas × tasa de referencia de su categoría, en cada combinación de mes, departamento y producto.</li><li><b>Sensibilidad:</b> darles a los depósitos de bajo monto la tasa de cuenta de ahorros en lugar de la general cambia la tasa implícita de la vista solo 0,39 puntos; se dejó la general por prudente.</li><li><b>No confundir:</b> el 81,1 % de cuenta de ahorros es la tasa 2019–2022 que se lleva a la vista; el 80,0 % de la 7.1 es el acumulado 2010–2022 que responde la P1.</li></ul></div>
   </aside>
 </section>
 
@@ -684,6 +757,7 @@ table{font-variant-numeric:lining-nums tabular-nums}
 <section class="slide figura">
   <div class="cabecera"><span class="seccion"><b>04</b> · Resultados P1</span><span>Sección 7.1</span></div>
   <h1>Ahorros y tarjeta suman el 83 % de las quejas fundadas</h1>
+  <button class="btn-preguntas" type="button" data-modal="modalP1" aria-label="Recordar la pregunta P1"><span class="btn-preguntas-icono">?</span>P1</button>
   <div class="cuerpo">
     <div class="lienzo"><img src="../figuras/p1_1_quejas_fundadas_por_producto.png" alt="Quejas fundadas por producto y año, 2011 a 2021"></div>
     <div class="hallazgos">
@@ -802,6 +876,8 @@ table{font-variant-numeric:lining-nums tabular-nums}
 <section class="slide heroe">
   <div class="cabecera"><span class="seccion"><b>05</b> · Resultados P2</span><span>Sección 6.4</span></div>
   <h1>11 alertas en 10 departamentos: el 1,9 % de los meses</h1>
+  <button class="btn-preguntas" type="button" data-modal="modalP2" aria-label="Recordar la pregunta P2"><span class="btn-preguntas-icono">?</span>P2</button>
+  <button class="btn-preguntas segundo" type="button" data-modal="modalConteo" aria-label="Cómo se cuentan los 589 meses evaluables"><span class="btn-preguntas-icono">?</span>¿Cómo se cuenta?</button>
   <div class="cuerpo">
     <div class="cifra">11</div>
     <div class="lado">
@@ -816,9 +892,11 @@ table{font-variant-numeric:lining-nums tabular-nums}
   <footer class="folio"><span>Reputación Davivienda · Gestión de Datos</span><b>24 <span>/ 35</span></b></footer>
   <aside class="notes" data-orador="David">
     <p><b>Idea clave:</b> Un mes cuenta como alerta si es raro para ese departamento y no es algo de todo el país.</p>
-    <p>(≈40 s) Segunda pregunta. Para cada departamento comparamos las quejas del mes con lo normal de sus seis meses anteriores. Después lo comparamos con lo que pasó en todo el país ese mismo mes, para no confundir un problema local con algo nacional. Si la subida se sale de lo habitual para ese departamento, la marcamos como alerta, usando la regla de Tukey, una forma estándar de detectar valores fuera de rango. Resultado: 11 alertas en 10 departamentos, menos del 2 % de los meses revisados.</p>
+    <p>(≈40 s) Segunda pregunta. Para cada departamento comparamos las quejas del mes con lo normal de sus seis meses anteriores. Después lo comparamos con lo que pasó en todo el país ese mismo mes, para no confundir un problema local con algo nacional. Si la subida se sale de lo habitual para ese departamento, la marcamos como alerta, usando la regla de Tukey, una forma estándar de detectar valores fuera de rango. Resultado: 11 alertas en 10 departamentos, menos del 2 % de los meses revisados. Como ese mínimo lo elegimos nosotros, lo probamos con 30, 50 y 200: salen entre 9 y 13 alertas, y siempre son locales.</p>
+    <p><mark><b>Ejemplo para decirlo:</b> «Exigimos que el mes normal de un departamento tenga al menos 100 quejas. Si tiene menos, el mes no se evalúa: en Vaupés, pasar de una queja a cuatro daba un índice de 8, que parece una crisis y no lo es. Con 100 evitamos ese ruido, y si probamos con 30 o 200 la conclusión no cambia».</mark></p>
     <p><i>Si preguntan:</i> Esa comparación con el país se llama índice relativo. Para que dos o tres quejas no disparen una alerta en un departamento pequeño, exigimos al menos 100 quejas de referencia y 12 meses con datos.</p>
-    <div class="cifras"><h4>Para sustentar las cifras</h4><ul><li><b>11 alertas en 10 departamentos:</b> Meses en que el índice relativo de un departamento superó el bigote de Tukey de su propia historia, entre febrero de 2024 y septiembre de 2026, con referencia de al menos 100 quejas y departamentos con 12 o más meses evaluables (6.4).</li><li><b>589 meses evaluables:</b> Combinaciones mes × departamento con referencia de al menos 100 quejas, fuera del periodo de arranque y en departamentos con 12 o más meses evaluables (6.4).</li><li><b>1,9 %:</b> 11 ÷ 589.</li><li><b>Mediana de seis meses:</b> La referencia de cada mes es la mediana de las quejas de los 6 meses calendario anteriores, con al menos 4 con dato (6.3).</li><li><b>100 quejas:</b> Volumen mínimo que debe tener la referencia para que un mes se evalúe (6.4).</li></ul></div>
+    <div class="cifras"><h4>Para sustentar las cifras</h4><ul><li><b>11 alertas en 10 departamentos:</b> Meses en que el índice relativo de un departamento superó el bigote de Tukey de su propia historia, entre febrero de 2024 y septiembre de 2026, con referencia de al menos 100 quejas y departamentos con 12 o más meses evaluables (6.4).</li><li><b>589 meses evaluables:</b> Combinaciones mes × departamento con referencia de al menos 100 quejas, fuera del periodo de arranque y en departamentos con 12 o más meses evaluables (6.4).</li><li><b>1,9 %:</b> 11 ÷ 589.</li><li><b>Mediana de seis meses:</b> La referencia de cada mes es la mediana de las quejas de los 6 meses calendario anteriores, con al menos 4 con dato (6.3).</li><li><b>100 quejas:</b> Volumen mínimo que debe tener la referencia para que un mes se evalúe (6.4).</li><li><b>13, 13, 11 y 9:</b> Alertas con volumen mínimo de 30, 50, 100 y 200 quejas de referencia (tabla de sensibilidad de la 6.4).</li><li><b>19 departamentos:</b> Departamentos evaluables con el umbral de 100; 3 quedan fuera por tener menos de 12 meses evaluables (6.4).</li></ul></div>
+      <div class="cifras"><h4>Cómo se calcula el índice relativo (lo que entra a Tukey)</h4><ul><li><b>Paso 1 · Lo normal del departamento:</b> para cada departamento y mes se toma como referencia la mediana de sus quejas en los 6 meses calendario anteriores, con al menos 4 meses con dato y sin contar el arranque de 2023. Si la referencia es 0, el mes queda sin índice.</li><li><b>Paso 2 · Índice del departamento:</b> indice_vs_6m = quejas del mes ÷ esa referencia. Un 1,0 es un mes normal; 1,55 es 55 % más quejas de lo habitual.</li><li><b>Paso 3 · Índice del país:</b> indice_nacional_vs_6m = quejas de todo el país en el mes ÷ la mediana nacional de los 6 meses anteriores. Sirve para saber si ese mes subió todo el país.</li><li><b>Paso 4 · Índice relativo:</b> indice_relativo = indice_vs_6m ÷ indice_nacional_vs_6m. Le descuenta al departamento lo que hizo el país: si los dos suben igual, da cerca de 1; solo crece si el departamento sube más que el país. Esta es la variable a la que se le aplica Tukey.</li><li><b>Ejemplo: Meta, marzo de 2026:</b> sus quejas subieron 55 % frente a su mediana (índice 1,55) y el país subió 21 % (índice 1,21). Índice relativo = 1,55 ÷ 1,21 ≈ 1,28, el valor que aparece en la vista minable (1,283).</li><li><b>Ejemplo: Cauca, abril de 2026:</b> 182 quejas frente a una referencia de 119: índice 1,53. El país subió 18 % (1,18), así que el índice relativo es 1,53 ÷ 1,18 ≈ 1,30.</li><li><b>Paso 5 · Tukey sobre la historia del departamento:</b> con todos los meses evaluables de ese departamento se calculan Q1, Q3 y el rango intercuartílico (IQR = Q3 − Q1) de su índice relativo. El límite es Q3 + 1,5 × IQR, propio de cada departamento.</li><li><b>Paso 6 · La alerta:</b> un mes es alerta si su índice relativo supera ese límite. Solo se evalúan meses con referencia de al menos 100 quejas, fuera del arranque y en departamentos con 12 o más meses evaluables.</li><li><b>Por qué así:</b> dividir por el país evita marcar como alerta algo que pasó en todo Colombia, como una temporada; usar la historia de cada departamento evita medir con la misma vara a uno muy estable y a uno muy variable. Por eso los picos son moderados, con índices relativos entre 1,21 y 1,30 (6.4).</li></ul></div>
   </aside>
 </section>
 
@@ -891,8 +969,8 @@ table{font-variant-numeric:lining-nums tabular-nums}
   </aside>
 </section>
 
-<!-- 28. Tabla sensibilidad -->
-<section class="slide tabla">
+<!-- 28. Tabla sensibilidad (oculta: se salta en la presentación, el PDF y los guiones) -->
+<section class="slide tabla oculta">
   <div class="cabecera"><span class="seccion"><b>05</b> · Resultados P2</span><span>Sección 6.4</span></div>
   <h1>Entre 9 y 13 alertas con cualquier umbral, todas locales</h1>
   <div class="cuerpo">
@@ -910,6 +988,7 @@ table{font-variant-numeric:lining-nums tabular-nums}
   <aside class="notes" data-orador="David">
     <p><b>Idea clave:</b> El resultado no depende del umbral que elegimos.</p>
     <p>(≈25 s) ¿Y si hubiéramos elegido otro umbral? Exigimos que un departamento tenga al menos 100 quejas de referencia, para que unas pocas quejas no disparen alertas. Probamos con 30, 50, 100 y 200: salen entre 9 y 13 alertas, y siempre son locales. El resultado es estable.</p>
+    <p><mark><b>Ejemplo para decirlo:</b> «Exigimos que el mes normal de un departamento tenga al menos 100 quejas. Si tiene menos, el mes no se evalúa: en Vaupés, pasar de una queja a cuatro daba un índice de 8, que parece una crisis y no lo es. Con 100 evitamos ese ruido, y si probamos con 30 o 200 la conclusión no cambia».</mark></p>
     <div class="cifras"><h4>Para sustentar las cifras</h4><ul><li><b>13, 13, 11 y 9:</b> Alertas con volumen mínimo de 30, 50, 100 y 200 quejas de referencia (tabla de sensibilidad de la 6.4).</li><li><b>19 departamentos:</b> Departamentos evaluables con el umbral de 100; 3 quedan fuera por tener menos de 12 meses evaluables (6.4).</li></ul></div>
   </aside>
 </section>
@@ -1065,6 +1144,69 @@ table{font-variant-numeric:lining-nums tabular-nums}
 
 </main>
 
+<div class="modal" id="modalTabla" aria-hidden="true">
+  <div class="modal-caja" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+    <button class="modal-cerrar" id="modalCerrar" aria-label="Cerrar">×</button>
+    <h3 id="modalTitulo"></h3>
+    <p class="modal-meta" id="modalMeta"></p>
+    <p class="modal-nota" id="modalNota"></p>
+    <div class="modal-scroll"><table><thead id="modalCabeza"></thead><tbody id="modalCuerpo"></tbody></table></div>
+  </div>
+</div>
+<script type="application/json" id="muestrasTablas">{"hjqv": {"titulo": "hjqv-fp48 · Histórico de quejas SFC", "fuente": "datos/raw/quejas_sfc.csv", "nota": "Banco Davivienda, trimestre que termina en junio de 2022: los cinco registros con más quejas recibidas.", "columnas": ["fecha_corte", "nombre_unidad_captura", "producto", "motivo", "quejas_recibidas", "quejas_finalizadas", "quejas_finalizad_favor_consum", "quejas_finalizad_favor_entidad", "quejas_en_tramite"], "filas": [["2022-06-30", "ENTIDAD VIGILADA", "CUENTA DE AHORROS", "FALLAS EN CAJERO AUTOMÁTICO", "8.616", "8.998", "7.448", "1.550", "220"], ["2022-06-30", "ENTIDAD VIGILADA", "TARJETAS DE CRÉDITO", "DESCUENTOS INJUSTIFICADOS", "4.526", "5.188", "3.411", "1.777", "249"], ["2022-06-30", "ENTIDAD VIGILADA", "CUENTA DE AHORROS", "DESCUENTOS INJUSTIFICADOS", "3.981", "4.383", "2.879", "1.504", "224"], ["2022-06-30", "ENTIDAD VIGILADA", "CRÉDITO DE CONSUMO Y/O COMERCIAL", "CONSIGNACIÓN ERRÓNEA", "1.865", "1.855", "1.817", "38", "10"], ["2022-06-30", "ENTIDAD VIGILADA", "TARJETAS DE CRÉDITO", "ASPECTOS CONTRACTUALES (INCUMPLIMIENTO Y/O MODIFICACIÓN)", "1.616", "1.617", "1.616", "1", "0"]], "tam": "9.953 filas × 18 columnas", "usadas": 9}, "ss": {"titulo": "xyy7-rn7p · Quejas Smartsupervision", "fuente": "datos/raw/quejas_smartsupervision.csv", "nota": "Banco Davivienda, septiembre de 2026: el registro con más quejas de cinco departamentos distintos. Cada fila es un conteo.", "columnas": ["a_o_creacion", "mes_creacion", "codigo_entidad", "instancia_recepcion", "producto", "motivo", "departamento", "municipio", "cantidad_quejas_recibidas"], "filas": [["2026", "9", "39", "Entidad vigilada", "Cuenta de ahorro", "Transacción no reconocida", "BOGOTÁ, D.C.", "BOGOTÁ, D.C.", "5.053"], ["2026", "9", "39", "Entidad vigilada", "Tarjetas de crédito", "Transacción no reconocida", "ANTIOQUIA", "MEDELLÍN", "528"], ["2026", "9", "39", "Entidad vigilada", "Tarjetas de crédito", "Transacción no reconocida", "VALLE DEL CAUCA", "CALI", "356"], ["2026", "9", "39", "Entidad vigilada", "Cuenta de ahorro", "Transacción no reconocida", "ATLÁNTICO", "BARRANQUILLA", "291"], ["2026", "9", "39", "Entidad vigilada", "Tarjetas de crédito", "Transacción no reconocida", "—", "—", "227"]], "tam": "113.327 filas × 10 columnas", "usadas": 9}, "pts": {"titulo": "vkbt-desu · Puntos de atención", "fuente": "datos/raw/puntos_atencion.csv", "nota": "Junio de 2026, Bogotá (11001) y Medellín (5001; el cuaderno completa los códigos con ceros a la izquierda). Los canales 4 y 14 son oficinas y cajeros; el 10 se deja por fuera.", "columnas": ["fecha_corte", "codigo_entidad", "codigo_canal", "codigo_departamento", "codigo_municipio", "cantidad_puntos_atencion"], "filas": [["2026-06-30", "39", "4", "11", "11001", "726"], ["2026-06-30", "39", "14", "11", "11001", "136"], ["2026-06-30", "39", "10", "11", "11001", "8.701"], ["2026-06-30", "39", "4", "5", "5001", "102"], ["2026-06-30", "39", "14", "5", "5001", "29"]], "tam": "60.998 filas × 11 columnas", "usadas": 6}, "dvp": {"titulo": "vcjz-niiq · DIVIPOLA departamentos", "fuente": "datos/raw/divipola_departamentos.csv", "nota": "Primeros cinco departamentos. Las columnas de longitud y latitud no se usan.", "columnas": ["codigo_departamento", "nombre_departamento"], "filas": [["05", "ANTIOQUIA"], ["08", "ATLÁNTICO"], ["11", "BOGOTÁ, D.C."], ["13", "BOLÍVAR"], ["15", "BOYACÁ"]], "tam": "33 filas × 4 columnas", "usadas": 2}, "sic": {"titulo": "73dx-n59j · Sanciones SIC", "fuente": "datos/raw/sanciones_sic.csv", "nota": "Las cinco sanciones más recientes. El valor está en pesos; todas son del sector de servicios de financiación.", "columnas": ["radicado", "res_sancion", "fecha_emitida", "multado", "conducta", "valor"], "filas": [["24 503714", "40639", "2026-05-29", "MICREDITOYA MICROFINANCIERA SAS", "Usura", "353.999.520"], ["23 155249", "40643", "2026-05-29", "COOPERATIVA DE AHORRO Y CREDITO FINCOMERCIO LTDA - FINCOMERCIO", "Falta de información para conocer las características del crédito", "98.333.200"], ["22 421665", "39455", "2026-05-27", "TYPHOON DIGITAL SAS", "Inobservancia de órdenes e instrucciones impartidas", "2.809.520"], ["23 191691", "39463", "2026-05-27", "FINTECH SOLUTIONS COLOMBIA S.A.S.", "Falta de información para conocer las características del crédito", "42.142.800"], ["20 376747", "38587", "2026-05-26", "WEB KAPITAL S A S EN LIQUIDACION", "Inobservancia de órdenes e instrucciones impartidas", "28.095.200"]], "tam": "281 filas × 7 columnas", "usadas": 6}, "vista": {"titulo": "Vista minable", "fuente": "datos/procesados/vista_minable_reputacion.csv", "nota": "Marzo de 2026: tres productos de Meta, el mes de su pico (alerta = 1), y dos de Bogotá para comparar. Se muestran 11 de las 39 columnas.", "columnas": ["mes", "departamento", "producto_homologado", "quejas_recibidas", "tasa_fundadas_ref", "quejas_fundadas_estimadas", "quejas_depto_por_100_puntos", "indice_relativo", "alerta_iqr", "nivel_riesgo_depto", "sanciones_sector_12m"], "filas": [["2026-03", "META", "Cuenta de ahorros", "270", "0,811", "218,853", "970,510", "1,283", "Sí", "muy alto", "10"], ["2026-03", "META", "Tarjeta de crédito", "130", "0,741", "96,265", "970,510", "1,283", "Sí", "muy alto", "10"], ["2026-03", "META", "Otros productos bancarios", "44", "0,775", "34,103", "970,510", "1,283", "Sí", "muy alto", "10"], ["2026-03", "BOGOTÁ, D.C.", "Cuenta de ahorros", "8.271", "0,811", "6.704,201", "2.401,195", "0,961", "No", "muy alto", "10"], ["2026-03", "BOGOTÁ, D.C.", "Tarjeta de crédito", "5.106", "0,741", "3.781,009", "2.401,195", "0,961", "No", "muy alto", "10"]], "tam": "8.647 filas × 39 columnas", "usadas": 11}}</script>
+<div class="modal" id="modalPreguntas" aria-hidden="true">
+  <div class="modal-caja modal-preguntas" role="dialog" aria-modal="true" aria-labelledby="tituloPreguntas">
+    <button class="modal-cerrar" type="button" aria-label="Cerrar">×</button>
+    <h3 id="tituloPreguntas">Las dos preguntas del proyecto</h3>
+    <div class="recordatorio">
+      <div>
+        <div class="etq">P1 · Qué corregir primero</div>
+        <p class="pq">¿Qué productos y motivos concentran las quejas fundadas (aquellas resueltas a favor del consumidor) contra Davivienda, y cómo ha cambiado esa composición entre 2010 y 2022?</p>
+        <p class="fuentes">La responde el <b>histórico de la SFC</b>, la única fuente que dice cómo terminó cada queja.</p>
+      </div>
+      <div class="acento">
+        <div class="etq">P2 · Dónde mirar a tiempo</div>
+        <p class="pq">¿Es posible identificar, a partir de la serie mensual de quejas por departamento, picos atípicos que sirvan como señal de alerta para la reputación de Davivienda?</p>
+        <p class="fuentes">La responde <b>Smartsupervision</b>, con mes y departamento, apoyada en los <b>puntos de atención</b> y <b>DIVIPOLA</b> para comparar regiones de distinto tamaño.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="modalP1" aria-hidden="true">
+  <div class="modal-caja modal-preguntas modal-una" role="dialog" aria-modal="true" aria-labelledby="titulomodalP1">
+    <button class="modal-cerrar" type="button" aria-label="Cerrar">×</button>
+    <h3 id="titulomodalP1">Pregunta 1</h3>
+    <div class="recordatorio una"><div>
+      <div class="etq">P1 · Qué corregir primero</div>
+      <p class="pq">¿Qué productos y motivos concentran las quejas fundadas (aquellas resueltas a favor del consumidor) contra Davivienda, y cómo ha cambiado esa composición entre 2010 y 2022?</p>
+      <p class="fuentes">La responde el <b>histórico de la SFC</b>, la única fuente que dice cómo terminó cada queja.</p>
+    </div></div>
+  </div>
+</div>
+<div class="modal" id="modalP2" aria-hidden="true">
+  <div class="modal-caja modal-preguntas modal-una" role="dialog" aria-modal="true" aria-labelledby="titulomodalP2">
+    <button class="modal-cerrar" type="button" aria-label="Cerrar">×</button>
+    <h3 id="titulomodalP2">Pregunta 2</h3>
+    <div class="recordatorio una"><div class="acento">
+      <div class="etq">P2 · Dónde mirar a tiempo</div>
+      <p class="pq">¿Es posible identificar, a partir de la serie mensual de quejas por departamento, picos atípicos que sirvan como señal de alerta para la reputación de Davivienda?</p>
+      <p class="fuentes">La responde <b>Smartsupervision</b>, con mes y departamento, apoyada en los <b>puntos de atención</b> y <b>DIVIPOLA</b> para comparar regiones de distinto tamaño.</p>
+    </div></div>
+  </div>
+</div>
+<div class="modal" id="modalConteo" aria-hidden="true">
+  <div class="modal-caja modal-preguntas modal-una" role="dialog" aria-modal="true" aria-labelledby="tituloConteo">
+    <button class="modal-cerrar" type="button" aria-label="Cerrar">×</button>
+    <h3 id="tituloConteo">Cómo se cuentan los 589 meses evaluables</h3>
+    <div class="conteo">
+      <p>Los 589 no son meses del calendario: son <b>revisiones de un departamento en un mes</b>.</p>
+      <div class="ecuacion"><div><b>19</b><br><span>departamentos</span></div><i>×</i><div><b>31</b><br><span>meses</span></div><i>=</i><div><b>589</b><br><span>revisiones</span></div></div>
+      <p><b>19 departamentos:</b> los que pasan los filtros, es decir, una referencia de al menos 100 quejas y 12 o más meses evaluables. Los demás tienen tan pocas quejas que dos o tres de más dispararían una alerta.</p>
+      <p><b>31 meses:</b> de febrero de 2024 a septiembre de 2026 hay 32 meses, y febrero de 2026 no tiene datos. Se empieza en febrero de 2024 porque enero a septiembre de 2023 es el arranque de Smartsupervision y cada mes necesita una referencia con al menos 4 meses con dato.</p>
+      <p><b>11 ÷ 589 = 1,9 %:</b> en menos de 2 de cada 100 revisiones el departamento se salió de lo normal. Que la alerta sea rara es lo que la hace útil.</p>
+    </div>
+  </div>
+</div>
 <div class="panel-notas" id="panelNotas"><h3 id="tituloNotas">Notas del orador</h3><div id="contenidoNotas"></div></div>
 <div class="ui"><span id="contador"></span><button id="btnNotas" title="Tecla N">Notas</button><button id="btnAnt" aria-label="Anterior">←</button><button id="btnSig" aria-label="Siguiente">→</button></div>
 
@@ -1089,7 +1231,15 @@ table{font-variant-numeric:lining-nums tabular-nums}
   }
 
   function mostrar(i) {
-    actual = Math.max(0, Math.min(slides.length - 1, i));
+    var paso = i < actual ? -1 : 1;
+    i = Math.max(0, Math.min(slides.length - 1, i));
+    while (slides[i] && slides[i].classList.contains("oculta")) {
+      var siguiente = i + paso;
+      if (siguiente < 0 || siguiente >= slides.length) { paso = -paso; siguiente = i + paso; }
+      i = siguiente;
+    }
+    actual = i;
+    if (typeof ocultarAyuda === "function") ocultarAyuda();
     slides.forEach(function (el, k) { el.classList.toggle("activa", k === actual); });
     var notas = slides[actual].querySelector(".notes");
     document.getElementById("contenidoNotas").innerHTML = notas ? notas.innerHTML : "";
@@ -1101,6 +1251,8 @@ table{font-variant-numeric:lining-nums tabular-nums}
 
   document.addEventListener("keydown", function (e) {
     var k = e.key;
+    var abierta = document.querySelector(".modal.abierto");
+    if (abierta) { if (k === "Escape") { abierta.classList.remove("abierto"); abierta.setAttribute("aria-hidden", "true"); } return; }
     if (k === "ArrowRight" || k === "PageDown" || k === " ") { e.preventDefault(); mostrar(actual + 1); }
     else if (k === "ArrowLeft" || k === "PageUp") { e.preventDefault(); mostrar(actual - 1); }
     else if (k === "Home") mostrar(0);
@@ -1110,6 +1262,89 @@ table{font-variant-numeric:lining-nums tabular-nums}
   document.getElementById("btnSig").onclick = function () { mostrar(actual + 1); };
   document.getElementById("btnAnt").onclick = function () { mostrar(actual - 1); };
   document.getElementById("btnNotas").onclick = function () { panel.classList.toggle("visible"); };
+
+  var globo = document.createElement("div");
+  globo.className = "globo";
+  document.body.appendChild(globo);
+  function mostrarAyuda(el) {
+    globo.textContent = el.getAttribute("data-ayuda");
+    globo.classList.add("visible");
+    var r = el.getBoundingClientRect(), g = globo.getBoundingClientRect();
+    var x = Math.min(r.right + 10, window.innerWidth - g.width - 12);
+    var y = Math.min(Math.max(r.top - 8, 12), window.innerHeight - g.height - 12);
+    if (x < r.right + 10) x = Math.max(12, r.left - g.width - 10);
+    globo.style.left = x + "px";
+    globo.style.top = y + "px";
+  }
+  function ocultarAyuda() { globo.classList.remove("visible"); }
+  Array.prototype.forEach.call(document.querySelectorAll(".ayuda"), function (el) {
+    el.addEventListener("mouseenter", function () { mostrarAyuda(el); });
+    el.addEventListener("focus", function () { mostrarAyuda(el); });
+    el.addEventListener("mouseleave", ocultarAyuda);
+    el.addEventListener("blur", ocultarAyuda);
+  });
+
+  var muestras = JSON.parse(document.getElementById("muestrasTablas").textContent);
+  var modal = document.getElementById("modalTabla");
+  function celdaHTML(etiqueta, texto, clase) {
+    var c = document.createElement(etiqueta);
+    c.textContent = texto;
+    if (etiqueta === "td") c.title = texto;
+    if (clase) c.className = clase;
+    return c;
+  }
+  function abrirTabla(clave) {
+    var m = muestras[clave];
+    document.getElementById("modalTitulo").textContent = m.titulo;
+    document.getElementById("modalMeta").innerHTML = "";
+    document.getElementById("modalMeta").append(m.tam + " · se muestran " + m.usadas + " columnas · ", celdaHTML("code", m.fuente));
+    document.getElementById("modalNota").textContent = m.nota;
+    var cabeza = document.getElementById("modalCabeza"), cuerpo = document.getElementById("modalCuerpo");
+    cabeza.innerHTML = ""; cuerpo.innerHTML = "";
+    var fila = document.createElement("tr");
+    m.columnas.forEach(function (c) { fila.appendChild(celdaHTML("th", c)); });
+    cabeza.appendChild(fila);
+    m.filas.forEach(function (f) {
+      var tr = document.createElement("tr");
+      f.forEach(function (v) { tr.appendChild(celdaHTML("td", v, /^[-\d.,—]+$/.test(v) ? "n" : "")); });
+      cuerpo.appendChild(tr);
+    });
+    ocultarAyuda();
+    modal.classList.add("abierto");
+    modal.setAttribute("aria-hidden", "false");
+    document.getElementById("modalCerrar").focus();
+  }
+  function cerrarTabla() {
+    modal.classList.remove("abierto");
+    modal.setAttribute("aria-hidden", "true");
+  }
+  Array.prototype.forEach.call(document.querySelectorAll(".verTabla"), function (el) {
+    el.addEventListener("click", function () { abrirTabla(el.getAttribute("data-tabla")); });
+    el.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); abrirTabla(el.getAttribute("data-tabla")); }
+    });
+  });
+  document.getElementById("modalCerrar").addEventListener("click", cerrarTabla);
+  modal.addEventListener("click", function (e) { if (e.target === modal) cerrarTabla(); });
+
+  function cerrarModal(m) {
+    m.classList.remove("abierto");
+    m.setAttribute("aria-hidden", "true");
+  }
+  Array.prototype.forEach.call(document.querySelectorAll(".btn-preguntas"), function (b) {
+    b.addEventListener("click", function () {
+      var m = document.getElementById(b.getAttribute("data-modal"));
+      ocultarAyuda();
+      m.classList.add("abierto");
+      m.setAttribute("aria-hidden", "false");
+      m.querySelector(".modal-cerrar").focus();
+    });
+  });
+  ["modalPreguntas", "modalP1", "modalP2", "modalConteo"].forEach(function (id) {
+    var m = document.getElementById(id);
+    m.querySelector(".modal-cerrar").addEventListener("click", function () { cerrarModal(m); });
+    m.addEventListener("click", function (e) { if (e.target === m) cerrarModal(m); });
+  });
   window.addEventListener("resize", escalar);
   var ui = document.querySelector(".ui"), espera;
   document.addEventListener("mousemove", function () {

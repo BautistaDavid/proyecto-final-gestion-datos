@@ -1,6 +1,14 @@
+# Cuadernos (probados con Python 3.14, pandas 3.1, numpy 2.5, matplotlib 3.11 y requests 2.34)
 pandas
-requests
+numpy
 matplotlib
+requests
+
+# Ejecutar los cuadernos desde la terminal
 ipykernel
 nbclient
 nbformat
+
+# Solo para regenerar la presentación y los guiones (presentacion/construir.py)
+markdown
+pymupdf

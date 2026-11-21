@@ -33,9 +33,14 @@ def texto(fragmento):
     return html.unescape(re.sub(r"\s+", " ", sin_etiquetas)).strip()
 
 
+def visibles(fuente):
+    secciones = re.findall(r'<section class="(slide[^"]*)">(.*?)</section>', fuente, flags=re.S)
+    return [(n, cuerpo) for n, (clases, cuerpo) in enumerate(secciones, start=1) if "oculta" not in clases.split()], len(secciones)
+
+
 def reparto(diapositivas):
     turnos = []
-    for n, cuerpo in enumerate(diapositivas, start=1):
+    for n, cuerpo in diapositivas:
         orador = re.search(r'data-orador="([^"]+)"', cuerpo).group(1)
         hablado = re.findall(r"<p>(\(.*?)</p>", cuerpo, flags=re.S)
         palabras = sum(len(texto(p).split()) for p in hablado)
@@ -57,7 +62,7 @@ def reparto(diapositivas):
 
 def guion():
     fuente = HTML.read_text(encoding="utf-8")
-    diapositivas = re.findall(r'<section class="slide[^"]*">(.*?)</section>', fuente, flags=re.S)
+    diapositivas, _ = visibles(fuente)
     lineas = [
         "# Guion del presentador",
         "",
@@ -88,7 +93,7 @@ def guion():
         *[f"| {termino} | {definicion} |" for termino, definicion in GLOSARIO],
         "",
     ]
-    for n, cuerpo in enumerate(diapositivas, start=1):
+    for n, cuerpo in diapositivas:
         titulo = re.search(r"<h1>(.*?)</h1>", cuerpo, flags=re.S)
         seccion = re.search(r'<span class="seccion">(.*?)</span>', cuerpo, flags=re.S)
         etiqueta = re.search(r'<div class="etiqueta">(.*?)</div>', cuerpo, flags=re.S)
@@ -105,7 +110,10 @@ def guion():
                 continue
             if lineas[-1].startswith("- "):
                 lineas.append("")
-            lineas.append(f"**{texto(contenido)}**" if etiqueta == "h4" else texto(contenido))
+            if contenido.startswith("<mark>"):
+                lineas.append(f"<mark>{texto(contenido)}</mark>")
+            else:
+                lineas.append(f"**{texto(contenido)}**" if etiqueta == "h4" else texto(contenido))
             lineas.append("")
         if lineas[-1].startswith("- "):
             lineas.append("")
@@ -127,6 +135,7 @@ h2 + p{break-before:avoid}
 th{text-align:left;border-bottom:1.5px solid #1A1D20;padding:4pt 8pt 4pt 0}
 td{border-bottom:1px solid #D9DBD6;padding:4pt 8pt 4pt 0;vertical-align:top}
 strong{color:#1E3A5F}
+mark{background:#FFE45C;color:#1A1D20;padding:1pt 3pt}
 code{font-size:9pt}
 """
 
@@ -173,7 +182,11 @@ section:last-child{break-after:auto}
 .idea{font-size:9.6pt;border-left:3px solid #E1111C;padding-left:7pt}
 h3{font-size:8pt;letter-spacing:.12em;text-transform:uppercase;color:#E1111C;margin:9pt 0 3pt;font-weight:600}
 .decir{font-size:10.6pt;line-height:1.55}
+.destacado{font-size:10.4pt;line-height:1.55;margin:4pt 0 8pt}
+.destacado mark{background:#FFE45C;color:#1A1D20;padding:1pt 2pt;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .apoyo{color:#3A3F45}
+ul.apoyo{font-size:8.7pt;line-height:1.38}
+ul.apoyo li{margin-bottom:2pt}
 .relevo{background:#F3F1EA;padding:5pt 8pt;margin-top:8pt}
 ul{margin:0;padding-left:13pt}
 li{margin-bottom:3pt}
@@ -197,23 +210,25 @@ def pdf_guion_visual():
     import pymupdf
 
     fuente = HTML.read_text(encoding="utf-8")
-    diapositivas = re.findall(r'<section class="slide[^"]*">(.*?)</section>', fuente, flags=re.S)
+    diapositivas, total = visibles(fuente)
     paginas = pymupdf.open(PDF)
     assert len(paginas) == len(diapositivas)
     limpio = lambda t: html.escape(texto(t)).replace("**", "")
     hojas, anterior, relevo_anterior = [], None, ""
-    for n, (cuerpo, pagina) in enumerate(zip(diapositivas, paginas), start=1):
+    for (n, cuerpo), pagina in zip(diapositivas, paginas):
         imagen = base64.b64encode(pagina.get_pixmap(dpi=110).tobytes("png")).decode()
         titulo = re.search(r"<h1>(.*?)</h1>", cuerpo, flags=re.S)
         seccion = re.search(r'<span class="seccion"><b>\d+</b> · ([^<]+)</span>', cuerpo)
         notas = re.search(r'<aside class="notes"[^>]*>(.*?)</aside>', cuerpo, flags=re.S)
         orador = re.search(r'data-orador="([^"]+)"', cuerpo).group(1)
-        idea, decir, preguntan, relevo = "", [], "", ""
+        idea, decir, preguntan, relevo, destacados = "", [], "", "", []
         for p in re.findall(r"<p>(.*?)</p>", notas.group(1), flags=re.S):
             if p.startswith("<b>Idea clave:</b>"):
                 idea = limpio(p.replace("<b>Idea clave:</b>", ""))
             elif p.startswith("<i>Si preguntan:</i>"):
                 preguntan = limpio(p.replace("<i>Si preguntan:</i>", ""))
+            elif p.startswith("<mark>"):
+                destacados.append(re.sub(r"<b>(.*?)</b>", r"<b>\1</b>", limpio(re.sub(r"</?mark>", "", p)).replace("Ejemplo para decirlo:", "<b>Ejemplo para decirlo:</b>", 1)))
             elif p.startswith("<i>Relevo:</i>"):
                 relevo = limpio(p.replace("<i>Relevo:</i>", ""))
             else:
@@ -221,10 +236,11 @@ def pdf_guion_visual():
         tiempo = re.match(r"\(([^)]*)\)\s*", decir[0]) if decir else None
         if tiempo:
             decir[0] = decir[0][tiempo.end():]
-        cifras = [re.sub(r"<b>(.*?)</b>", lambda m: f"<b>{html.escape(texto(m.group(1)))}</b>", li)
-                  for li in re.findall(r"<li>(.*?)</li>", notas.group(1), flags=re.S)]
+        bloques = [(texto(t), [re.sub(r"<b>(.*?)</b>", lambda m: f"<b>{html.escape(texto(m.group(1)))}</b>", li)
+                               for li in re.findall(r"<li>(.*?)</li>", lista, flags=re.S)])
+                   for t, lista in re.findall(r"<h4>(.*?)</h4>\s*<ul>(.*?)</ul>", notas.group(1), flags=re.S)]
         partes = [f'''<section>
-  <div class="toca {orador}"><span>Le toca a</span><b>{orador}</b><span>Diapositiva {n} de {len(diapositivas)}</span></div>
+  <div class="toca {orador}"><span>Le toca a</span><b>{orador}</b><span>Diapositiva {n} de {total}</span></div>
   <div class="cabeza"><img src="data:image/png;base64,{imagen}">
     <div><div class="num">{n:02d}</div>
       <div class="titulo">{limpio(titulo.group(1)) if titulo else "Portada"}</div>
@@ -234,12 +250,13 @@ def pdf_guion_visual():
         if anterior and anterior != orador and relevo_anterior:
             partes.append(f'<p class="recibe"><b>Recibes la palabra de {anterior}:</b> {relevo_anterior}</p>')
         partes += [f'<p class="decir">{d}</p>' for d in decir]
+        partes += [f'<p class="destacado"><mark>{d}</mark></p>' for d in destacados]
         if relevo:
             partes.append(f'<p class="relevo"><b>Relevo:</b> {relevo}</p>')
         if preguntan:
             partes.append(f'<h3>Si preguntan</h3><p class="apoyo">{preguntan}</p>')
-        if cifras:
-            partes.append('<h3>Para sustentar las cifras</h3><ul class="apoyo">' + "".join(f"<li>{c}</li>" for c in cifras) + "</ul>")
+        for titulo_bloque, items in bloques:
+            partes.append(f'<h3>{html.escape(titulo_bloque)}</h3><ul class="apoyo">' + "".join(f"<li>{c}</li>" for c in items) + "</ul>")
         partes.append("</section>")
         hojas.append({"n": n, "orador": orador, "html": "\n".join(partes), "seccion": seccion.group(1) if seccion else "",
                       "palabras": sum(len(d.split()) for d in decir)})
